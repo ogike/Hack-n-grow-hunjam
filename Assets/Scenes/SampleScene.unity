@@ -857,10 +857,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5873e4294bf01664ca3b0b9cb6457e72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 3
-  gameOverScreen: {fileID: 201187450}
-  healthText: {fileID: 1977275935}
-  healthMeter: {fileID: 1557558393}
 --- !u!1 &566572446
 GameObject:
   m_ObjectHideFlags: 0
@@ -2106,6 +2102,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1735569420791241970, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
+      propertyPath: healthText
+      value: 
+      objectReference: {fileID: 1977275935}
+    - target: {fileID: 1735569420791241970, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
+      propertyPath: healthMeter
+      value: 
+      objectReference: {fileID: 1557558393}
     - target: {fileID: 1735569420791241970, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
       propertyPath: gameOverScreen
       value: 
