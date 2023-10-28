@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0bca6fbc8b8346b44a32288881197f86
+guid: ef251b05c7ea59e47910f7ff05144fba
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -119,18 +119,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: maincharacter
+  - name: tamadaselore
     originalName: 
-    pivot: {x: 0.62857145, y: -0.14285713}
+    pivot: {x: 0.5494506, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 35
-      height: 42
-    spriteID: 4a318913388c3b94a8c72032a6e39719
+      width: 91
+      height: 50
+    spriteID: 3d45a186bd828dd47921513c10d23b60
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -142,23 +142,23 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -533943606
-    name: maincharacter
+    guid: -666979684
+    name: tamadaselore
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: maincharacter
+    - name: tamadaselore
       frameIndex: 0
       cellRect:
-        x: 3
-        y: 6
-        width: 35
-        height: 42
-      spriteId: 4a318913388c3b94a8c72032a6e39719
+        x: 0
+        y: 0
+        width: 91
+        height: 50
+      spriteId: 3d45a186bd828dd47921513c10d23b60
     linkedCells: []
     parentIndex: -1
   platformSettings: []
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 50, y: 50}
+  canvasSize: {x: 100, y: 50}

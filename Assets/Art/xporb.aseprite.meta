@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0bca6fbc8b8346b44a32288881197f86
+guid: aa049050a9c6bfc48bd64a52d3ee108f
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -119,18 +119,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: maincharacter
+  - name: xporb
     originalName: 
-    pivot: {x: 0.62857145, y: -0.14285713}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 35
-      height: 42
-    spriteID: 4a318913388c3b94a8c72032a6e39719
+      width: 10
+      height: 10
+    spriteID: 441dee0f523f11740a5673fe9a93ca15
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -142,23 +142,23 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -533943606
-    name: maincharacter
+    guid: 1870652119
+    name: xporb
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: maincharacter
+    - name: xporb
       frameIndex: 0
       cellRect:
-        x: 3
-        y: 6
-        width: 35
-        height: 42
-      spriteId: 4a318913388c3b94a8c72032a6e39719
+        x: 0
+        y: 0
+        width: 10
+        height: 10
+      spriteId: 441dee0f523f11740a5673fe9a93ca15
     linkedCells: []
     parentIndex: -1
   platformSettings: []
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 50, y: 50}
+  canvasSize: {x: 10, y: 10}

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0bca6fbc8b8346b44a32288881197f86
+guid: 7bcba531fd69b86429d7e9c881475cf7
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -119,18 +119,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: maincharacter
+  - name: scientist
     originalName: 
-    pivot: {x: 0.62857145, y: -0.14285713}
+    pivot: {x: 0.45161292, y: -0.125}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 35
-      height: 42
-    spriteID: 4a318913388c3b94a8c72032a6e39719
+      width: 31
+      height: 40
+    spriteID: 6f68f458412cd4a40a53496cff3d8414
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -142,20 +142,20 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -533943606
-    name: maincharacter
+    guid: -709881280
+    name: scientist
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: maincharacter
+    - name: scientist
       frameIndex: 0
       cellRect:
-        x: 3
-        y: 6
-        width: 35
-        height: 42
-      spriteId: 4a318913388c3b94a8c72032a6e39719
+        x: 11
+        y: 5
+        width: 31
+        height: 40
+      spriteId: 6f68f458412cd4a40a53496cff3d8414
     linkedCells: []
     parentIndex: -1
   platformSettings: []

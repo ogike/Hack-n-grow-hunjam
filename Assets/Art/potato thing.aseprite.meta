@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0bca6fbc8b8346b44a32288881197f86
+guid: c8d4f8039cbcc3a4982692ec884c0ab0
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -119,18 +119,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: maincharacter
+  - name: potato thing_Frame_0
     originalName: 
-    pivot: {x: 0.62857145, y: -0.14285713}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 35
-      height: 42
-    spriteID: 4a318913388c3b94a8c72032a6e39719
+      width: 25
+      height: 31
+    spriteID: cedebc8a38f8041468035d62ccaddc88
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -139,26 +139,110 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
+  - name: potato thing_Frame_1
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 43
+      width: 25
+      height: 31
+    spriteID: a462e64d4705ac04d9f6fcaca35ef337
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 43}
+  - name: potato thing_Frame_2
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 82
+      width: 25
+      height: 31
+    spriteID: a64965208af4356468e8210941396a70
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 82}
+  - name: potato thing_Frame_3
+    originalName: 
+    pivot: {x: 0.5, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 37
+      y: 4
+      width: 25
+      height: 31
+    spriteID: 2e36fdece3134fa40b96c82968177ada
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 37, y: 4}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -533943606
-    name: maincharacter
+    guid: -1963675083
+    name: potato thing
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: maincharacter
+    - name: potato thing_Frame_0
       frameIndex: 0
       cellRect:
-        x: 3
-        y: 6
-        width: 35
-        height: 42
-      spriteId: 4a318913388c3b94a8c72032a6e39719
+        x: 0
+        y: 0
+        width: 25
+        height: 31
+      spriteId: cedebc8a38f8041468035d62ccaddc88
+    - name: potato thing_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 0
+        y: 0
+        width: 25
+        height: 31
+      spriteId: a462e64d4705ac04d9f6fcaca35ef337
+    - name: potato thing_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 0
+        y: 0
+        width: 25
+        height: 31
+      spriteId: a64965208af4356468e8210941396a70
+    - name: potato thing_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 0
+        y: 0
+        width: 25
+        height: 31
+      spriteId: 2e36fdece3134fa40b96c82968177ada
     linkedCells: []
     parentIndex: -1
   platformSettings: []
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 50, y: 50}
+  canvasSize: {x: 25, y: 35}
