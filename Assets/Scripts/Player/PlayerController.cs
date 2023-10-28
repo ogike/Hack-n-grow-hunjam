@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     public float damageModifier = 1;
     public float rangeModifier = 1;
 
-    private float curCooldown;
+    private float curAttackCooldown;
     
     //Light attack
     public float lightAttackRange;
@@ -41,6 +41,17 @@ public class PlayerController : MonoBehaviour
     public float lightAttackCooldown;
 
     private Vector2 _last4WayDir;
+
+    [Header("Dashing")] 
+    public float dashSpeed;
+    public float dashActiveTime;
+    public float dashCooldownTime;
+    
+    public enum DashType {DashForward, QuickstepBack}
+    public DashType dashType;
+    
+    private float curDashActiveLeft;
+    private float curDashCooldownLeft;
 
     public AudioClip lightAttackAudio;
 
@@ -65,16 +76,40 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move();
+        if (curDashActiveLeft <= 0)
+        {
+            if (curDashCooldownLeft <= 0 && Input.GetButtonDown("Dash"))
+            {
+                Debug.Log("Dash start");
+                {
+                    
+                }
+                DashStart();
+            }
+            else
+            {
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-            LightAttack();
+                Move();
+            }
+            
+            //only be able to attack if not dashing
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+                LightAttack();
+        }
+        else
+        {
+            DashContinue();
+        }
+        
+        //always cool down no matter what
+        if (curDashCooldownLeft >= 0)
+            curDashCooldownLeft -= Time.deltaTime;
 
         UpdateEffect();
         
-        if (curCooldown >= 0)
+        if (curAttackCooldown >= 0)
         {
-            curCooldown -= Time.deltaTime;
+            curAttackCooldown -= Time.deltaTime;
         }
     }
 
@@ -133,6 +168,47 @@ public class PlayerController : MonoBehaviour
         _trans.Translate(new Vector3(inputH, inputV, 0) * (baseSpeed * speedModifier * Time.deltaTime), Space.World);
     }
 
+    void DashStart()
+    {
+        curDashActiveLeft = dashActiveTime;
+        DashMove();
+    }
+
+    void DashContinue()
+    {
+        DashMove();
+        
+        curDashActiveLeft -= Time.deltaTime;
+
+        if (curDashActiveLeft <= 0)
+        {
+            //implement dash over effects here
+        }
+    }
+
+    void DashMove()
+    {
+        Vector3 dashDir = Vector3.zero;
+        
+        switch (dashType)
+        {
+            case DashType.DashForward:
+                dashDir.x = lastInputH;
+                dashDir.y = lastInputV;
+                break;
+            case DashType.QuickstepBack:
+                dashDir.x = -lastInputH;
+                dashDir.y = -lastInputV;
+                break;
+            default:
+                Debug.LogWarning("Bruh this shouldnt happen");
+                break;
+        }
+        
+        _trans.Translate(dashDir * (dashSpeed * speedModifier * Time.deltaTime), Space.World);
+
+    }
+
     private void LateUpdate()
     {
         if (rotatedThisUpdate)
@@ -146,12 +222,12 @@ public class PlayerController : MonoBehaviour
 
     void LightAttack()
     {
-        if (curCooldown > 0)
+        if (curAttackCooldown > 0)
         {
             return;
         }
 
-        curCooldown += lightAttackCooldown;
+        curAttackCooldown += lightAttackCooldown;
         
         Debug.DrawLine(_trans.position, _trans.position + _trans.up * (lightAttackRange * rangeModifier), 
                         Color.yellow, attackLightEffectTime);
@@ -163,7 +239,7 @@ public class PlayerController : MonoBehaviour
         attackLightEffect.SetActive(true);
         attackLightEffectCurTime = attackLightEffectTime;
 
-        Collider2D[] colls = Physics2D.OverlapCircleAll(transform.position, lightAttackRange);
+        Collider2D[] colls = Physics2D.OverlapCircleAll(transform.position, lightAttackRange * rangeModifier);
         if (colls.Length == 0)
         {
             return;
