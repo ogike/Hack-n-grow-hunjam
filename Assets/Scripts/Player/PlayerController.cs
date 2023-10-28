@@ -93,7 +93,7 @@ public class PlayerController : MonoBehaviour
             }
             
             //only be able to attack if not dashing
-            if (Input.GetKeyDown(KeyCode.Mouse0))
+            if (Input.GetButtonDown("Fire1"))
                 LightAttack();
         }
         else
@@ -171,6 +171,7 @@ public class PlayerController : MonoBehaviour
     void DashStart()
     {
         curDashActiveLeft = dashActiveTime;
+        curDashCooldownLeft = dashCooldownTime;
         DashMove();
     }
 
