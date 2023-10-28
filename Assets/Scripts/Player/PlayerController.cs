@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController Instance { get; private set; }
+    
     public float baseSpeed = 15;
     public float speedModifier = 1;
 
@@ -25,6 +27,8 @@ public class PlayerController : MonoBehaviour
     public string enemyTag = "Enemy";
     public float damageModifier = 1;
     public float rangeModifier = 1;
+
+    private float curCooldown;
     
     //Light attack
     public float lightAttackRange;
@@ -32,11 +36,22 @@ public class PlayerController : MonoBehaviour
     
     public GameObject attackLightEffect;
     public float attackLightEffectTime;
-    private float attackLightEffectCurTime;
+    private float attackLightEffectCurTime = 0.5f;
+
+    public float lightAttackCooldown;
 
     private Vector2 _last4WayDir;
 
-    // Start is called before the first frame update
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Debug.LogError("Multiple player objects present in scene!");
+        }
+
+        Instance = this;
+    }
+
     void Start()
     {
         _trans = transform;
@@ -51,9 +66,14 @@ public class PlayerController : MonoBehaviour
         Move();
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
-            Attack();
+            LightAttack();
 
         UpdateEffect();
+        
+        if (curCooldown >= 0)
+        {
+            curCooldown -= Time.deltaTime;
+        }
     }
 
     private void Move()
@@ -117,8 +137,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void Attack()
+    void LightAttack()
     {
+        if (curCooldown > 0)
+        {
+            return;
+        }
+
+        curCooldown += lightAttackCooldown;
+        
         Debug.DrawLine(_trans.position, _trans.position + _trans.up * (lightAttackRange * rangeModifier), 
                         Color.yellow, attackLightEffectTime);
         Debug.DrawLine(_trans.position, _trans.position + _trans.right * (lightAttackRange * rangeModifier), 
@@ -178,4 +205,5 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+    
 }
