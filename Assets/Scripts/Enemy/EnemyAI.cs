@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class EnemyAI : MonoBehaviour
 {
     private Transform _playerTrans;
     private Transform _myTrans;
@@ -19,6 +19,9 @@ public class NewBehaviourScript : MonoBehaviour
     public float attackCooldown;
 
     private float curAttackCooldown;
+    
+    //sound
+    public AudioClip attackAudio;
     
     //effects
     // public AttackHitbox attackHitbox;
@@ -68,6 +71,8 @@ public class NewBehaviourScript : MonoBehaviour
         curAttackCooldown = attackCooldown;
         
         _playerHealth.TakeDamage(attackDamage);
+        
+        AudioManager.Instance.PlayAudio(attackAudio);
     }
 
     void HandleCooldowns()
