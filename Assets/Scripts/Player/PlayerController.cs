@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController Instance { get; private set; }
+    
     public float baseSpeed = 15;
     public float speedModifier = 1;
 
@@ -25,6 +27,8 @@ public class PlayerController : MonoBehaviour
     public string enemyTag = "Enemy";
     public float damageModifier = 1;
     public float rangeModifier = 1;
+
+    private float curCooldown;
     
     //Light attack
     public float lightAttackRange;
@@ -32,9 +36,22 @@ public class PlayerController : MonoBehaviour
     
     public GameObject attackLightEffect;
     public float attackLightEffectTime;
-    private float attackLightEffectCurTime;
+    private float attackLightEffectCurTime = 0.5f;
 
-    // Start is called before the first frame update
+    public float lightAttackCooldown;
+
+    private Vector2 _last4WayDir;
+
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Debug.LogError("Multiple player objects present in scene!");
+        }
+
+        Instance = this;
+    }
+
     void Start()
     {
         _trans = transform;
@@ -49,9 +66,14 @@ public class PlayerController : MonoBehaviour
         Move();
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
-            Attack();
+            LightAttack();
 
         UpdateEffect();
+        
+        if (curCooldown >= 0)
+        {
+            curCooldown -= Time.deltaTime;
+        }
     }
 
     private void Move()
@@ -65,14 +87,37 @@ public class PlayerController : MonoBehaviour
         else
             plusRotValue = 90;
         
-        float rotZ = Mathf.Atan2(inputV, inputH) * Mathf.Rad2Deg;
-
-        //make it so look rot stays
+        
+        //rotation
+        // make it so look rot stays
         if (inputH != 0 || inputV != 0)
         {
             if (Math.Abs(inputH - lastInputH) > _floatingTolerance ||
                 Math.Abs(inputV - lastInputV) > _floatingTolerance)
             {
+                if (inputH == 0 && inputV == 0)
+                    plusRotValue = 0;
+                else
+                    plusRotValue = 90;
+
+                float lookH = inputH;
+                float lookV = inputV;
+                
+                //restrict diagonal
+                if (Mathf.Abs(inputH) > 0 && Mathf.Abs(inputV) > 0)
+                {
+                    //dont rotatedd
+                    lookH = _last4WayDir.x;
+                    lookV = _last4WayDir.y;
+                }
+                else
+                {
+                    _last4WayDir.x = lookH;
+                    _last4WayDir.y = lookV;
+                }
+                
+                float rotZ = Mathf.Atan2(lookV, lookH) * Mathf.Rad2Deg;
+                
                 float finalRot = rotZ - plusRotValue;
                 _trans.rotation = Quaternion.Euler(0, 0, finalRot);
                 rotatedThisUpdate = true;
@@ -97,8 +142,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void Attack()
+    void LightAttack()
     {
+        if (curCooldown > 0)
+        {
+            return;
+        }
+
+        curCooldown += lightAttackCooldown;
+        
         Debug.DrawLine(_trans.position, _trans.position + _trans.up * (lightAttackRange * rangeModifier), 
                         Color.yellow, attackLightEffectTime);
         Debug.DrawLine(_trans.position, _trans.position + _trans.right * (lightAttackRange * rangeModifier), 
@@ -158,4 +210,5 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+    
 }
