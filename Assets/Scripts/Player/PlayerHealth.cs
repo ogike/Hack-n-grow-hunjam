@@ -15,6 +15,8 @@ public class PlayerHealth : MonoBehaviour
     [Header("UI")] 
     public Text healthText;
     public Image healthMeter;
+    public AudioClip takeDamageAudio;
+    public AudioClip playerDieAudio;
 
     public void Awake()
     {
@@ -29,6 +31,8 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        AudioManager.Instance.PlayAudio(takeDamageAudio);
+
         curHp -= damage;
 
         healthText.text = curHp + "/" + maxHp;
@@ -42,6 +46,7 @@ public class PlayerHealth : MonoBehaviour
 
     void Die()
     {
+        AudioManager.Instance.PlayAudio(playerDieAudio);
         Time.timeScale = 0;
         gameOverScreen.SetActive(true);
     }

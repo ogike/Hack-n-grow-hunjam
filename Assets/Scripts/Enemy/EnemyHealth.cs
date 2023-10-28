@@ -7,6 +7,9 @@ public class EnemyHealth : MonoBehaviour
     public int health;
     private int curHealth;
 
+    public AudioClip enemyDamageAudio;
+    public AudioClip enemyDieAudio;
+
     void Start()
     {
         curHealth = health;
@@ -14,6 +17,7 @@ public class EnemyHealth : MonoBehaviour
 
     public void Damage(int damage)
     {
+        AudioManager.Instance.PlayAudio(enemyDamageAudio);
         curHealth -= damage;
 
         if (curHealth <= 0)
@@ -24,6 +28,7 @@ public class EnemyHealth : MonoBehaviour
 
     public void Die()
     {
+        AudioManager.Instance.PlayAudio(enemyDieAudio);
         GameObject.Destroy(gameObject);
     }
 }
