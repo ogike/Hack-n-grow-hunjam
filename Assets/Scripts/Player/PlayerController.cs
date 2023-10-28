@@ -47,12 +47,14 @@ public class PlayerController : MonoBehaviour
     public float dashSpeed;
     public float dashActiveTime;
     public float dashCooldownTime;
+    public float dashPostFreezeTime;
     
     public enum DashType {DashForward, QuickstepBack}
     public DashType dashType;
     
     private float curDashActiveLeft;
     private float curDashCooldownLeft;
+    private float curDashFreezeLeft;
 
     public Image dashCooldownMeter;
 
@@ -67,6 +69,7 @@ public class PlayerController : MonoBehaviour
 
         Instance = this;
         curDashCooldownLeft = 0;
+        curDashFreezeLeft = 0;
         dashCooldownMeter.fillAmount = 0;
     }
 
@@ -87,10 +90,13 @@ public class PlayerController : MonoBehaviour
             {
                 DashStart();
             }
+            else if(curDashFreezeLeft <= 0)
+            {
+                Move();
+            }
             else
             {
-
-                Move();
+                curDashFreezeLeft -= Time.deltaTime;
             }
             
             //only be able to attack if not dashing
@@ -180,8 +186,8 @@ public class PlayerController : MonoBehaviour
         curDashActiveLeft = dashActiveTime;
         curDashCooldownLeft = dashCooldownTime;
         dashCooldownMeter.fillAmount = 1;
-        
-        
+
+        curDashFreezeLeft = dashPostFreezeTime; //will only start decreasing after curDashActiveLeft
         
         DashMove();
     }
