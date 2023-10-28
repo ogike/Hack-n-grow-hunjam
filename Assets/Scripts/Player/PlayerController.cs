@@ -307,5 +307,10 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
+    public bool IsDashing()
+    {
+        return curDashActiveLeft > 0;
+    }
     
 }
