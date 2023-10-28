@@ -42,6 +42,8 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 _last4WayDir;
 
+    public AudioClip lightAttackAudio;
+
     private void Awake()
     {
         if (Instance != null)
@@ -169,8 +171,9 @@ public class PlayerController : MonoBehaviour
 
         Vector3 curPos = _trans.position;
         Vector2 forwardDir = _trans.up;
-        
-        
+
+        AudioManager.Instance.PlayAudio(lightAttackAudio);
+
         for (int i = 0; i < colls.Length; i++)
         {
             if(!colls[i].CompareTag(enemyTag)) continue;

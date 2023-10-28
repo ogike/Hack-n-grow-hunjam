@@ -11,6 +11,9 @@ public class PlayerHealth : MonoBehaviour
 
     public GameObject gameOverScreen;
 
+    public AudioClip takeDamageAudio;
+    public AudioClip playerDieAudio;
+
     public void Awake()
     {
         Time.timeScale = 1; //why is the playerhealth doing this lmao
@@ -24,6 +27,8 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        AudioManager.Instance.PlayAudio(takeDamageAudio);
+
         curHp -= damage;
         if (curHp <= 0)
         {
@@ -33,6 +38,7 @@ public class PlayerHealth : MonoBehaviour
 
     void Die()
     {
+        AudioManager.Instance.PlayAudio(playerDieAudio);
         Time.timeScale = 0;
         gameOverScreen.SetActive(true);
     }
