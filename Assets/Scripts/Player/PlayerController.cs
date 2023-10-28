@@ -99,9 +99,12 @@ public class PlayerController : MonoBehaviour
 
     void Attack()
     {
-        Debug.DrawLine(_trans.position, _trans.position + _trans.up * (lightAttackRange * rangeModifier), Color.green, 2);
-        Debug.DrawLine(_trans.position, _trans.position + _trans.right * (lightAttackRange * rangeModifier), Color.green, 2);
-        Debug.DrawLine(_trans.position, _trans.position - _trans.right * (lightAttackRange * rangeModifier), Color.green, 2);
+        Debug.DrawLine(_trans.position, _trans.position + _trans.up * (lightAttackRange * rangeModifier), 
+                        Color.yellow, attackLightEffectTime);
+        Debug.DrawLine(_trans.position, _trans.position + _trans.right * (lightAttackRange * rangeModifier), 
+                        Color.yellow, attackLightEffectTime);
+        Debug.DrawLine(_trans.position, _trans.position - _trans.right * (lightAttackRange * rangeModifier), 
+                        Color.yellow, attackLightEffectTime);
         
         attackLightEffect.SetActive(true);
         attackLightEffectCurTime = attackLightEffectTime;
@@ -112,12 +115,29 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
+        Vector3 curPos = _trans.position;
+        Vector2 forwardDir = _trans.up;
+        
+        
         for (int i = 0; i < colls.Length; i++)
         {
             if(!colls[i].CompareTag(enemyTag)) continue;
+
+            Vector2 dirToTarg = colls[i].transform.position - curPos;
+            float angle = Vector2.Angle(forwardDir, dirToTarg);
             
-            // if(colls[i].transform.position)
-            //     Vector3.Dot(Vector3.forward, transform.InverseTransformPoint(obj.transform.position)) > 0;
+            if (angle < 100)
+            {
+                Debug.DrawLine(curPos, curPos + (Vector3)dirToTarg, Color.red, attackLightEffectTime);
+                Debug.Log("Hit succesful, angle to target: " + angle);
+            }
+            else
+            {
+                Debug.DrawLine(curPos, curPos + (Vector3)dirToTarg, Color.black, attackLightEffectTime);
+                Debug.LogWarning("Hit failed, angle to target: " + angle);
+
+            }
+
         }
     }
 
