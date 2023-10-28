@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -10,6 +11,10 @@ public class PlayerHealth : MonoBehaviour
     private int curHp;
 
     public GameObject gameOverScreen;
+
+    [Header("UI")] 
+    public Text healthText;
+    public Image healthMeter;
 
     public void Awake()
     {
@@ -25,6 +30,10 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(int damage)
     {
         curHp -= damage;
+
+        healthText.text = curHp + "/" + maxHp;
+        healthMeter.fillAmount = (curHp * 1.0f) / (maxHp * 1.0f);
+        
         if (curHp <= 0)
         {
             Die();
