@@ -34,6 +34,8 @@ public class PlayerController : MonoBehaviour
     public float attackLightEffectTime;
     private float attackLightEffectCurTime;
 
+    private Vector2 _last4WayDir;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -59,20 +61,38 @@ public class PlayerController : MonoBehaviour
         //get basic input dir
         float inputH = Input.GetAxis("Horizontal");
         float inputV = Input.GetAxis("Vertical");
-
-        if (inputH == 0 && inputV == 0)
-            plusRotValue = 0;
-        else
-            plusRotValue = 90;
         
-        float rotZ = Mathf.Atan2(inputV, inputH) * Mathf.Rad2Deg;
-
-        //make it so look rot stays
+        
+        //rotation
+        // make it so look rot stays
         if (inputH != 0 || inputV != 0)
         {
             if (Math.Abs(inputH - lastInputH) > _floatingTolerance ||
                 Math.Abs(inputV - lastInputV) > _floatingTolerance)
             {
+                if (inputH == 0 && inputV == 0)
+                    plusRotValue = 0;
+                else
+                    plusRotValue = 90;
+
+                float lookH = inputH;
+                float lookV = inputV;
+                
+                //restrict diagonal
+                if (Mathf.Abs(inputH) > 0 && Mathf.Abs(inputV) > 0)
+                {
+                    //dont rotatedd
+                    lookH = _last4WayDir.x;
+                    lookV = _last4WayDir.y;
+                }
+                else
+                {
+                    _last4WayDir.x = lookH;
+                    _last4WayDir.y = lookV;
+                }
+                
+                float rotZ = Mathf.Atan2(lookV, lookH) * Mathf.Rad2Deg;
+                
                 float finalRot = rotZ - plusRotValue;
                 _trans.rotation = Quaternion.Euler(0, 0, finalRot);
                 rotatedThisUpdate = true;
