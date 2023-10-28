@@ -57,8 +57,8 @@ public class PlayerController : MonoBehaviour
     private void Move()
     {
         //get basic input dir
-        float inputH = Input.GetAxis("Horizontal");
-        float inputV = Input.GetAxis("Vertical");
+        float inputH = Input.GetAxisRaw("Horizontal");
+        float inputV = Input.GetAxisRaw("Vertical");
 
         if (inputH == 0 && inputV == 0)
             plusRotValue = 0;
