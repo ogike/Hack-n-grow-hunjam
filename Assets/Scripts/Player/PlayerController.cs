@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -53,6 +54,8 @@ public class PlayerController : MonoBehaviour
     private float curDashActiveLeft;
     private float curDashCooldownLeft;
 
+    public Image dashCooldownMeter;
+
     public AudioClip lightAttackAudio;
 
     private void Awake()
@@ -63,6 +66,8 @@ public class PlayerController : MonoBehaviour
         }
 
         Instance = this;
+        curDashCooldownLeft = 0;
+        dashCooldownMeter.fillAmount = 0;
     }
 
     void Start()
@@ -80,10 +85,6 @@ public class PlayerController : MonoBehaviour
         {
             if (curDashCooldownLeft <= 0 && Input.GetButtonDown("Dash"))
             {
-                Debug.Log("Dash start");
-                {
-                    
-                }
                 DashStart();
             }
             else
@@ -103,7 +104,13 @@ public class PlayerController : MonoBehaviour
         
         //always cool down no matter what
         if (curDashCooldownLeft >= 0)
+        {
             curDashCooldownLeft -= Time.deltaTime;
+
+            float dashMeterFill = (curDashCooldownLeft > 0) ? curDashCooldownLeft / dashCooldownTime : 0;
+
+            dashCooldownMeter.fillAmount = dashMeterFill;
+        }
 
         UpdateEffect();
         
@@ -172,6 +179,10 @@ public class PlayerController : MonoBehaviour
     {
         curDashActiveLeft = dashActiveTime;
         curDashCooldownLeft = dashCooldownTime;
+        dashCooldownMeter.fillAmount = 1;
+        
+        
+        
         DashMove();
     }
 
