@@ -7,6 +7,7 @@ public class NewBehaviourScript : MonoBehaviour
     private Transform _playerTrans;
     private Transform _myTrans;
     private Rigidbody2D _myRigid;
+    private PlayerHealth _playerHealth;
 
     private Vector2 dirToPlayer;
     private float distanceToPlayer;
@@ -14,7 +15,7 @@ public class NewBehaviourScript : MonoBehaviour
     public float speed = 5;
 
     public float attackRange;
-    public float attackDamage;
+    public int attackDamage;
     public float attackCooldown;
 
     private float curAttackCooldown;
@@ -27,6 +28,7 @@ public class NewBehaviourScript : MonoBehaviour
     void Start()
     {
         _playerTrans = PlayerController.Instance.transform;
+        _playerHealth = _playerTrans.GetComponent<PlayerHealth>();
         _myTrans = transform;
         _myRigid = GetComponent<Rigidbody2D>();
         if (_myRigid == null)
@@ -64,6 +66,8 @@ public class NewBehaviourScript : MonoBehaviour
     {
         attackEffect.SetActive(true);
         curAttackCooldown = attackCooldown;
+        
+        _playerHealth.TakeDamage(attackDamage);
     }
 
     void HandleCooldowns()
