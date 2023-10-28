@@ -126,16 +126,21 @@ public class PlayerController : MonoBehaviour
             Vector2 dirToTarg = colls[i].transform.position - curPos;
             float angle = Vector2.Angle(forwardDir, dirToTarg);
             
-            if (angle < 100)
+            if (angle < 100) //succesful hit
             {
                 Debug.DrawLine(curPos, curPos + (Vector3)dirToTarg, Color.red, attackLightEffectTime);
-                Debug.Log("Hit succesful, angle to target: " + angle);
+                EnemyHealth enemyHealth = colls[i].GetComponent<EnemyHealth>();
+                if (enemyHealth == null)
+                {
+                    Debug.LogError("No enemyhealth attached to GameObject with Enemy tag!");
+                    continue;
+                }
+                
+                enemyHealth.Damage(Mathf.FloorToInt(lightAttackDamage * damageModifier));
             }
-            else
+            else //behind player
             {
                 Debug.DrawLine(curPos, curPos + (Vector3)dirToTarg, Color.black, attackLightEffectTime);
-                Debug.LogWarning("Hit failed, angle to target: " + angle);
-
             }
 
         }

@@ -169,8 +169,8 @@ MonoBehaviour:
   enemyTag: Enemy
   damageModifier: 1
   rangeModifier: 1
-  lightAttackRange: 2
-  lightAttackDamage: 0
+  lightAttackRange: 0.5
+  lightAttackDamage: 1
   attackLightEffect: {fileID: 6881052492403597158}
   attackLightEffectTime: 0.2
 --- !u!1 &6881052492403597158
