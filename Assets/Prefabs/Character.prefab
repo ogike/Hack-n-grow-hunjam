@@ -267,7 +267,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseSpeed: 1200
   maxLevel: 5
-  levelXpRequirements: 080000000c000000120000001b000000280000003c000000
+  levelXpRequirements: 080000000c000000120000001b0000002800000058020000
   curSize: 0
   speedModifiers:
   - 1
@@ -309,8 +309,8 @@ MonoBehaviour:
   - 1.2
   - 1.55
   - 2
-  - 2
-  - 2
+  - 3
+  - 4
   growAudio: {fileID: 8300000, guid: 06a73f649ac9009419186535ae384700, type: 3}
   attackLightTrigger: {fileID: 0}
   playerSprite: {fileID: 6349390377570868896}
