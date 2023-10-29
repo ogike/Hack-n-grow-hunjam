@@ -331,6 +331,7 @@ public class PlayerController : MonoBehaviour
         Vector2 forwardDir = _trans.up;
 
         AudioManager.Instance.PlayAudio(lightAttackAudio);
+        animator.SetTrigger("Attack");
 
         for (int i = 0; i < colls.Length; i++)
         {
@@ -357,7 +358,6 @@ public class PlayerController : MonoBehaviour
             {
                 Debug.DrawLine(curPos, curPos + (Vector3)dirToTarg, Color.black, attackLightEffectTime);
             }
-
         }
     }
 
