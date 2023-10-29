@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e58b719be62cacf4f95ef88925461db3
+guid: b16c7f7a6a2b1314792cac2b47e24299
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -119,138 +119,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: hosszusuhanas
+  - name: mainchar_size2_walk_backw_Frame_0
     originalName: 
-    pivot: {x: 1.1904762, y: -2}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 90
-      y: 4
-      width: 21
-      height: 50
-    spriteID: 21cc8ad743e7e734e92c87ea3055278f
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 90, y: 4}
-  - name: hosszusuhanas_Frame_1
-    originalName: 
-    pivot: {x: 0.78125, y: -1.5862069}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 50
-      y: 149
-      width: 32
-      height: 58
-    spriteID: 3b01d57b0be7cb745b13c7745b1a31dd
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 50, y: 149}
-  - name: hosszusuhanas_Frame_2
-    originalName: 
-    pivot: {x: 0.6944444, y: -1.34375}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 87
-      width: 36
-      height: 64
-    spriteID: 95d2188852260dd4982b1f2dc7232ec4
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 87}
-  - name: hosszusuhanas_Frame_3
-    originalName: 
-    pivot: {x: 0.5625, y: -1.2698413}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 50
-      y: 4
-      width: 32
-      height: 63
-    spriteID: 22d5cb0764e395641830fef3a5a5b8fc
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 50, y: 4}
-  - name: hosszusuhanas_Frame_4
-    originalName: 
-    pivot: {x: 0.5333333, y: -0.93939394}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 50
-      y: 75
-      width: 30
-      height: 66
-    spriteID: 389856149405ac74c9d7500f6599e371
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 50, y: 75}
-  - name: hosszusuhanas_Frame_5
-    originalName: 
-    pivot: {x: 0.5625, y: -0.59154934}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 159
-      width: 32
-      height: 71
-    spriteID: ecd84587f38ca3345998fb3bcaa639b2
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 159}
-  - name: hosszusuhanas_Frame_6
-    originalName: 
-    pivot: {x: 0.65789473, y: 0}
+    pivot: {x: 0.53846157, y: -0.06593407}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 38
-      height: 75
-    spriteID: bf4a0fdbed984c945a728e47e7bcdbe2
+      width: 39
+      height: 91
+    spriteID: 0da8915f02abce948af2f2327c82a75b
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -259,18 +139,18 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: hosszusuhanas_Frame_7
+  - name: mainchar_size2_walk_backw_Frame_1
     originalName: 
-    pivot: {x: 1, y: 0}
+    pivot: {x: 0.5588235, y: -0.16049382}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 50
-      y: 215
-      width: 25
-      height: 30
-    spriteID: 0c6c3f618f9b2b84781fd42cd90e8e7d
+      x: 97
+      y: 4
+      width: 34
+      height: 81
+    spriteID: 8d83d8bbb93a775488a72982a9005a65
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -278,83 +158,147 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 50, y: 215}
+    uvTransform: {x: 97, y: 4}
+  - name: mainchar_size2_walk_backw_Frame_2
+    originalName: 
+    pivot: {x: 0.5945946, y: -0.090909086}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 103
+      width: 37
+      height: 88
+    spriteID: 6dfc63df8a43df74da9c63ab760cb185
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 103}
+  - name: mainchar_size2_walk_backw_Frame_3
+    originalName: 
+    pivot: {x: 0.53125, y: -0.16049382}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 97
+      y: 93
+      width: 32
+      height: 81
+    spriteID: 75b37072db463bf409bd0f39e2087780
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 97, y: 93}
+  - name: mainchar_size2_walk_backw_Frame_4
+    originalName: 
+    pivot: {x: 0.4473684, y: -0.20512821}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 51
+      y: 4
+      width: 38
+      height: 78
+    spriteID: 610200ad79d5d6c4fb4d15cce2295ba9
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 51, y: 4}
+  - name: mainchar_size2_walk_backw_Frame_5
+    originalName: 
+    pivot: {x: 0.516129, y: -0.056179773}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 51
+      y: 90
+      width: 31
+      height: 89
+    spriteID: a3d6d4226dfdfe2459fe9e4a1d6d4327
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 51, y: 90}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 147663859
-    name: hosszusuhanas
+    guid: 1486405340
+    name: mainchar_size2_walk_backw
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: hosszusuhanas_Frame_0
+    - name: mainchar_size2_walk_backw_Frame_0
       frameIndex: 0
       cellRect:
-        x: 0
-        y: 100
-        width: 21
-        height: 50
-      spriteId: 21cc8ad743e7e734e92c87ea3055278f
-    - name: hosszusuhanas_Frame_1
+        x: 4
+        y: 6
+        width: 39
+        height: 91
+      spriteId: 0da8915f02abce948af2f2327c82a75b
+    - name: mainchar_size2_walk_backw_Frame_1
       frameIndex: 1
       cellRect:
-        x: 0
-        y: 92
-        width: 32
-        height: 58
-      spriteId: 3b01d57b0be7cb745b13c7745b1a31dd
-    - name: hosszusuhanas_Frame_2
+        x: 6
+        y: 13
+        width: 34
+        height: 81
+      spriteId: 8d83d8bbb93a775488a72982a9005a65
+    - name: mainchar_size2_walk_backw_Frame_2
       frameIndex: 2
       cellRect:
-        x: 0
-        y: 86
-        width: 36
-        height: 64
-      spriteId: 95d2188852260dd4982b1f2dc7232ec4
-    - name: hosszusuhanas_Frame_3
+        x: 3
+        y: 8
+        width: 37
+        height: 88
+      spriteId: 6dfc63df8a43df74da9c63ab760cb185
+    - name: mainchar_size2_walk_backw_Frame_3
       frameIndex: 3
       cellRect:
-        x: 7
-        y: 80
+        x: 8
+        y: 13
         width: 32
-        height: 63
-      spriteId: 22d5cb0764e395641830fef3a5a5b8fc
-    - name: hosszusuhanas_Frame_4
+        height: 81
+      spriteId: 75b37072db463bf409bd0f39e2087780
+    - name: mainchar_size2_walk_backw_Frame_4
       frameIndex: 4
       cellRect:
-        x: 9
-        y: 62
-        width: 30
-        height: 66
-      spriteId: 389856149405ac74c9d7500f6599e371
-    - name: hosszusuhanas_Frame_5
+        x: 8
+        y: 16
+        width: 38
+        height: 78
+      spriteId: 610200ad79d5d6c4fb4d15cce2295ba9
+    - name: mainchar_size2_walk_backw_Frame_5
       frameIndex: 5
       cellRect:
-        x: 7
-        y: 42
-        width: 32
-        height: 71
-      spriteId: ecd84587f38ca3345998fb3bcaa639b2
-    - name: hosszusuhanas_Frame_6
-      frameIndex: 6
-      cellRect:
-        x: 0
-        y: 0
-        width: 38
-        height: 75
-      spriteId: bf4a0fdbed984c945a728e47e7bcdbe2
-    - name: hosszusuhanas_Frame_7
-      frameIndex: 7
-      cellRect:
-        x: 0
-        y: 0
-        width: 25
-        height: 30
-      spriteId: 0c6c3f618f9b2b84781fd42cd90e8e7d
+        x: 9
+        y: 5
+        width: 31
+        height: 89
+      spriteId: a3d6d4226dfdfe2459fe9e4a1d6d4327
     linkedCells: []
     parentIndex: -1
   platformSettings: []
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 50, y: 150}
+  canvasSize: {x: 50, y: 100}

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0c1204a52435457409687b3555ea5d58
+guid: 268c0ffcfd3be5548a33fdc84ee626d7
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -119,18 +119,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: circle
+  - name: hero_size1_attack_S
     originalName: 
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 50
-      height: 50
-    spriteID: 8bd661a7761689a46a8a613e41235cba
+      width: 0
+      height: 0
+    spriteID: 4a50e11935346944fbdbbbf07f6ac2d7
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -138,24 +138,24 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 4}
+    uvTransform: {x: -46, y: -46}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -513272862
-    name: circle
+    guid: 2144903460
+    name: hero_size1_attack_S
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: circle
+    - name: hero_size1_attack_S
       frameIndex: 0
       cellRect:
         x: 0
         y: 0
         width: 50
         height: 50
-      spriteId: 8bd661a7761689a46a8a613e41235cba
+      spriteId: 4a50e11935346944fbdbbbf07f6ac2d7
     linkedCells: []
     parentIndex: -1
   platformSettings: []
