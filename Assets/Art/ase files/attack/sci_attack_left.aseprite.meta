@@ -1,0 +1,388 @@
+fileFormatVersion: 2
+guid: 7f7d31635b26712449be2a8d9a4d72ec
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
+    isReadable: 0
+    streamingMipmaps: 0
+    streamingMipmapsPriority: 0
+    vTOnly: 0
+    ignoreMipmapLimit: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 1
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 100
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    flipbookRows: 0
+    flipbookColumns: 0
+    ignorePngGamma: 0
+    cookieMode: 0
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+    applyGammaDecoding: 0
+  previousAsepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 7
+    customPivotPosition: {x: 0.5, y: 0.5}
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  asepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 7
+    customPivotPosition: {x: 0.5, y: 0.5}
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  importFileNodeState: 1
+  platformSettingsDirtyTick: 0
+  textureAssetName: 
+  singleSpriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: 
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  animatedSpriteImportData:
+  - name: sci_attack_left_Frame_0
+    originalName: 
+    pivot: {x: 0.45161292, y: -0.125}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 101
+      width: 31
+      height: 40
+    spriteID: 2ae4f02db5fd32d4d806896113792d36
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 101}
+  - name: sci_attack_left_Frame_1
+    originalName: 
+    pivot: {x: 0.45161292, y: -0.125}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 149
+      width: 31
+      height: 40
+    spriteID: 967cf383ea670cc448656bd1536f664d
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 149}
+  - name: sci_attack_left_Frame_2
+    originalName: 
+    pivot: {x: 0.45161292, y: -0.125}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 197
+      width: 31
+      height: 40
+    spriteID: 9d9461ca8ba893c48bf0d80019649181
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 197}
+  - name: sci_attack_left_Frame_3
+    originalName: 
+    pivot: {x: 0.45161292, y: -0.125}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 54
+      y: 4
+      width: 31
+      height: 40
+    spriteID: 37548fb82e77182498073e21d71a3f9a
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 54, y: 4}
+  - name: sci_attack_left_Frame_4
+    originalName: 
+    pivot: {x: 0.45161292, y: -0.125}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 54
+      y: 52
+      width: 31
+      height: 40
+    spriteID: 38b60f4cb6b34fa43aec3b67c742281e
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 54, y: 52}
+  - name: sci_attack_left_Frame_5
+    originalName: 
+    pivot: {x: 0.45161292, y: -0.125}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 54
+      y: 100
+      width: 31
+      height: 40
+    spriteID: 11cf63d0d1903c94b8eb9b92335dd948
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 54, y: 100}
+  - name: sci_attack_left_Frame_6
+    originalName: 
+    pivot: {x: 0.5952381, y: -0.125}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 53
+      width: 42
+      height: 40
+    spriteID: a11dc4730abf5bd438e13a17ee71b2f8
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 53}
+  - name: sci_attack_left_Frame_7
+    originalName: 
+    pivot: {x: 0.5952381, y: -0.12195122}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 42
+      height: 41
+    spriteID: ac9b1601483ec8c4e95fe8c5c6cf6e64
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 4}
+  - name: sci_attack_left_Frame_8
+    originalName: 
+    pivot: {x: 0.45161292, y: -0.125}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 54
+      y: 148
+      width: 31
+      height: 40
+    spriteID: 440476aab68196541aae7a8d0dc0c0fc
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 54, y: 148}
+  spriteSheetImportData: []
+  asepriteLayers:
+  - layerIndex: 0
+    guid: 244931848
+    name: sci_attack_left
+    layerFlags: 0
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: sci_attack_left_Frame_0
+      frameIndex: 0
+      cellRect:
+        x: 11
+        y: 5
+        width: 31
+        height: 40
+      spriteId: 2ae4f02db5fd32d4d806896113792d36
+    - name: sci_attack_left_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 11
+        y: 5
+        width: 31
+        height: 40
+      spriteId: 967cf383ea670cc448656bd1536f664d
+    - name: sci_attack_left_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 11
+        y: 5
+        width: 31
+        height: 40
+      spriteId: 9d9461ca8ba893c48bf0d80019649181
+    - name: sci_attack_left_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 11
+        y: 5
+        width: 31
+        height: 40
+      spriteId: 37548fb82e77182498073e21d71a3f9a
+    - name: sci_attack_left_Frame_4
+      frameIndex: 4
+      cellRect:
+        x: 11
+        y: 5
+        width: 31
+        height: 40
+      spriteId: 38b60f4cb6b34fa43aec3b67c742281e
+    - name: sci_attack_left_Frame_5
+      frameIndex: 5
+      cellRect:
+        x: 11
+        y: 5
+        width: 31
+        height: 40
+      spriteId: 11cf63d0d1903c94b8eb9b92335dd948
+    - name: sci_attack_left_Frame_6
+      frameIndex: 6
+      cellRect:
+        x: 0
+        y: 5
+        width: 42
+        height: 40
+      spriteId: a11dc4730abf5bd438e13a17ee71b2f8
+    - name: sci_attack_left_Frame_7
+      frameIndex: 7
+      cellRect:
+        x: 0
+        y: 5
+        width: 42
+        height: 41
+      spriteId: ac9b1601483ec8c4e95fe8c5c6cf6e64
+    - name: sci_attack_left_Frame_8
+      frameIndex: 8
+      cellRect:
+        x: 11
+        y: 5
+        width: 31
+        height: 40
+      spriteId: 440476aab68196541aae7a8d0dc0c0fc
+    linkedCells: []
+    parentIndex: -1
+  platformSettings: []
+  secondarySpriteTextures: []
+  spritePackingTag: 
+  canvasSize: {x: 50, y: 50}
