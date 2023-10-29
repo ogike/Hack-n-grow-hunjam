@@ -134,7 +134,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3859503578440911384}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.27400017, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -183,7 +183,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 265801846989655612, guid: 0bca6fbc8b8346b44a32288881197f86, type: 3}
+  m_Sprite: {fileID: 1090111759, guid: 93eee597b39faba4a9e0c0e124e3727a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -311,6 +311,7 @@ MonoBehaviour:
   - 2
   - 2
   - 2
+  growAudio: {fileID: 8300000, guid: 06a73f649ac9009419186535ae384700, type: 3}
   attackLightTrigger: {fileID: 0}
   playerSprite: {fileID: 6349390377570868896}
   enemyTag: Enemy
@@ -326,6 +327,7 @@ MonoBehaviour:
   dashActiveTime: 0.05
   dashCooldownTime: 1
   dashPostFreezeTime: 0.2
+  dashAudio: {fileID: 8300000, guid: cb40dc40445f6e54a914c78ac4f687a6, type: 3}
   dashType: 1
   dashCooldownMeter: {fileID: 5704158079392958977}
   xpMeter: {fileID: 0}
