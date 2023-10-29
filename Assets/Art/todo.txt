@@ -11,7 +11,6 @@ Priority list:
 hero size 2 animation
 scientist attack, damage animation
 potato walk, attack, damage animation
-hero size 1 attack polish (hair animation)
 level design finish
 start screen
 shadows
