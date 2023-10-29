@@ -7,7 +7,8 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int maxHp;
+    public List<int> maxHps;
+    private int curMaxHp;
     private int curHp;
 
     public GameObject gameOverScreen;
@@ -39,7 +40,10 @@ public class PlayerHealth : MonoBehaviour
 
     void Start()
     {
-        curHp = maxHp;
+        if (maxHps.Count != _playerController.maxLevel + 1) Debug.LogError("maxHps array length not matching!");
+        
+        curMaxHp = maxHps[0];
+        curHp = curMaxHp;
     }
 
     public void Update()
@@ -58,8 +62,7 @@ public class PlayerHealth : MonoBehaviour
 
         curHp -= damage;
 
-        healthText.text = curHp + "/" + maxHp;
-        healthMeter.fillAmount = (curHp * 1.0f) / (maxHp * 1.0f);
+        UpdateHealthUI();
 
         curIFrameTime = invisibilityFrameTime;
         
@@ -67,6 +70,12 @@ public class PlayerHealth : MonoBehaviour
         {
             Die();
         }
+    }
+
+    private void UpdateHealthUI()
+    {
+        healthText.text = curHp + "/" + curMaxHp;
+        healthMeter.fillAmount = (curHp * 1.0f) / (curMaxHp * 1.0f);
     }
 
     void Die()
@@ -84,6 +93,14 @@ public class PlayerHealth : MonoBehaviour
         if (curIFrameTime > 0) return false;
 
         return true;
+    }
+
+    public void Grow()
+    {
+        curMaxHp = maxHps[_playerController.CurLevel];
+        curHp = curMaxHp;
+        
+        UpdateHealthUI();
     }
 
     public void Restart()

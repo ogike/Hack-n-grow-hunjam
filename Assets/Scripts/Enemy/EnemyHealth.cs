@@ -7,6 +7,8 @@ public class EnemyHealth : MonoBehaviour
     public int health;
     private int curHealth;
 
+    public int xpDrop;
+
     public AudioClip enemyDamageAudio;
     public AudioClip enemyDieAudio;
 
@@ -30,6 +32,7 @@ public class EnemyHealth : MonoBehaviour
     {
         AudioManager.Instance.PlayAudio(enemyDieAudio);
         EnemySpawner.Instance.DecreaseEnemyCount();
+        PlayerController.Instance.AddXp(xpDrop);
         
         GameObject.Destroy(gameObject);
     }

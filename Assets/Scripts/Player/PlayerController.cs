@@ -1,15 +1,30 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance { get; private set; }
+
+    //starting level = 0
+    public int maxLevel;
     
+    public List<int> levelXpRequirements;
+    
+    private int curXp;
+    public int CurLevel { get; private set; }
+    
+    public List<float> speedModifiers;
+    public List<float> damageModifiers;
+    public List<float> rangeModifiers;
+    public List<float> cooldownModifiers;
+
+    public List<float> transformSizeModifiers;
+
     public float baseSpeed = 15;
-    public float speedModifier = 1;
 
     private float plusRotValue;
 
@@ -24,11 +39,10 @@ public class PlayerController : MonoBehaviour
     public Collider2D attackLightTrigger;
     public Transform playerSprite;
     private Rigidbody2D _rigidbody;
+    private PlayerHealth _playerHealth;
 
     //Attack
     public string enemyTag = "Enemy";
-    public float damageModifier = 1;
-    public float rangeModifier = 1;
 
     private float curAttackCooldown;
     
@@ -58,6 +72,8 @@ public class PlayerController : MonoBehaviour
     private float curDashFreezeLeft;
 
     public Image dashCooldownMeter;
+    public Image xpMeter;
+    public Text levelDisplayText;
 
     public AudioClip lightAttackAudio;
 
@@ -72,12 +88,24 @@ public class PlayerController : MonoBehaviour
         curDashCooldownLeft = 0;
         curDashFreezeLeft = 0;
         dashCooldownMeter.fillAmount = 0;
+        
+        if (levelXpRequirements.Count != maxLevel + 1) Debug.LogError("LevelXpReqs array length not matching!");
+        if (speedModifiers.Count != maxLevel + 1) Debug.LogError("speedModifiers array length not matching!");
+        if (damageModifiers.Count != maxLevel + 1) Debug.LogError("damageModifiers array length not matching!");
+        if (rangeModifiers.Count != maxLevel + 1) Debug.LogError("rangeModifiers array length not matching!");
+        if (cooldownModifiers.Count != maxLevel + 1) Debug.LogError("cooldownModifiers array length not matching!");
+        if (transformSizeModifiers.Count != maxLevel + 1) Debug.LogError("transformSizeModifiers array length not matching!");
+
+        CurLevel = 0;
+        curXp = 0;
+        UpdateXpMeter();
     }
 
     void Start()
     {
         _trans = transform;
         _rigidbody = GetComponent<Rigidbody2D>();
+        _playerHealth = GetComponent<PlayerHealth>();
 
         attackLightEffectCurTime = 0;
         attackLightEffect.SetActive(false);
@@ -181,9 +209,9 @@ public class PlayerController : MonoBehaviour
             }
             
             //move if there is input
-            Vector2 newFullForce = new Vector2(inputH, inputV) * (baseSpeed * speedModifier * Time.deltaTime);
+            Vector2 newFullForce = new Vector2(inputH, inputV) * (baseSpeed * speedModifiers[CurLevel] * Time.deltaTime);
             _rigidbody.AddForce(newFullForce);
-            _rigidbody.velocity = Vector2.ClampMagnitude(_rigidbody.velocity, baseSpeed * speedModifier);
+            _rigidbody.velocity = Vector2.ClampMagnitude(_rigidbody.velocity, baseSpeed * speedModifiers[CurLevel]);
         }
         else
         {
@@ -239,9 +267,9 @@ public class PlayerController : MonoBehaviour
         }
 
         //clamp cur vel + new force
-        Vector2 newFullForce = dashDir * (dashSpeed * speedModifier * Time.deltaTime);
+        Vector2 newFullForce = dashDir * (dashSpeed * speedModifiers[CurLevel] * Time.deltaTime);
         _rigidbody.AddForce(newFullForce);
-        _rigidbody.velocity = Vector2.ClampMagnitude(_rigidbody.velocity, dashSpeed * speedModifier);
+        _rigidbody.velocity = Vector2.ClampMagnitude(_rigidbody.velocity, dashSpeed * speedModifiers[CurLevel]);
 
         // _trans.Translate(dashDir * (dashSpeed * speedModifier * Time.deltaTime), Space.World);
     }
@@ -264,19 +292,19 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        curAttackCooldown += lightAttackCooldown;
+        curAttackCooldown += lightAttackCooldown * cooldownModifiers[CurLevel];
         
-        Debug.DrawLine(_trans.position, _trans.position + _trans.up * (lightAttackRange * rangeModifier), 
+        Debug.DrawLine(_trans.position, _trans.position + _trans.up * (lightAttackRange * rangeModifiers[CurLevel]), 
                         Color.yellow, attackLightEffectTime);
-        Debug.DrawLine(_trans.position, _trans.position + _trans.right * (lightAttackRange * rangeModifier), 
+        Debug.DrawLine(_trans.position, _trans.position + _trans.right * (lightAttackRange * rangeModifiers[CurLevel]), 
                         Color.yellow, attackLightEffectTime);
-        Debug.DrawLine(_trans.position, _trans.position - _trans.right * (lightAttackRange * rangeModifier), 
+        Debug.DrawLine(_trans.position, _trans.position - _trans.right * (lightAttackRange * rangeModifiers[CurLevel]), 
                         Color.yellow, attackLightEffectTime);
         
         attackLightEffect.SetActive(true);
         attackLightEffectCurTime = attackLightEffectTime;
 
-        Collider2D[] colls = Physics2D.OverlapCircleAll(transform.position, lightAttackRange * rangeModifier);
+        Collider2D[] colls = Physics2D.OverlapCircleAll(transform.position, lightAttackRange * rangeModifiers[CurLevel]);
         if (colls.Length == 0)
         {
             return;
@@ -304,7 +332,7 @@ public class PlayerController : MonoBehaviour
                     continue;
                 }
                 
-                enemyHealth.Damage(Mathf.FloorToInt(lightAttackDamage * damageModifier));
+                enemyHealth.Damage(Mathf.FloorToInt(lightAttackDamage * damageModifiers[CurLevel]));
             }
             else //behind player
             {
@@ -330,6 +358,39 @@ public class PlayerController : MonoBehaviour
     public bool IsDashing()
     {
         return curDashActiveLeft > 0;
+    }
+
+    public void AddXp(int xp)
+    {
+        curXp += xp;
+        UpdateXpMeter();
+        
+        if (curXp >= levelXpRequirements[CurLevel]) Grow();
+        
+    }
+
+    private void Grow()
+    {
+        if (CurLevel >= maxLevel)
+        {
+            Debug.Log("....you won?");
+            return;
+        }
+
+        CurLevel++;
+        curXp = 0;
+
+        float newTransformScale = transformSizeModifiers[CurLevel];
+        transform.localScale = new Vector3(newTransformScale, newTransformScale, newTransformScale);
+        
+        UpdateXpMeter();
+       _playerHealth.Grow();
+    }
+
+    private void UpdateXpMeter()
+    {
+        xpMeter.fillAmount = (curXp * 1.0f) / (levelXpRequirements[CurLevel] * 1.0f);
+        levelDisplayText.text = "Level " + CurLevel;
     }
     
 }

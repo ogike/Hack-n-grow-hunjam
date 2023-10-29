@@ -39,6 +39,9 @@ public class EnemyAI : MonoBehaviour
             Debug.LogError("No rigidbody2D attached to this enemy!");
         }
 
+        //this is a hack - has to be replaced by triggers
+        attackRange *= PlayerController.Instance.transform.localScale.x;
+
         attackEffect.SetActive(false);
     }
 
