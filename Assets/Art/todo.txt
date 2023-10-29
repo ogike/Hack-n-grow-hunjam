@@ -1,22 +1,8 @@
-zombik
-üvegfiolák
-démonok
-
-ui:
-felül xp csík / health
-csíknak háttér, a töltést zoli megcsinálja
-
 Priority list:
 
-hero size 1 front + back attack
-hero size 2 animation
-potato walk, attack, damage animation
-scientist attack, damage animation
-hero size 1 attack polish (hair animation)
-level design finish
+hero size 2 attack animation
+scientist attack
 start screen
+level design finish
 shadows
-
-
-spritesheets
-karakterek alapján
+potato walk, attack, damage animation
