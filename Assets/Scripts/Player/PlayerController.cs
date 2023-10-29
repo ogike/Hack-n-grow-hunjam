@@ -28,7 +28,10 @@ public class PlayerController : MonoBehaviour
     
     private int curXp;
     public int CurLevel { get; private set; }
-    
+
+    public int curSize;
+
+
     public List<float> speedModifiers;
     public List<float> damageModifiers;
     public List<float> rangeModifiers;
@@ -418,7 +421,8 @@ public class PlayerController : MonoBehaviour
     private void UpdateXpMeter()
     {
         xpMeter.fillAmount = (curXp * 1.0f) / (levelXpRequirements[CurLevel] * 1.0f);
-        levelDisplayText.text = "Level " + CurLevel;
+        curSize = CurLevel + 1;                
+        levelDisplayText.text = "Size " + curSize;
     }
     
 }
