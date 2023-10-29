@@ -244,7 +244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseSpeed: 1200
-  maxLevel: 3
+  maxLevel: 2
   levelXpRequirements: 050000000700000009000000
   speedModifiers:
   - 1
@@ -262,7 +262,10 @@ MonoBehaviour:
   - 1
   - 0.8
   - 0.5
-  knockbackModifiers: []
+  knockbackModifiers:
+  - 1
+  - 1.2
+  - 1.5
   transformSizeModifiers:
   - 1
   - 1.5
