@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     private Transform _trans;
     public Collider2D attackLightTrigger;
     public Transform playerSprite;
+    private Rigidbody2D _rigidbody;
 
     //Attack
     public string enemyTag = "Enemy";
@@ -76,6 +77,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         _trans = transform;
+        _rigidbody = GetComponent<Rigidbody2D>();
 
         attackLightEffectCurTime = 0;
         attackLightEffect.SetActive(false);
@@ -89,14 +91,16 @@ public class PlayerController : MonoBehaviour
             if (curDashCooldownLeft <= 0 && Input.GetButtonDown("Dash"))
             {
                 DashStart();
+                
             }
             else if(curDashFreezeLeft <= 0)
             {
                 Move();
             }
             else
-            {
+            { //post dash freeze
                 curDashFreezeLeft -= Time.deltaTime;
+                _rigidbody.velocity = Vector2.zero;
             }
             
             //only be able to attack if not dashing
@@ -156,7 +160,7 @@ public class PlayerController : MonoBehaviour
                 //restrict diagonal
                 if (Mathf.Abs(inputH) > 0 && Mathf.Abs(inputV) > 0)
                 {
-                    //dont rotatedd
+                    //dont rotate
                     lookH = _last4WayDir.x;
                     lookV = _last4WayDir.y;
                 }
@@ -178,7 +182,14 @@ public class PlayerController : MonoBehaviour
         }
         
         //moving
-        _trans.Translate(new Vector3(inputH, inputV, 0) * (baseSpeed * speedModifier * Time.deltaTime), Space.World);
+        // _trans.Translate(new Vector3(inputH, inputV, 0) * (baseSpeed * speedModifier * Time.deltaTime), Space.World);
+        // _rigidbody.velocity = new Vector2(inputH, inputV) * (baseSpeed * speedModifier);
+        
+        //clamp cur vel + new force
+        Vector2 newFullForce = new Vector2(inputH, inputV) * (baseSpeed * speedModifier * Time.deltaTime);
+        _rigidbody.AddForce(newFullForce);
+        Debug.Log(newFullForce);
+        _rigidbody.velocity = Vector2.ClampMagnitude(_rigidbody.velocity, baseSpeed * speedModifier);
     }
 
     void DashStart()
@@ -206,7 +217,7 @@ public class PlayerController : MonoBehaviour
 
     void DashMove()
     {
-        Vector3 dashDir = Vector3.zero;
+        Vector2 dashDir = Vector2.zero;
         
         switch (dashType)
         {
@@ -222,9 +233,13 @@ public class PlayerController : MonoBehaviour
                 Debug.LogWarning("Bruh this shouldnt happen");
                 break;
         }
-        
-        _trans.Translate(dashDir * (dashSpeed * speedModifier * Time.deltaTime), Space.World);
 
+        //clamp cur vel + new force
+        Vector2 newFullForce = dashDir * (dashSpeed * speedModifier * Time.deltaTime);
+        _rigidbody.AddForce(newFullForce);
+        _rigidbody.velocity = Vector2.ClampMagnitude(_rigidbody.velocity, dashSpeed * speedModifier);
+
+        // _trans.Translate(dashDir * (dashSpeed * speedModifier * Time.deltaTime), Space.World);
     }
 
     private void LateUpdate()

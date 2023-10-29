@@ -12,6 +12,10 @@ public class CameraFollow : MonoBehaviour
 
     private Vector3 _basePosVelocity;
     private Vector3 targetPos;
+
+    public float maxPosX;
+    public float maxPosY;
+
     
     private void Start()
     {
@@ -26,6 +30,12 @@ public class CameraFollow : MonoBehaviour
 
         targetPos = playerPos;
         targetPos.z = myPos.z; //set camera z pos separately
+
+        if (targetPos.x > maxPosX) targetPos.x = maxPosX;
+        else if (targetPos.x < -maxPosX) targetPos.x = -maxPosX;
+
+        if (targetPos.y > maxPosY) targetPos.y = maxPosY;
+        else if (targetPos.y < -maxPosY) targetPos.y = -maxPosY;
         
         _myTrans.position = Vector3.SmoothDamp(myPos, targetPos, ref _basePosVelocity, followSpeed);
     }

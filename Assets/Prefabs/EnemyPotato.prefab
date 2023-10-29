@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 363169133997966316}
   - component: {fileID: 6227481633643210619}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1958604369010573526}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SpritePivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1769917583859275831}
   - component: {fileID: 5462589977883047342}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EnemyAttackEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -214,7 +214,7 @@ GameObject:
   - component: {fileID: -4032406640489837486}
   - component: {fileID: -2381551867642983841}
   - component: {fileID: 8439850509543023855}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EnemyPotato
   m_TagString: Enemy
   m_Icon: {fileID: 0}
