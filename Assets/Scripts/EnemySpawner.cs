@@ -4,24 +4,38 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class EnemySpawner : MonoBehaviour
+[Serializable]
+public class EnemySpawnWeight
 {
-    public static EnemySpawner Instance { get; private set; } 
-    
-    public List<Transform> spawnAreas;
-    
-    public GameObject enemyGameObject;
+    public GameObject enemy;
+    public int spawnWeight = 1;
+}
 
-    public float enemyPosZ;
-
+[Serializable]
+public class LevelEnemySpawnStats
+{
+    public List<EnemySpawnWeight> spawnWeights;
+    public int minEnemyCount = 3;
+    public int maxEnemyCount = 6;
     public float minSpawnWaitTime = 1;
     public float maxSpawnWaitTime = 3;
+}
+
+public class EnemySpawner : MonoBehaviour
+{
+    
+    public static EnemySpawner Instance { get; private set; }
+
+    public List<LevelEnemySpawnStats> enemySpawnStats;
+    private int _curLevel;
+
+    public List<Transform> spawnAreas;
+    public float enemyPosZ;
+    
     private float curSpawnWaitTime;
 
     private Transform _myTrans;
-
-    public int minEnemyCount = 3;
-    public int maxEnemyCount = 6;
+    private PlayerController _playerController;
 
     public float underMinEnemyCountWaitModifier;
     public float overMaxEnemyCountWaitModifier;
@@ -43,6 +57,9 @@ public class EnemySpawner : MonoBehaviour
     private void Start()
     {
         _myTrans = transform;
+        _playerController = PlayerController.Instance;
+        _curLevel = _playerController.CurLevel;
+
         curSpawnWaitTime = 0;
     }
 
@@ -53,8 +70,8 @@ public class EnemySpawner : MonoBehaviour
             SpawnSingleEnemy();
             IncreaseEnemyCount();
             curSpawnWaitTime = Random.Range(
-                minSpawnWaitTime * _curWaitModifier,
-                maxSpawnWaitTime * _curWaitModifier);
+                enemySpawnStats[_curLevel].minSpawnWaitTime * _curWaitModifier,
+                enemySpawnStats[_curLevel].maxSpawnWaitTime * _curWaitModifier);
         }
         else
         {
@@ -78,17 +95,51 @@ public class EnemySpawner : MonoBehaviour
 
         Vector3 spawnPos = new Vector3(posX, posY, enemyPosZ);
 
-        GameObject spawnedEnemy = GameObject.Instantiate(enemyGameObject, spawnPos, Quaternion.identity, _myTrans);
+        int maxWeight = 0;
+        foreach (var weightStat in enemySpawnStats[_curLevel].spawnWeights)
+        {
+            maxWeight += weightStat.spawnWeight;
+        }
+
+        if (maxWeight == 0)
+        {
+            Debug.LogError("Sum of spawn weight is 0 in level " + _curLevel);
+        }
+
+        int chosenWeightNum = Random.Range(0, maxWeight+1);
+
+        GameObject enemyToSpawn = null;
+        int curWeight = 0;
+        foreach (var weightStat in enemySpawnStats[_curLevel].spawnWeights)
+        {
+            if (chosenWeightNum <= curWeight + weightStat.spawnWeight)
+            {
+                enemyToSpawn = weightStat.enemy;
+                break;
+            }
+            else
+            {
+                curWeight += weightStat.spawnWeight;
+            }
+        }
+
+        if (enemyToSpawn == null)
+        {
+            Debug.LogError("ran out of weightStats while looking for chosen enemy weight!");
+            return;
+        }
+
+        GameObject spawnedEnemy = GameObject.Instantiate(enemyToSpawn, spawnPos, Quaternion.identity, _myTrans);
     }
 
     public void IncreaseEnemyCount()
     {
         _curEnemyCount++;
 
-        if (_curEnemyCount > maxEnemyCount)
+        if (_curEnemyCount > enemySpawnStats[_curLevel].maxEnemyCount)
             _curWaitModifier = overMaxEnemyCountWaitModifier;
 
-        if (_curEnemyCount < maxEnemyCount && _curEnemyCount > minEnemyCount)
+        if (_curEnemyCount < enemySpawnStats[_curLevel].maxEnemyCount && _curEnemyCount > enemySpawnStats[_curLevel].minEnemyCount)
             _curWaitModifier = 1;
     }
 
@@ -96,10 +147,15 @@ public class EnemySpawner : MonoBehaviour
     {
         _curEnemyCount--;
 
-        if (_curEnemyCount < minEnemyCount)
+        if (_curEnemyCount < enemySpawnStats[_curLevel].minEnemyCount)
             _curWaitModifier = underMinEnemyCountWaitModifier;
         
-        if (_curEnemyCount < maxEnemyCount && _curEnemyCount > minEnemyCount)
+        if (_curEnemyCount < enemySpawnStats[_curLevel].maxEnemyCount && _curEnemyCount > enemySpawnStats[_curLevel].minEnemyCount)
             _curWaitModifier = 1;
+    }
+
+    public void Grow()
+    {
+        _curLevel = _playerController.CurLevel;
     }
 }

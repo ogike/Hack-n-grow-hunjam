@@ -639,17 +639,56 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7afb4f8990e77194c8f236cd2f4d73b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemySpawnStats:
+  - spawnWeights:
+    - enemy: {fileID: 8221827501506133857, guid: dae6cfc8653a98c45882aa8b7c09f115, type: 3}
+      spawnWeight: 1
+    minEnemyCount: 3
+    maxEnemyCount: 6
+    minSpawnWaitTime: 1
+    maxSpawnWaitTime: 3
+  - spawnWeights:
+    - enemy: {fileID: 8221827501506133857, guid: dae6cfc8653a98c45882aa8b7c09f115, type: 3}
+      spawnWeight: 4
+    - enemy: {fileID: 8221827501506133857, guid: 5c40113e74d4dfb4298288e528609559, type: 3}
+      spawnWeight: 1
+    minEnemyCount: 4
+    maxEnemyCount: 8
+    minSpawnWaitTime: 1
+    maxSpawnWaitTime: 3
+  - spawnWeights:
+    - enemy: {fileID: 8221827501506133857, guid: dae6cfc8653a98c45882aa8b7c09f115, type: 3}
+      spawnWeight: 2
+    - enemy: {fileID: 8221827501506133857, guid: 5c40113e74d4dfb4298288e528609559, type: 3}
+      spawnWeight: 2
+    minEnemyCount: 5
+    maxEnemyCount: 10
+    minSpawnWaitTime: 1
+    maxSpawnWaitTime: 2
+  - spawnWeights:
+    - enemy: {fileID: 8221827501506133857, guid: dae6cfc8653a98c45882aa8b7c09f115, type: 3}
+      spawnWeight: 1
+    - enemy: {fileID: 8221827501506133857, guid: 5c40113e74d4dfb4298288e528609559, type: 3}
+      spawnWeight: 4
+    minEnemyCount: 5
+    maxEnemyCount: 10
+    minSpawnWaitTime: 1
+    maxSpawnWaitTime: 2
+  - spawnWeights:
+    - enemy: {fileID: 8221827501506133857, guid: dae6cfc8653a98c45882aa8b7c09f115, type: 3}
+      spawnWeight: 1
+    - enemy: {fileID: 8221827501506133857, guid: 5c40113e74d4dfb4298288e528609559, type: 3}
+      spawnWeight: 4
+    minEnemyCount: 5
+    maxEnemyCount: 10
+    minSpawnWaitTime: 1
+    maxSpawnWaitTime: 2
   spawnAreas:
   - {fileID: 1886301139}
   - {fileID: 1886301138}
   - {fileID: 1886301137}
   - {fileID: 1886301135}
-  enemyGameObject: {fileID: 8221827501506133857, guid: 5c40113e74d4dfb4298288e528609559, type: 3}
   enemyPosZ: 0
-  minSpawnWaitTime: 1
-  maxSpawnWaitTime: 3
-  minEnemyCount: 3
-  maxEnemyCount: 6
   underMinEnemyCountWaitModifier: 0.5
   overMaxEnemyCountWaitModifier: 2
 --- !u!4 &88029372

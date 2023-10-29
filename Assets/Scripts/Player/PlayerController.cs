@@ -416,6 +416,7 @@ public class PlayerController : MonoBehaviour
         
         UpdateXpMeter();
        _playerHealth.Grow();
+       EnemySpawner.Instance.Grow();
     }
 
     private void UpdateXpMeter()
