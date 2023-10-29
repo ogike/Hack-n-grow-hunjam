@@ -37,6 +37,8 @@ public class PlayerController : MonoBehaviour
 
     public List<float> transformSizeModifiers;
 
+    public AudioClip growAudio;
+
     //references
     private Transform _trans;
     public Collider2D attackLightTrigger;
@@ -391,6 +393,9 @@ public class PlayerController : MonoBehaviour
         }
 
         CurLevel++;
+
+        AudioManager.Instance.PlayAudio(growAudio);
+
         curXp = 0;
 
         float newTransformScale = transformSizeModifiers[CurLevel];
