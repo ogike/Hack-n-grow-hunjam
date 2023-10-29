@@ -121,15 +121,15 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: hero_size1_attack_A
     originalName: 
-    pivot: {x: 0, y: 0}
+    pivot: {x: 0.30555555, y: -0.11904762}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
-      y: 4
-      width: 0
-      height: 0
+      x: 59
+      y: 54
+      width: 36
+      height: 42
     spriteID: dccdd9225ca0ef540bae2f00e8e4b27a
     spriteBone: []
     spriteOutline: []
@@ -138,7 +138,147 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: -46, y: -46}
+    uvTransform: {x: 59, y: 54}
+  - name: hero_size1_attack_A_Frame_1
+    originalName: 
+    pivot: {x: 0.2903226, y: 0}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 59
+      y: 104
+      width: 31
+      height: 47
+    spriteID: b61c4f57c16cb554c9fcab64a747e1bb
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 59, y: 104}
+  - name: hero_size1_attack_A_Frame_2
+    originalName: 
+    pivot: {x: 0.5319149, y: -0.11904762}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 47
+      height: 42
+    spriteID: 7a36a38467ca0c348882d3832f5cefc0
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 4}
+  - name: hero_size1_attack_A_Frame_3
+    originalName: 
+    pivot: {x: 0.51111114, y: -0.11904762}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 54
+      width: 45
+      height: 42
+    spriteID: 3308008a6c69a0d4aa9fd63187bcadb5
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 54}
+  - name: hero_size1_attack_A_Frame_4
+    originalName: 
+    pivot: {x: 0.4883721, y: -0.11904762}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 104
+      width: 43
+      height: 42
+    spriteID: c239c11ffec195447b44c563c2068766
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 104}
+  - name: hero_size1_attack_A_Frame_5
+    originalName: 
+    pivot: {x: 0.46341464, y: -0.11904762}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 154
+      width: 41
+      height: 42
+    spriteID: c06e7b030f3850743a741ac9565c200c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 154}
+  - name: hero_size1_attack_A_Frame_6
+    originalName: 
+    pivot: {x: 0.4210526, y: -0.11904762}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 204
+      width: 38
+      height: 42
+    spriteID: 1e5f41325dac4dd449036b8e23b1b0ae
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 204}
+  - name: hero_size1_attack_A_Frame_7
+    originalName: 
+    pivot: {x: 0.40540543, y: -0.11904762}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 59
+      y: 4
+      width: 37
+      height: 42
+    spriteID: 71d2570bdd29fd94a8a29ae38bcd816c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 59, y: 4}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
@@ -148,14 +288,70 @@ ScriptedImporter:
     layerType: 0
     blendMode: 0
     cells:
-    - name: hero_size1_attack_A
+    - name: hero_size1_attack_A_Frame_0
       frameIndex: 0
       cellRect:
-        x: 0
-        y: 0
-        width: 50
-        height: 50
+        x: 14
+        y: 5
+        width: 36
+        height: 42
       spriteId: dccdd9225ca0ef540bae2f00e8e4b27a
+    - name: hero_size1_attack_A_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 16
+        y: 0
+        width: 31
+        height: 47
+      spriteId: b61c4f57c16cb554c9fcab64a747e1bb
+    - name: hero_size1_attack_A_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 0
+        y: 5
+        width: 47
+        height: 42
+      spriteId: 7a36a38467ca0c348882d3832f5cefc0
+    - name: hero_size1_attack_A_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 2
+        y: 5
+        width: 45
+        height: 42
+      spriteId: 3308008a6c69a0d4aa9fd63187bcadb5
+    - name: hero_size1_attack_A_Frame_4
+      frameIndex: 4
+      cellRect:
+        x: 4
+        y: 5
+        width: 43
+        height: 42
+      spriteId: c239c11ffec195447b44c563c2068766
+    - name: hero_size1_attack_A_Frame_5
+      frameIndex: 5
+      cellRect:
+        x: 6
+        y: 5
+        width: 41
+        height: 42
+      spriteId: c06e7b030f3850743a741ac9565c200c
+    - name: hero_size1_attack_A_Frame_6
+      frameIndex: 6
+      cellRect:
+        x: 9
+        y: 5
+        width: 38
+        height: 42
+      spriteId: 1e5f41325dac4dd449036b8e23b1b0ae
+    - name: hero_size1_attack_A_Frame_7
+      frameIndex: 7
+      cellRect:
+        x: 10
+        y: 5
+        width: 37
+        height: 42
+      spriteId: 71d2570bdd29fd94a8a29ae38bcd816c
     linkedCells: []
     parentIndex: -1
   platformSettings: []

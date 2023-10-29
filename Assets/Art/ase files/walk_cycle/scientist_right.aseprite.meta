@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7bcba531fd69b86429d7e9c881475cf7
+guid: 25b2e9b0c7269b64988b31a45ad56f97
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -119,9 +119,9 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: scientist
+  - name: scientist_right_Frame_0
     originalName: 
-    pivot: {x: 0.45161292, y: -0.125}
+    pivot: {x: 0.5483871, y: -0.125}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -130,7 +130,7 @@ ScriptedImporter:
       y: 4
       width: 31
       height: 40
-    spriteID: 6f68f458412cd4a40a53496cff3d8414
+    spriteID: 16d6cfc9fe4ee0544b36e723df6f966a
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -139,9 +139,9 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 42, y: 4}
-  - name: scientist_Frame_1
+  - name: scientist_right_Frame_1
     originalName: 
-    pivot: {x: 0.46666667, y: -0.11904762}
+    pivot: {x: 0.5333333, y: -0.11904762}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -150,7 +150,7 @@ ScriptedImporter:
       y: 4
       width: 30
       height: 42
-    spriteID: 343f48484feea29489f8a8f1006d29a9
+    spriteID: 3b9dc948c2a26454db4fdceb4bf75947
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -159,9 +159,9 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: scientist_Frame_2
+  - name: scientist_right_Frame_2
     originalName: 
-    pivot: {x: 0.4827586, y: -0.11904762}
+    pivot: {x: 0.5172414, y: -0.11904762}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -170,7 +170,7 @@ ScriptedImporter:
       y: 54
       width: 29
       height: 42
-    spriteID: 8dc4e25176837c84f882c18954b3b101
+    spriteID: 4417a4d8ad7d10b4d8b79a63f3cb4062
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -179,9 +179,9 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 54}
-  - name: scientist_Frame_3
+  - name: scientist_right_Frame_3
     originalName: 
-    pivot: {x: 0.45161292, y: -0.125}
+    pivot: {x: 0.5483871, y: -0.125}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -190,7 +190,7 @@ ScriptedImporter:
       y: 52
       width: 31
       height: 40
-    spriteID: b03bcfbd3c1bd2b4a8ece8893629ab4f
+    spriteID: 0e20ef7056ed4824da41e24ca699139e
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -202,44 +202,44 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -709881280
-    name: scientist
+    guid: -1638382077
+    name: scientist_right
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: scientist_Frame_0
+    - name: scientist_right_Frame_0
       frameIndex: 0
       cellRect:
-        x: 11
+        x: 8
         y: 5
         width: 31
         height: 40
-      spriteId: 6f68f458412cd4a40a53496cff3d8414
-    - name: scientist_Frame_1
+      spriteId: 16d6cfc9fe4ee0544b36e723df6f966a
+    - name: scientist_right_Frame_1
       frameIndex: 1
       cellRect:
-        x: 11
+        x: 9
         y: 5
         width: 30
         height: 42
-      spriteId: 343f48484feea29489f8a8f1006d29a9
-    - name: scientist_Frame_2
+      spriteId: 3b9dc948c2a26454db4fdceb4bf75947
+    - name: scientist_right_Frame_2
       frameIndex: 2
       cellRect:
-        x: 11
+        x: 10
         y: 5
         width: 29
         height: 42
-      spriteId: 8dc4e25176837c84f882c18954b3b101
-    - name: scientist_Frame_3
+      spriteId: 4417a4d8ad7d10b4d8b79a63f3cb4062
+    - name: scientist_right_Frame_3
       frameIndex: 3
       cellRect:
-        x: 11
+        x: 8
         y: 5
         width: 31
         height: 40
-      spriteId: b03bcfbd3c1bd2b4a8ece8893629ab4f
+      spriteId: 0e20ef7056ed4824da41e24ca699139e
     linkedCells: []
     parentIndex: -1
   platformSettings: []
