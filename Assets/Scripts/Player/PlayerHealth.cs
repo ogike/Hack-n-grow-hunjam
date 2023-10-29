@@ -44,6 +44,8 @@ public class PlayerHealth : MonoBehaviour
         
         curMaxHp = maxHps[0];
         curHp = curMaxHp;
+
+        UpdateHealthUI();
     }
 
     public void Update()
