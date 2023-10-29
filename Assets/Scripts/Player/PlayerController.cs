@@ -70,7 +70,9 @@ public class PlayerController : MonoBehaviour
     public float dashActiveTime;
     public float dashCooldownTime;
     public float dashPostFreezeTime;
-    
+
+    public AudioClip dashAudio;
+
     public enum DashType {DashForward, QuickstepBack}
     public DashType dashType;
     
@@ -238,7 +240,9 @@ public class PlayerController : MonoBehaviour
         dashCooldownMeter.fillAmount = 1;
 
         curDashFreezeLeft = dashPostFreezeTime; //will only start decreasing after curDashActiveLeft
-        
+
+        AudioManager.Instance.PlayAudio(dashAudio);
+
         DashMove();
     }
 
