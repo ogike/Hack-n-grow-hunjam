@@ -244,31 +244,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseSpeed: 1200
-  maxLevel: 2
-  levelXpRequirements: 050000000700000009000000
+  maxLevel: 3
+  levelXpRequirements: 05000000070000000900000009000000
   speedModifiers:
   - 1
   - 1.3
+  - 1.5
   - 1.5
   damageModifiers:
   - 1
   - 1.5
   - 2
+  - 2
   rangeModifiers:
   - 1
   - 1.2
+  - 1.5
   - 1.5
   cooldownModifiers:
   - 1
   - 0.8
   - 0.5
+  - 0.5
   knockbackModifiers:
   - 1
   - 1.2
   - 1.5
+  - 1.5
   transformSizeModifiers:
   - 1
-  - 1.5
+  - 1.2
+  - 1.55
   - 2
   attackLightTrigger: {fileID: 0}
   playerSprite: {fileID: 6349390377570868896}
@@ -276,7 +282,7 @@ MonoBehaviour:
   lightAttackRange: 0.65
   lightAttackDamage: 1
   lightAttackKnockoutTime: 1
-  lightAttackKnockoutForce: 400
+  lightAttackKnockoutForce: 1000
   attackLightEffect: {fileID: 6881052492403597158}
   attackLightEffectTime: 0.2
   lightAttackCooldown: 0.4
@@ -301,7 +307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5873e4294bf01664ca3b0b9cb6457e72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHps: 0f0000001900000028000000
+  maxHps: 0f000000190000002800000028000000
   gameOverScreen: {fileID: 0}
   invisibilityFrameTime: 0.5
   healthText: {fileID: 0}
