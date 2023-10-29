@@ -179,17 +179,21 @@ public class PlayerController : MonoBehaviour
                 lastInputH = inputH;
                 lastInputV = inputV;
             }
+            
+            //move if there is input
+            Vector2 newFullForce = new Vector2(inputH, inputV) * (baseSpeed * speedModifier * Time.deltaTime);
+            _rigidbody.AddForce(newFullForce);
+            _rigidbody.velocity = Vector2.ClampMagnitude(_rigidbody.velocity, baseSpeed * speedModifier);
         }
-        
+        else
+        {
+            //reset movement if no input
+            _rigidbody.velocity = Vector2.zero;
+        }
+
         //moving
         // _trans.Translate(new Vector3(inputH, inputV, 0) * (baseSpeed * speedModifier * Time.deltaTime), Space.World);
         // _rigidbody.velocity = new Vector2(inputH, inputV) * (baseSpeed * speedModifier);
-        
-        //clamp cur vel + new force
-        Vector2 newFullForce = new Vector2(inputH, inputV) * (baseSpeed * speedModifier * Time.deltaTime);
-        _rigidbody.AddForce(newFullForce);
-        Debug.Log(newFullForce);
-        _rigidbody.velocity = Vector2.ClampMagnitude(_rigidbody.velocity, baseSpeed * speedModifier);
     }
 
     void DashStart()
