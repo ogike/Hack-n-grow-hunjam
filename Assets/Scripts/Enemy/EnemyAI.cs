@@ -21,6 +21,8 @@ public class EnemyAI : MonoBehaviour
     private float curAttackCooldown;
 
     private float curKnockoutTime;
+
+    public Animator animator;
     
     //sound
     public AudioClip attackAudio;
@@ -39,6 +41,11 @@ public class EnemyAI : MonoBehaviour
         if (_myRigid == null)
         {
             Debug.LogError("No rigidbody2D attached to this enemy!");
+        }
+        
+        if (animator == null)
+        {
+            Debug.LogError("No animator attached to this enemy!");
         }
 
         //this is a hack - has to be replaced by triggers
@@ -73,6 +80,7 @@ public class EnemyAI : MonoBehaviour
         else //Move towards player
         {
             _myRigid.AddForce(dirToPlayer * (speed * Time.deltaTime));
+            animator.SetFloat("dirH", dirToPlayer.x);
         }
 
         HandleCooldowns();

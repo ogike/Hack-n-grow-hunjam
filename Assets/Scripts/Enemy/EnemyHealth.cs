@@ -15,7 +15,7 @@ public class EnemyHealth : MonoBehaviour
 
     private EnemyAI _enemyAI;
     private Rigidbody2D _rigidbody;
-    
+    private Animator _animator;
     
 
     void Start()
@@ -23,11 +23,14 @@ public class EnemyHealth : MonoBehaviour
         curHealth = health;
         _enemyAI = GetComponent<EnemyAI>();
         _rigidbody = GetComponent<Rigidbody2D>();
+        _animator = _enemyAI.animator;
     }
 
     public void Damage(int damage)
     {
         AudioManager.Instance.PlayAudio(enemyDamageAudio);
+        _animator.SetTrigger("Damaged");
+        
         curHealth -= damage;
 
         if (curHealth <= 0)

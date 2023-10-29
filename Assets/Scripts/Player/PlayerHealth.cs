@@ -23,6 +23,7 @@ public class PlayerHealth : MonoBehaviour
     public AudioClip playerDieAudio;
 
     private PlayerController _playerController;
+    private Animator _playerAnimator;
 
     public void Awake()
     {
@@ -34,6 +35,8 @@ public class PlayerHealth : MonoBehaviour
         {
             Debug.LogError("No PlayerController attached");
         }
+
+        _playerAnimator = _playerController.animator;
 
         curIFrameTime = 0;
     }
@@ -65,6 +68,7 @@ public class PlayerHealth : MonoBehaviour
         curHp -= damage;
 
         UpdateHealthUI();
+        _playerAnimator.SetTrigger("Damaged");
 
         curIFrameTime = invisibilityFrameTime;
         

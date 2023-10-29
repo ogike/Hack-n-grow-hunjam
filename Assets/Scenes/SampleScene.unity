@@ -2853,30 +2853,14 @@ PrefabInstance:
       propertyPath: levelDisplayText
       value: 
       objectReference: {fileID: 516262863}
-    - target: {fileID: 2793193698236965643, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
-      propertyPath: lightAttackKnockoutTime
-      value: 1
+    - target: {fileID: 3224133390022946868, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2793193698236965643, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
-      propertyPath: lightAttackKnockoutForce
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 2793193698236965643, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
-      propertyPath: knockbackModifiers.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2793193698236965643, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
-      propertyPath: knockbackModifiers.Array.data[0]
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2793193698236965643, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
-      propertyPath: knockbackModifiers.Array.data[1]
-      value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2793193698236965643, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
-      propertyPath: knockbackModifiers.Array.data[2]
-      value: 1.5
-      objectReference: {fileID: 0}
+    - target: {fileID: 6065453675184930599, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1090111759, guid: 93eee597b39faba4a9e0c0e124e3727a, type: 3}
     - target: {fileID: 6358756388176844130, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
       propertyPath: m_Name
       value: Character

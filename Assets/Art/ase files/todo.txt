@@ -1,0 +1,11 @@
+zombik
+üvegfiolák
+démonok
+
+ui:
+felül xp csík / health
+csíknak háttér, a töltést zoli megcsinálja
+
+attack animations
+hero sideways animation
+potato, scientist walk, attack, damage animation
