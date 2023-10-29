@@ -284,7 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ccc338565b2e034e8a1b232d5a7f7b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
+  health: 30
   xpDrop: 1
   enemyDamageAudio: {fileID: 8300000, guid: 2c60fc940c2627d43a81d65777e29b9a, type: 3}
   enemyDieAudio: {fileID: 8300000, guid: c7075349e01ef964a86f45134bab23cd, type: 3}
