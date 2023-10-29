@@ -2,7 +2,6 @@ Priority list:
 
 hero size 2 attack animation
 scientist attack
-start screen
 level design finish
 shadows
 potato walk, attack, damage animation
