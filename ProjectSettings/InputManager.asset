@@ -42,7 +42,7 @@ InputManager:
     descriptiveName: Light Attack
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: mouse 0
+    positiveButton: right shift
     altNegativeButton: 
     altPositiveButton: left shift
     gravity: 1000
