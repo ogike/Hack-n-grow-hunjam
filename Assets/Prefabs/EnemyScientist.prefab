@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1724605071819600577}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.001, y: -0.21, z: 0}
+  m_LocalPosition: {x: -0.001, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 928634967, guid: cd52143f51e695c46ae7e4401f79b9d9, type: 3}
+  m_Sprite: {fileID: -2097796831, guid: 0068e73493b392741bc1c0f775b42bfa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -95,7 +95,7 @@ Animator:
   m_GameObject: {fileID: 1724605071819600577}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4c765ecc50159c743a09eb48ec7a28e8, type: 2}
+  m_Controller: {fileID: 9100000, guid: 3757e7cbc07c2a64db32fee229c4bb83, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -237,7 +237,7 @@ GameObject:
   - component: {fileID: -2381551867642983841}
   - component: {fileID: 8439850509543023855}
   m_Layer: 7
-  m_Name: Enemy
+  m_Name: EnemyScientist
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -257,7 +257,7 @@ Transform:
   m_Children:
   - {fileID: 1958604369010573526}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &975893972809779331
 CircleCollider2D:

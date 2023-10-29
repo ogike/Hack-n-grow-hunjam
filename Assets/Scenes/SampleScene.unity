@@ -644,7 +644,7 @@ MonoBehaviour:
   - {fileID: 1886301138}
   - {fileID: 1886301137}
   - {fileID: 1886301135}
-  enemyGameObject: {fileID: 8221827501506133857, guid: dae6cfc8653a98c45882aa8b7c09f115, type: 3}
+  enemyGameObject: {fileID: 8221827501506133857, guid: 5c40113e74d4dfb4298288e528609559, type: 3}
   enemyPosZ: 0
   minSpawnWaitTime: 1
   maxSpawnWaitTime: 3
