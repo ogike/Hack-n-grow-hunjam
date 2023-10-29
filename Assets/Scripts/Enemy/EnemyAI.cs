@@ -19,6 +19,8 @@ public class EnemyAI : MonoBehaviour
     public float attackCooldown;
 
     private float curAttackCooldown;
+
+    private float curKnockoutTime;
     
     //sound
     public AudioClip attackAudio;
@@ -42,12 +44,20 @@ public class EnemyAI : MonoBehaviour
         //this is a hack - has to be replaced by triggers
         attackRange *= PlayerController.Instance.transform.localScale.x;
 
+        curKnockoutTime = 0;
+
         attackEffect.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (curKnockoutTime > 0)
+        {
+            curKnockoutTime -= Time.deltaTime;
+            return; //dont do anything if knocked out
+        }
+        
         Vector2 myPos = transform.position;
         Vector2 playerPos = _playerTrans.position;
         
@@ -88,5 +98,12 @@ public class EnemyAI : MonoBehaviour
                 attackEffect.SetActive(false);
             }
         }
+    }
+
+    public void KnockBack(float knockoutTime)
+    {
+        curKnockoutTime += knockoutTime;
+        
+        //put effects here
     }
 }

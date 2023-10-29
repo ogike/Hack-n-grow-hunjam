@@ -9,7 +9,19 @@ public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance { get; private set; }
 
+    
+    public float baseSpeed = 15;
+
+    private float plusRotValue;
+
+    private float lastInputH;
+    private float lastInputV;
+    private bool rotatedThisUpdate = false;
+
+    private float _floatingTolerance = 0.001f;
+    
     //starting level = 0
+    [Header("Growth levels")]
     public int maxLevel;
     
     public List<int> levelXpRequirements;
@@ -21,19 +33,10 @@ public class PlayerController : MonoBehaviour
     public List<float> damageModifiers;
     public List<float> rangeModifiers;
     public List<float> cooldownModifiers;
+    public List<float> knockbackModifiers;
 
     public List<float> transformSizeModifiers;
 
-    public float baseSpeed = 15;
-
-    private float plusRotValue;
-
-    private float lastInputH;
-    private float lastInputV;
-    private bool rotatedThisUpdate = false;
-
-    private float _floatingTolerance = 0.001f;
-    
     //references
     private Transform _trans;
     public Collider2D attackLightTrigger;
@@ -46,15 +49,19 @@ public class PlayerController : MonoBehaviour
 
     private float curAttackCooldown;
     
-    //Light attack
+    [Header("Light attack")]
     public float lightAttackRange;
     public float lightAttackDamage;
+    public float lightAttackKnockoutTime;
+    public float lightAttackKnockoutForce;
     
     public GameObject attackLightEffect;
     public float attackLightEffectTime;
     private float attackLightEffectCurTime = 0.5f;
 
     public float lightAttackCooldown;
+    
+    public AudioClip lightAttackAudio;
 
     private Vector2 _last4WayDir;
 
@@ -71,11 +78,10 @@ public class PlayerController : MonoBehaviour
     private float curDashCooldownLeft;
     private float curDashFreezeLeft;
 
+    [Header("UI")]
     public Image dashCooldownMeter;
     public Image xpMeter;
     public Text levelDisplayText;
-
-    public AudioClip lightAttackAudio;
 
     private void Awake()
     {
@@ -94,6 +100,7 @@ public class PlayerController : MonoBehaviour
         if (damageModifiers.Count != maxLevel + 1) Debug.LogError("damageModifiers array length not matching!");
         if (rangeModifiers.Count != maxLevel + 1) Debug.LogError("rangeModifiers array length not matching!");
         if (cooldownModifiers.Count != maxLevel + 1) Debug.LogError("cooldownModifiers array length not matching!");
+        if (knockbackModifiers.Count != maxLevel + 1) Debug.LogError("knockbackModifiers array length not matching!");
         if (transformSizeModifiers.Count != maxLevel + 1) Debug.LogError("transformSizeModifiers array length not matching!");
 
         CurLevel = 0;
@@ -333,6 +340,8 @@ public class PlayerController : MonoBehaviour
                 }
                 
                 enemyHealth.Damage(Mathf.FloorToInt(lightAttackDamage * damageModifiers[CurLevel]));
+                enemyHealth.Knockback(lightAttackKnockoutTime * knockbackModifiers[CurLevel],
+                    dirToTarg * (lightAttackKnockoutForce * knockbackModifiers[CurLevel]));
             }
             else //behind player
             {
