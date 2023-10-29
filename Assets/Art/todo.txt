@@ -8,7 +8,7 @@ csíknak háttér, a töltést zoli megcsinálja
 
 Priority list:
 
-hero size 2 animation
+hero size 2 attack animation
 scientist attack, damage animation
 potato walk, attack, damage animation
 level design finish
