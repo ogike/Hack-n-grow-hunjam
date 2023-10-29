@@ -87,6 +87,9 @@ public class EnemySpawner : MonoBehaviour
 
         if (_curEnemyCount > maxEnemyCount)
             _curWaitModifier = overMaxEnemyCountWaitModifier;
+
+        if (_curEnemyCount < maxEnemyCount && _curEnemyCount > minEnemyCount)
+            _curWaitModifier = 1;
     }
 
     public void DecreaseEnemyCount()
@@ -95,5 +98,8 @@ public class EnemySpawner : MonoBehaviour
 
         if (_curEnemyCount < minEnemyCount)
             _curWaitModifier = underMinEnemyCountWaitModifier;
+        
+        if (_curEnemyCount < maxEnemyCount && _curEnemyCount > minEnemyCount)
+            _curWaitModifier = 1;
     }
 }
