@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
     //starting level = 0
     [Header("Growth levels")]
     public int maxLevel;
+
+    public int size2Level = 3;
     
     public List<int> levelXpRequirements;
     
@@ -413,10 +415,16 @@ public class PlayerController : MonoBehaviour
 
         float newTransformScale = transformSizeModifiers[CurLevel];
         transform.localScale = new Vector3(newTransformScale, newTransformScale, newTransformScale);
+
+        if (CurLevel == size2Level)
+        {
+            animator.SetTrigger("Size2Grow");
+            animator.SetBool("Size2", true);
+        }
         
         UpdateXpMeter();
-       _playerHealth.Grow();
-       EnemySpawner.Instance.Grow();
+        _playerHealth.Grow();
+        EnemySpawner.Instance.Grow();
     }
 
     private void UpdateXpMeter()
