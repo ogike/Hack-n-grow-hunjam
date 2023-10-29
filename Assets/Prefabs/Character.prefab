@@ -267,7 +267,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseSpeed: 1200
   maxLevel: 5
-  levelXpRequirements: 080000000c000000120000001b0000002800000058020000
+  levelXpRequirements: 080000000c000000120000001b00000028000000b80b0000
   curSize: 0
   speedModifiers:
   - 1
