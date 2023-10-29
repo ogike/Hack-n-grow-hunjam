@@ -1,7 +1,3 @@
 Priority list:
 
-hero size 2 attack animation
-damage indicator hero
 scientist attack
-level design finish
-shadows
