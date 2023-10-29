@@ -6,6 +6,8 @@ using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
 {
+    public static EnemySpawner Instance { get; private set; } 
+    
     public List<Transform> spawnAreas;
     
     public GameObject enemyGameObject;
@@ -18,6 +20,26 @@ public class EnemySpawner : MonoBehaviour
 
     private Transform _myTrans;
 
+    public int minEnemyCount = 3;
+    public int maxEnemyCount = 6;
+
+    public float underMinEnemyCountWaitModifier;
+    public float overMaxEnemyCountWaitModifier;
+
+    private int _curEnemyCount = 0;
+    private float _curWaitModifier;
+    
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Debug.LogError("More than one EnemySpawner!");
+            return;
+        }
+
+        Instance = this;
+    }
+
     private void Start()
     {
         _myTrans = transform;
@@ -29,7 +51,10 @@ public class EnemySpawner : MonoBehaviour
         if (curSpawnWaitTime < 0)
         {
             SpawnSingleEnemy();
-            curSpawnWaitTime = Random.Range(minSpawnWaitTime, maxSpawnWaitTime);
+            IncreaseEnemyCount();
+            curSpawnWaitTime = Random.Range(
+                minSpawnWaitTime * _curWaitModifier,
+                maxSpawnWaitTime * _curWaitModifier);
         }
         else
         {
@@ -54,5 +79,21 @@ public class EnemySpawner : MonoBehaviour
         Vector3 spawnPos = new Vector3(posX, posY, enemyPosZ);
 
         GameObject spawnedEnemy = GameObject.Instantiate(enemyGameObject, spawnPos, Quaternion.identity, _myTrans);
+    }
+
+    public void IncreaseEnemyCount()
+    {
+        _curEnemyCount++;
+
+        if (_curEnemyCount > maxEnemyCount)
+            _curWaitModifier = overMaxEnemyCountWaitModifier;
+    }
+
+    public void DecreaseEnemyCount()
+    {
+        _curEnemyCount--;
+
+        if (_curEnemyCount < minEnemyCount)
+            _curWaitModifier = underMinEnemyCountWaitModifier;
     }
 }
