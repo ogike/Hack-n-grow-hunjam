@@ -83,6 +83,9 @@ public class PlayerController : MonoBehaviour
     public Image xpMeter;
     public Text levelDisplayText;
 
+    [Header("Animations")] 
+    public Animator animator;
+    
     private void Awake()
     {
         if (Instance != null)
@@ -103,6 +106,8 @@ public class PlayerController : MonoBehaviour
         if (knockbackModifiers.Count != maxLevel + 1) Debug.LogError("knockbackModifiers array length not matching!");
         if (transformSizeModifiers.Count != maxLevel + 1) Debug.LogError("transformSizeModifiers array length not matching!");
 
+        if(animator == null) Debug.LogError("Animator not set!");
+        
         CurLevel = 0;
         curXp = 0;
         UpdateXpMeter();
@@ -126,7 +131,6 @@ public class PlayerController : MonoBehaviour
             if (curDashCooldownLeft <= 0 && Input.GetButtonDown("Dash"))
             {
                 DashStart();
-                
             }
             else if(curDashFreezeLeft <= 0)
             {
@@ -136,6 +140,7 @@ public class PlayerController : MonoBehaviour
             { //post dash freeze
                 curDashFreezeLeft -= Time.deltaTime;
                 _rigidbody.velocity = Vector2.zero;
+                animator.SetBool("isMoving", false);
             }
             
             //only be able to attack if not dashing
@@ -213,17 +218,22 @@ public class PlayerController : MonoBehaviour
 
                 lastInputH = inputH;
                 lastInputV = inputV;
+                
+                animator.SetFloat("lookH", inputH);
+                animator.SetFloat("lookV", inputV);
             }
             
             //move if there is input
             Vector2 newFullForce = new Vector2(inputH, inputV) * (baseSpeed * speedModifiers[CurLevel] * Time.deltaTime);
             _rigidbody.AddForce(newFullForce);
             _rigidbody.velocity = Vector2.ClampMagnitude(_rigidbody.velocity, baseSpeed * speedModifiers[CurLevel]);
+            animator.SetBool("isMoving", true);
         }
         else
         {
             //reset movement if no input
             _rigidbody.velocity = Vector2.zero;
+            animator.SetBool("isMoving", false);
         }
 
         //moving

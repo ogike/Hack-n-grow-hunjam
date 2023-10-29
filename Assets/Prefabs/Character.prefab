@@ -311,6 +311,7 @@ MonoBehaviour:
   dashCooldownMeter: {fileID: 5704158079392958977}
   xpMeter: {fileID: 0}
   levelDisplayText: {fileID: 0}
+  animator: {fileID: 4847363319514411625}
 --- !u!114 &1735569420791241970
 MonoBehaviour:
   m_ObjectHideFlags: 0
