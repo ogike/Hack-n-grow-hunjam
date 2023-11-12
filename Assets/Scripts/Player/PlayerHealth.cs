@@ -24,7 +24,8 @@ public class PlayerHealth : MonoBehaviour
 
     private PlayerController _playerController;
     private Animator _playerAnimator;
-
+    private GameManager _gameManager;
+    
     public void Awake()
     {
         Time.timeScale = 1; //why is the playerhealth doing this lmao
@@ -44,6 +45,8 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         if (maxHps.Count != _playerController.maxLevel + 1) Debug.LogError("maxHps array length not matching!");
+        
+        _gameManager = GameManager.Instance;
         
         curMaxHp = maxHps[0];
         curHp = curMaxHp;
@@ -74,7 +77,18 @@ public class PlayerHealth : MonoBehaviour
         
         if (curHp <= 0)
         {
-            Die();
+            if (_gameManager.CurrentGodModeType == GameManager.GodModeType.Normal)
+            {
+                Die();
+            }
+            else
+            {
+                //TODO: respawn sound?
+                AudioManager.Instance.PlayAudio(playerDieAudio);
+                
+                curHp = curMaxHp;
+                UpdateHealthUI();
+            }
         }
     }
 
@@ -95,6 +109,8 @@ public class PlayerHealth : MonoBehaviour
     public bool IsVulnerable()
     {
         if (_playerController.IsDashing()) return false;
+        
+        if (_gameManager.CurrentGodModeType == GameManager.GodModeType.GodMode) return false;
 
         if (curIFrameTime > 0) return false;
 

@@ -8,6 +8,7 @@ public class EnemyAI : MonoBehaviour
     private Transform _myTrans;
     private Rigidbody2D _myRigid;
     private PlayerHealth _playerHealth;
+    private GameManager _gameManager;
 
     private Vector2 dirToPlayer;
     private float distanceToPlayer;
@@ -36,6 +37,7 @@ public class EnemyAI : MonoBehaviour
     {
         _playerTrans = PlayerController.Instance.transform;
         _playerHealth = _playerTrans.GetComponent<PlayerHealth>();
+        _gameManager = GameManager.Instance;
         _myTrans = transform;
         _myRigid = GetComponent<Rigidbody2D>();
         if (_myRigid == null)
@@ -73,11 +75,11 @@ public class EnemyAI : MonoBehaviour
         dirToPlayer.Normalize();
         
         //Attack player
-        if (distanceToPlayer < attackRange && curAttackCooldown <= 0)
+        if (distanceToPlayer < attackRange && curAttackCooldown <= 0 && _gameManager.EnemyAttackEnabled)
         {
             Attack(dirToPlayer);
         }
-        else //Move towards player
+        else if(_gameManager.EnemyMovementEnabled) //Move towards player
         {
             _myRigid.AddForce(dirToPlayer * (speed * Time.deltaTime));
             animator.SetFloat("dirH", dirToPlayer.x);
