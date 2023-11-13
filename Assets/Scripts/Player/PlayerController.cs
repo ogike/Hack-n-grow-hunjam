@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -52,25 +53,27 @@ public class PlayerController : MonoBehaviour
 
     //Attack
     public string enemyTag = "Enemy";
-
-    private float curAttackCooldown;
     
     public enum AttackState { NotAttacking, Windup, ActiveAttack, Wincdown, Cooldown }
     public AttackState CurrentAttackState { get; private set; }
-    
+    private IEnumerator _activeAttackCoroutine;
+
     [Header("Light attack")]
     public float lightAttackRange;
     public float lightAttackDamage;
     public float lightAttackKnockoutTime;
     public float lightAttackKnockoutForce;
     
-    public GameObject attackLightEffect;
-    public float attackLightEffectTime;
-    private float attackLightEffectCurTime = 0.5f;
+    public GameObject attackLightEffect; //enabled when trigger is active
 
     public float lightAttackCooldown;
+    public float lightAttackWindup;
+    public float lightAttackTriggerActiveTime;
+    public float lightAttackWinddown;
     
     public AudioClip lightAttackAudio;
+    public PlayerWeaponTrigger lightAttackTrigger;
+    private GameObject _lightAttackTriggerGameObject;
 
     private Vector2 _last4WayDir;
 
@@ -119,6 +122,10 @@ public class PlayerController : MonoBehaviour
 
         if(animator == null) Debug.LogError("Animator not set!");
 
+        if(lightAttackTrigger == null) Debug.LogError("Light attack trigger not set!");
+        lightAttackTrigger.Register(LightAttackHit);
+        _lightAttackTriggerGameObject = lightAttackTrigger.gameObject;
+        _lightAttackTriggerGameObject.SetActive(false);
         CurrentAttackState = AttackState.NotAttacking;
         
         CurLevel = 0;
@@ -132,7 +139,7 @@ public class PlayerController : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody2D>();
         _playerHealth = GetComponent<PlayerHealth>();
 
-        attackLightEffectCurTime = 0;
+        _lightAttackTriggerGameObject.SetActive(false);
         attackLightEffect.SetActive(false);
     }
 
@@ -141,7 +148,6 @@ public class PlayerController : MonoBehaviour
     {
         //Do things that are always done first
         UpdateCooldowns();
-        UpdateEffect();
 
         if (curDashActiveLeft > 0)
         {
@@ -169,17 +175,15 @@ public class PlayerController : MonoBehaviour
         
         //we can try to attack whenever
         // cooldown will be checked inside the function
-        if (Input.GetButtonDown("Fire1"))
-            LightAttack();
+        if (Input.GetButtonDown("Fire1") && CurrentAttackState == AttackState.NotAttacking)
+        {
+            _activeAttackCoroutine = LightAttack();
+            StartCoroutine(_activeAttackCoroutine);
+        }
     }
 
     private void UpdateCooldowns()
     {
-        if (curAttackCooldown >= 0)
-        {
-            curAttackCooldown -= Time.deltaTime;
-        }
-        
         if (curDashCooldownLeft >= 0)
         {
             curDashCooldownLeft -= Time.deltaTime;
@@ -324,76 +328,52 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void LightAttack()
+    IEnumerator LightAttack()
     {
-        if (curAttackCooldown > 0)
-        {
-            return;
-        }
-
-        curAttackCooldown += lightAttackCooldown * cooldownModifiers[CurLevel];
-        
-        Debug.DrawLine(_trans.position, _trans.position + _trans.up * (lightAttackRange * rangeModifiers[CurLevel]), 
-                        Color.yellow, attackLightEffectTime);
-        Debug.DrawLine(_trans.position, _trans.position + _trans.right * (lightAttackRange * rangeModifiers[CurLevel]), 
-                        Color.yellow, attackLightEffectTime);
-        Debug.DrawLine(_trans.position, _trans.position - _trans.right * (lightAttackRange * rangeModifiers[CurLevel]), 
-                        Color.yellow, attackLightEffectTime);
+        if (CurrentAttackState != AttackState.NotAttacking) yield break;
         
         attackLightEffect.SetActive(true);
-        attackLightEffectCurTime = attackLightEffectTime;
-
-        Collider2D[] colls = Physics2D.OverlapCircleAll(transform.position, lightAttackRange * rangeModifiers[CurLevel]);
-        if (colls.Length == 0)
-        {
-            return;
-        }
-
-        Vector3 curPos = _trans.position;
-        Vector2 forwardDir = _trans.up;
-
+        
         AudioManager.Instance.PlayAudio(lightAttackAudio);
         animator.SetTrigger("Attack");
+        
+        CurrentAttackState = AttackState.Windup;
+        yield return new WaitForSeconds(lightAttackWindup * cooldownModifiers[CurLevel]);
 
-        for (int i = 0; i < colls.Length; i++)
-        {
-            if(!colls[i].CompareTag(enemyTag)) continue;
+        CurrentAttackState = AttackState.ActiveAttack;
+        
+        //enables the triggers, calls OnEnable() on it
+        _lightAttackTriggerGameObject.SetActive(true);
+        attackLightEffect.SetActive(true);
+        yield return new WaitForSeconds(lightAttackTriggerActiveTime * cooldownModifiers[CurLevel]);
 
-            Vector2 dirToTarg = colls[i].transform.position - curPos;
-            float angle = Vector2.Angle(forwardDir, dirToTarg);
-            
-            if (angle < 100) //succesful hit
-            {
-                Debug.DrawLine(curPos, curPos + (Vector3)dirToTarg, Color.red, attackLightEffectTime);
-                EnemyHealth enemyHealth = colls[i].GetComponent<EnemyHealth>();
-                if (enemyHealth == null)
-                {
-                    Debug.LogError("No enemyhealth attached to GameObject with Enemy tag!");
-                    continue;
-                }
-                
-                enemyHealth.Damage(Mathf.FloorToInt(lightAttackDamage * damageModifiers[CurLevel]));
-                enemyHealth.Knockback(lightAttackKnockoutTime * knockbackModifiers[CurLevel],
-                    dirToTarg * (lightAttackKnockoutForce * knockbackModifiers[CurLevel]));
-            }
-            else //behind player
-            {
-                Debug.DrawLine(curPos, curPos + (Vector3)dirToTarg, Color.black, attackLightEffectTime);
-            }
-        }
+        CurrentAttackState = AttackState.Wincdown;
+        _lightAttackTriggerGameObject.SetActive(false);
+        attackLightEffect.SetActive(false);
+        yield return new WaitForSeconds(lightAttackWinddown * cooldownModifiers[CurLevel]);
+
+        CurrentAttackState = AttackState.Cooldown;
+        yield return new WaitForSeconds(lightAttackCooldown * cooldownModifiers[CurLevel]);
+
+        CurrentAttackState = AttackState.NotAttacking;
+        yield break;
     }
 
-    void UpdateEffect()
+    public void StopLightAttack()
     {
-        if (attackLightEffectCurTime > 0)
-        {
-            attackLightEffectCurTime -= Time.deltaTime;
+        CurrentAttackState = AttackState.NotAttacking;
+        
+        //make sure we disable everything, regardless of actual state
+        _lightAttackTriggerGameObject.SetActive(false);
+        attackLightEffect.SetActive(false);
+    }
 
-            if (attackLightEffectCurTime <= 0)
-            {
-                attackLightEffect.SetActive(false);
-            }
-        }
+    public void LightAttackHit(EnemyHealth enemy)
+    {
+        Vector2 dirToTarg = enemy.transform.position - _trans.position;
+        enemy.Damage(Mathf.FloorToInt(lightAttackDamage * damageModifiers[CurLevel]));
+        enemy.Knockback(lightAttackKnockoutTime * knockbackModifiers[CurLevel],
+            dirToTarg * (lightAttackKnockoutForce * knockbackModifiers[CurLevel]));
     }
 
     public bool IsDashing()
