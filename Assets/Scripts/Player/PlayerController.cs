@@ -9,7 +9,6 @@ public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance { get; private set; }
 
-    
     public float baseSpeed = 15;
 
     private float plusRotValue;
@@ -55,6 +54,9 @@ public class PlayerController : MonoBehaviour
     public string enemyTag = "Enemy";
 
     private float curAttackCooldown;
+    
+    public enum AttackState { NotAttacking, Windup, ActiveAttack, Wincdown, Cooldown }
+    public AttackState CurrentAttackState { get; private set; }
     
     [Header("Light attack")]
     public float lightAttackRange;
@@ -116,6 +118,8 @@ public class PlayerController : MonoBehaviour
         if (transformSizeModifiers.Count != maxLevel + 1) Debug.LogError("transformSizeModifiers array length not matching!");
 
         if(animator == null) Debug.LogError("Animator not set!");
+
+        CurrentAttackState = AttackState.NotAttacking;
         
         CurLevel = 0;
         curXp = 0;
@@ -135,33 +139,47 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (curDashActiveLeft <= 0)
-        {
-            if (curDashCooldownLeft <= 0 && Input.GetButtonDown("Dash"))
-            {
-                DashStart();
-            }
-            else if(curDashFreezeLeft <= 0)
-            {
-                Move();
-            }
-            else
-            { //post dash freeze
-                curDashFreezeLeft -= Time.deltaTime;
-                _rigidbody.velocity = Vector2.zero;
-                animator.SetBool("isMoving", false);
-            }
-            
-            //only be able to attack if not dashing
-            if (Input.GetButtonDown("Fire1"))
-                LightAttack();
-        }
-        else
+        //Do things that are always done first
+        UpdateCooldowns();
+        UpdateEffect();
+
+        if (curDashActiveLeft > 0)
         {
             DashContinue();
+            return;
         }
         
-        //always cool down no matter what
+        if (curDashCooldownLeft <= 0 && Input.GetButtonDown("Dash"))
+        { //if we can dash and press dash
+            DashStart();
+        }
+        else if(curDashFreezeLeft <= 0)
+        { //only move if we are not in dash freeze
+            Move();
+            
+        }
+        else
+        { //post dash freeze
+            curDashFreezeLeft -= Time.deltaTime;
+            
+            //TODO: inefficient, and we make this object unmovable
+            _rigidbody.velocity = Vector2.zero;
+            animator.SetBool("isMoving", false);
+        }
+        
+        //we can try to attack whenever
+        // cooldown will be checked inside the function
+        if (Input.GetButtonDown("Fire1"))
+            LightAttack();
+    }
+
+    private void UpdateCooldowns()
+    {
+        if (curAttackCooldown >= 0)
+        {
+            curAttackCooldown -= Time.deltaTime;
+        }
+        
         if (curDashCooldownLeft >= 0)
         {
             curDashCooldownLeft -= Time.deltaTime;
@@ -169,13 +187,6 @@ public class PlayerController : MonoBehaviour
             float dashMeterFill = (curDashCooldownLeft > 0) ? curDashCooldownLeft / dashCooldownTime : 0;
 
             dashCooldownMeter.fillAmount = dashMeterFill;
-        }
-
-        UpdateEffect();
-        
-        if (curAttackCooldown >= 0)
-        {
-            curAttackCooldown -= Time.deltaTime;
         }
     }
 
