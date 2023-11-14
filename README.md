@@ -4,7 +4,7 @@
 
 
 # Desciption
-You wake up after a car accident in the middle of the jellypocalypse. Some of the questions you will be asking yourself: "What's this jelly? What's happening? Why are my legs longer...?" and others. Are you ready to SLAY?
+You wake up after a car accident in the middle of the jellypocalypse. Some of the questions you will be asking yourself: *"What's this jelly? What's happening? Why are my legs longer...?"* and others. Are you ready to SLAY?
 
 # Credits:
 Visuals by Kassai Gréta (Arki)
