@@ -71,7 +71,7 @@ ScriptedImporter:
     textureFormatSet: 0
     applyGammaDecoding: 0
   previousAsepriteImporterSettings:
-    fileImportMode: 1
+    fileImportMode: 0
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
@@ -83,7 +83,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   asepriteImporterSettings:
-    fileImportMode: 1
+    fileImportMode: 0
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
@@ -95,7 +95,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 0
+  platformSettingsDirtyTick: 638355990383206127
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -199,50 +199,178 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 49, y: 104}
-  spriteSheetImportData: []
+  spriteSheetImportData:
+  - name: hero2_dmg_0
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 104
+      width: 37
+      height: 92
+    spriteID: ba44ee65fc944544da50c0a5c9edb873
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: hero2_dmg_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 49
+      y: 104
+      width: 37
+      height: 92
+    spriteID: d6fc26750aba81e4eb25545bc92133ee
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: hero2_dmg_2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 37
+      height: 92
+    spriteID: 77b0b2e7438688447a1f38da67e44687
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  - name: hero2_dmg_3
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 49
+      y: 4
+      width: 37
+      height: 92
+    spriteID: 36d09d15151ccfb4d802e88564997d50
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
   asepriteLayers:
   - layerIndex: 0
-    guid: 1568552147
-    name: hero2_dmg
+    guid: 1815032051
+    name: hero2_dmg_ase
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: hero2_dmg_Frame_0
+    - name: hero2_dmg_ase_Frame_0
       frameIndex: 0
       cellRect:
         x: 3
         y: 6
         width: 37
         height: 92
-      spriteId: 4bbeb9177d75b1e42bcf4185efc11596
-    - name: hero2_dmg_Frame_1
+      spriteId: e4022f4c53909f34d8d3be18e9390cdc
+    - name: hero2_dmg_ase_Frame_1
       frameIndex: 1
       cellRect:
         x: 3
         y: 6
         width: 37
         height: 92
-      spriteId: 7fe2b981475550e44b195778a6af8f9c
-    - name: hero2_dmg_Frame_2
+      spriteId: a66a986d1759c0944a6b623f53eba482
+    - name: hero2_dmg_ase_Frame_2
       frameIndex: 2
       cellRect:
         x: 3
         y: 6
         width: 37
         height: 92
-      spriteId: 51be6e7125970d149a92c8080122708e
-    - name: hero2_dmg_Frame_3
+      spriteId: fa25c82c4950f6647a852e1f5ae23bf8
+    - name: hero2_dmg_ase_Frame_3
       frameIndex: 3
       cellRect:
         x: 3
         y: 6
         width: 37
         height: 92
-      spriteId: 25319573877e6074ea01146ea49e8a1c
+      spriteId: 813a7f2b44e20d849a7ac8f03530a4ae
     linkedCells: []
     parentIndex: -1
-  platformSettings: []
+  platformSettings:
+  - name: DefaultTexturePlatform
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Standalone
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Server
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Windows Store Apps
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 50, y: 100}

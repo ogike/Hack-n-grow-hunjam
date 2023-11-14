@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: hero2_attack_w
+  m_Name: hero2_attack_w_anim
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -31,7 +31,7 @@ AnimationClip:
     - time: 0.4
       value: {fileID: 1419753713, guid: a7483498c820d654aa01b3c5ed63e3f1, type: 3}
     attribute: m_Sprite
-    path: 
+    path: CharacterSpritePivot/CharacterSprite
     classID: 212
     script: {fileID: 0}
     flags: 2
@@ -43,7 +43,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 0
+      path: 2426130503
       attribute: 0
       script: {fileID: 0}
       typeID: 212

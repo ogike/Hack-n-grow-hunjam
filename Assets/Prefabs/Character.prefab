@@ -119,7 +119,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3224133390022946868}
   - component: {fileID: 6065453675184930599}
-  - component: {fileID: 4847363319514411625}
   m_Layer: 3
   m_Name: CharacterSprite
   m_TagString: Untagged
@@ -195,27 +194,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &4847363319514411625
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3859503578440911384}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c03166ddf815bbf43929fcf27b4aea98, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4267810570245420615
 GameObject:
   m_ObjectHideFlags: 0
@@ -373,6 +351,7 @@ GameObject:
   - component: {fileID: 1735569420791241970}
   - component: {fileID: 7837728603172812865}
   - component: {fileID: 6780240879836078755}
+  - component: {fileID: 6543660245478961490}
   m_Layer: 3
   m_Name: Character
   m_TagString: Player
@@ -458,7 +437,7 @@ MonoBehaviour:
   - 3
   - 4
   growAudio: {fileID: 8300000, guid: 06a73f649ac9009419186535ae384700, type: 3}
-  attackLightTrigger: {fileID: 0}
+  attackLightTrigger: {fileID: 1066274787122297353}
   playerSprite: {fileID: 6349390377570868896}
   enemyTag: Enemy
   lightAttackRange: 0.65
@@ -477,11 +456,11 @@ MonoBehaviour:
   dashCooldownTime: 1
   dashPostFreezeTime: 0.2
   dashAudio: {fileID: 8300000, guid: cb40dc40445f6e54a914c78ac4f687a6, type: 3}
-  dashType: 1
+  dashType: 0
   dashCooldownMeter: {fileID: 5704158079392958977}
   xpMeter: {fileID: 0}
   levelDisplayText: {fileID: 0}
-  animator: {fileID: 4847363319514411625}
+  animator: {fileID: 6543660245478961490}
 --- !u!114 &1735569420791241970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -563,6 +542,27 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.23
+--- !u!95 &6543660245478961490
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6358756388176844130}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c03166ddf815bbf43929fcf27b4aea98, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6881052492403597158
 GameObject:
   m_ObjectHideFlags: 0
