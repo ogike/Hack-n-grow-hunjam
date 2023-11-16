@@ -6,6 +6,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance { get; private set; }
@@ -52,14 +53,15 @@ public class PlayerController : MonoBehaviour
     private PlayerHealth _playerHealth;
 
     //Attack
-    public string enemyTag = "Enemy";
-    
+
     public enum AttackState { NotAttacking, Windup, ActiveAttack, Wincdown, Cooldown }
+    public enum AttackMovementRestriction {None, Stop, HalfSpeed}
+    
     public AttackState CurrentAttackState { get; private set; }
     private IEnumerator _activeAttackCoroutine;
 
     [Header("Light attack")]
-    public float lightAttackRange;
+    public float lightAttackRange; //TODO: use for scaling
     public float lightAttackDamage;
     public float lightAttackKnockoutTime;
     public float lightAttackKnockoutForce;
@@ -70,6 +72,10 @@ public class PlayerController : MonoBehaviour
     public float lightAttackWindup;
     public float lightAttackTriggerActiveTime;
     public float lightAttackWinddown;
+
+    public AttackMovementRestriction lightAttackWindupRestriction;
+    public AttackMovementRestriction lightAttackAttackRestriction;
+    public AttackMovementRestriction lightAttackWinddownRestriction;
     
     public AudioClip lightAttackAudio;
     public PlayerWeaponTrigger lightAttackTrigger;
@@ -155,22 +161,14 @@ public class PlayerController : MonoBehaviour
             return;
         }
         
-        if (curDashCooldownLeft <= 0 && Input.GetButtonDown("Dash"))
+        if (curDashCooldownLeft <= 0 && Input.GetButtonDown("Dash") && CurrentAttackState == AttackState.NotAttacking)
         { //if we can dash and press dash
             DashStart();
         }
-        else if(curDashFreezeLeft <= 0)
-        { //only move if we are not in dash freeze
+
+        if (CanMove())
+        {
             Move();
-            
-        }
-        else
-        { //post dash freeze
-            curDashFreezeLeft -= Time.deltaTime;
-            
-            //TODO: inefficient, and we make this object unmovable
-            _rigidbody.velocity = Vector2.zero;
-            animator.SetBool("isMoving", false);
         }
         
         //we can try to attack whenever
@@ -192,6 +190,33 @@ public class PlayerController : MonoBehaviour
 
             dashCooldownMeter.fillAmount = dashMeterFill;
         }
+        
+        if(curDashFreezeLeft > 0)
+        { //post dash freeze
+            curDashFreezeLeft -= Time.deltaTime;
+            
+            //TODO: inefficient, and we make this object unmovable
+            _rigidbody.velocity = Vector2.zero;
+            animator.SetBool("isMoving", false);
+        }
+    }
+
+    public bool CanMove()
+    {
+        if (curDashFreezeLeft > 0) return false;
+
+        if (CurrentAttackState == AttackState.ActiveAttack && lightAttackAttackRestriction == AttackMovementRestriction.Stop)
+            return false;
+
+        if (CurrentAttackState == AttackState.Windup && lightAttackWindupRestriction == AttackMovementRestriction.Stop)
+            return false;
+
+
+        if (CurrentAttackState == AttackState.Wincdown &&
+            lightAttackWinddownRestriction == AttackMovementRestriction.Stop)
+            return false;
+        
+        return true;
     }
 
     private void Move()
@@ -248,9 +273,23 @@ public class PlayerController : MonoBehaviour
             }
             
             //move if there is input
-            Vector2 newFullForce = new Vector2(inputH, inputV) * (baseSpeed * speedModifiers[CurLevel] * Time.deltaTime);
+            float finalSpeed = baseSpeed * speedModifiers[CurLevel];
+            if ((CurrentAttackState == AttackState.Windup &&
+                 lightAttackWindupRestriction == AttackMovementRestriction.HalfSpeed)
+                || (CurrentAttackState == AttackState.Windup &&
+                    lightAttackWindupRestriction == AttackMovementRestriction.HalfSpeed)
+                || (CurrentAttackState == AttackState.ActiveAttack &&
+                    lightAttackAttackRestriction == AttackMovementRestriction.HalfSpeed))
+            {
+                finalSpeed /= 2;
+            }
+            
+            Vector2 newFullForce = new Vector2(inputH, inputV) * (finalSpeed * Time.deltaTime);
             _rigidbody.AddForce(newFullForce);
-            _rigidbody.velocity = Vector2.ClampMagnitude(_rigidbody.velocity, baseSpeed * speedModifiers[CurLevel]);
+            
+            //this is bogus calculation, doesnt change much
+            _rigidbody.velocity = Vector2.ClampMagnitude(_rigidbody.velocity, finalSpeed);
+            
             animator.SetBool("isMoving", true);
         }
         else
@@ -337,24 +376,36 @@ public class PlayerController : MonoBehaviour
         AudioManager.Instance.PlayAudio(lightAttackAudio);
         animator.SetTrigger("Attack");
         
+        //##############################################################################################################
         CurrentAttackState = AttackState.Windup;
+        if(lightAttackWindupRestriction == AttackMovementRestriction.Stop)
+            _rigidbody.velocity = Vector2.zero;
+        
         yield return new WaitForSeconds(lightAttackWindup * cooldownModifiers[CurLevel]);
 
+        //##############################################################################################################
         CurrentAttackState = AttackState.ActiveAttack;
-        
+        _rigidbody.velocity = Vector2.zero; //always stop
+
         //enables the triggers, calls OnEnable() on it
         _lightAttackTriggerGameObject.SetActive(true);
         attackLightEffect.SetActive(true);
         yield return new WaitForSeconds(lightAttackTriggerActiveTime * cooldownModifiers[CurLevel]);
 
+        //##############################################################################################################
         CurrentAttackState = AttackState.Wincdown;
+        if(lightAttackWinddownRestriction == AttackMovementRestriction.Stop)
+            _rigidbody.velocity = Vector2.zero;
+        
         _lightAttackTriggerGameObject.SetActive(false);
         attackLightEffect.SetActive(false);
         yield return new WaitForSeconds(lightAttackWinddown * cooldownModifiers[CurLevel]);
 
+        //##############################################################################################################
         CurrentAttackState = AttackState.Cooldown;
         yield return new WaitForSeconds(lightAttackCooldown * cooldownModifiers[CurLevel]);
 
+        //##############################################################################################################
         CurrentAttackState = AttackState.NotAttacking;
         yield break;
     }
