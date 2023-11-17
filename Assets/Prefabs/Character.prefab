@@ -137,7 +137,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4314160570145983878}
+  - {fileID: 8202072939727042082}
   - {fileID: 4786256681714968613}
   m_Father: {fileID: 6349390377570868896}
   m_RootOrder: -2
@@ -212,7 +212,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4314160570145983878
 Transform:
   m_ObjectHideFlags: 0
@@ -225,7 +225,7 @@ Transform:
   m_LocalScale: {x: 0.33050126, y: 0.34014478, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3224133390022946868}
+  m_Father: {fileID: 8202072939727042082}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3902259068839039999
@@ -338,6 +338,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyTag: Enemy
+--- !u!1 &5531578531543948810
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8202072939727042082}
+  m_Layer: 3
+  m_Name: AttackLightTriggerPivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8202072939727042082
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5531578531543948810}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4314160570145983878}
+  m_Father: {fileID: 3224133390022946868}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6358756388176844130
 GameObject:
   m_ObjectHideFlags: 0
@@ -375,7 +407,7 @@ Transform:
   - {fileID: 2290537870328620308}
   - {fileID: 578832250694927079}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2793193698236965643
 MonoBehaviour:
@@ -439,7 +471,6 @@ MonoBehaviour:
   growAudio: {fileID: 8300000, guid: 06a73f649ac9009419186535ae384700, type: 3}
   attackLightTrigger: {fileID: 1066274787122297353}
   playerSprite: {fileID: 6349390377570868896}
-  enemyTag: Enemy
   lightAttackRange: 0.65
   lightAttackDamage: 10
   lightAttackKnockoutTime: 1
@@ -449,6 +480,9 @@ MonoBehaviour:
   lightAttackWindup: 0.05
   lightAttackTriggerActiveTime: 0.2
   lightAttackWinddown: 0.05
+  lightAttackWindupRestriction: 0
+  lightAttackAttackRestriction: 0
+  lightAttackWinddownRestriction: 0
   lightAttackAudio: {fileID: 8300000, guid: 71ff7bc82b9119f42abe9fd1f1ba5aa3, type: 3}
   lightAttackTrigger: {fileID: 5874156988860361159}
   dashSpeed: 30000

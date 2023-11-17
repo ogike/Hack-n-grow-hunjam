@@ -20,7 +20,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: {x: 0.153, y: -0.206, z: 0}
+        value: {x: 0.02, y: -0.286, z: 0}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -29,9 +29,9 @@ AnimationClip:
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 0.041666668
-        value: {x: 0.043, y: -0.252, z: 0}
-        inSlope: {x: -3, y: 0, z: 0}
-        outSlope: {x: -3, y: 0, z: 0}
+        value: {x: -0.0377, y: -0.252, z: 0}
+        inSlope: {x: -1.4039999, y: 0.8160002, z: 0}
+        outSlope: {x: -1.4039999, y: 0.8160002, z: 0}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
@@ -39,8 +39,8 @@ AnimationClip:
       - serializedVersion: 3
         time: 0.083333336
         value: {x: -0.097, y: -0.218, z: 0}
-        inSlope: {x: -3.072, y: 1.6320006, z: 0}
-        outSlope: {x: -3.072, y: 1.6320006, z: 0}
+        inSlope: {x: -2.1036003, y: 1.6320006, z: 0}
+        outSlope: {x: -2.1036003, y: 1.6320006, z: 0}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
@@ -48,17 +48,17 @@ AnimationClip:
       - serializedVersion: 3
         time: 0.125
         value: {x: -0.213, y: -0.111, z: 0}
-        inSlope: {x: -1.8840001, y: 3.0359998, z: 0}
-        outSlope: {x: -1.8840001, y: 3.0359998, z: 0}
+        inSlope: {x: -0.29759982, y: 3.0359998, z: 0}
+        outSlope: {x: -0.29759982, y: 3.0359998, z: 0}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 0.16666667
-        value: {x: -0.254, y: 0.035, z: 0}
-        inSlope: {x: 0, y: 2.4840002, z: 0}
-        outSlope: {x: 0, y: 2.4840002, z: 0}
+        value: {x: -0.2192, y: 0.035, z: 0}
+        inSlope: {x: -0.22799994, y: 2.4840002, z: 0}
+        outSlope: {x: -0.22799994, y: 2.4840002, z: 0}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
@@ -66,8 +66,8 @@ AnimationClip:
       - serializedVersion: 3
         time: 0.20833333
         value: {x: -0.232, y: 0.096, z: 0}
-        inSlope: {x: 0.46800008, y: 1.2960002, z: 0}
-        outSlope: {x: 0.46800008, y: 1.2960002, z: 0}
+        inSlope: {x: 0, y: 1.2960002, z: 0}
+        outSlope: {x: 0, y: 1.2960002, z: 0}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
@@ -93,7 +93,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: CharacterSpritePivot/CharacterSprite/AttackLightTrigger
+    path: CharacterSpritePivot/CharacterSprite/AttackLightTriggerPivot/AttackLightTrigger
   m_ScaleCurves:
   - curve:
       serializedVersion: 2
@@ -109,9 +109,18 @@ AnimationClip:
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 0.041666668
-        value: {x: 0.29770863, y: 0.34014478, z: 1}
-        inSlope: {x: 0.44736072, y: 0, z: 0}
-        outSlope: {x: 0.44736072, y: 0, z: 0}
+        value: {x: 0.13632078, y: 0.34014478, z: 1}
+        inSlope: {x: 0.5553791, y: 0, z: 0}
+        outSlope: {x: 0.5553791, y: 0, z: 0}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+      - serializedVersion: 3
+        time: 0.16666667
+        value: {x: 0.31285816, y: 0.34014478, z: 1}
+        inSlope: {x: 0.27952823, y: 0, z: 0}
+        outSlope: {x: 0.27952823, y: 0, z: 0}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
@@ -128,7 +137,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: CharacterSpritePivot/CharacterSprite/AttackLightTrigger
+    path: CharacterSpritePivot/CharacterSprite/AttackLightTriggerPivot/AttackLightTrigger
   m_FloatCurves: []
   m_PPtrCurves:
   - serializedVersion: 2
@@ -162,7 +171,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 558532801
+      path: 2177436991
       attribute: 1
       script: {fileID: 0}
       typeID: 4
@@ -171,7 +180,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 558532801
+      path: 2177436991
       attribute: 3
       script: {fileID: 0}
       typeID: 4
@@ -224,7 +233,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.153
+        value: 0.02
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -233,9 +242,9 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.041666668
-        value: 0.043
-        inSlope: -3
-        outSlope: -3
+        value: -0.0377
+        inSlope: -1.4039999
+        outSlope: -1.4039999
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
@@ -243,8 +252,8 @@ AnimationClip:
       - serializedVersion: 3
         time: 0.083333336
         value: -0.097
-        inSlope: -3.072
-        outSlope: -3.072
+        inSlope: -2.1036003
+        outSlope: -2.1036003
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
@@ -252,17 +261,17 @@ AnimationClip:
       - serializedVersion: 3
         time: 0.125
         value: -0.213
-        inSlope: -1.8840001
-        outSlope: -1.8840001
+        inSlope: -0.29759982
+        outSlope: -0.29759982
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.16666667
-        value: -0.254
-        inSlope: 0
-        outSlope: 0
+        value: -0.2192
+        inSlope: -0.22799994
+        outSlope: -0.22799994
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
@@ -270,8 +279,8 @@ AnimationClip:
       - serializedVersion: 3
         time: 0.20833333
         value: -0.232
-        inSlope: 0.46800008
-        outSlope: 0.46800008
+        inSlope: 0
+        outSlope: 0
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
@@ -298,7 +307,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: CharacterSpritePivot/CharacterSprite/AttackLightTrigger
+    path: CharacterSpritePivot/CharacterSprite/AttackLightTriggerPivot/AttackLightTrigger
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -308,7 +317,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -0.206
+        value: -0.286
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -318,8 +327,8 @@ AnimationClip:
       - serializedVersion: 3
         time: 0.041666668
         value: -0.252
-        inSlope: 0
-        outSlope: 0
+        inSlope: 0.8160002
+        outSlope: 0.8160002
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
@@ -382,7 +391,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: CharacterSpritePivot/CharacterSprite/AttackLightTrigger
+    path: CharacterSpritePivot/CharacterSprite/AttackLightTriggerPivot/AttackLightTrigger
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -466,7 +475,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: CharacterSpritePivot/CharacterSprite/AttackLightTrigger
+    path: CharacterSpritePivot/CharacterSprite/AttackLightTriggerPivot/AttackLightTrigger
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -485,9 +494,18 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.041666668
-        value: 0.29770863
-        inSlope: 0.44736072
-        outSlope: 0.44736072
+        value: 0.13632078
+        inSlope: 0.5553791
+        outSlope: 0.5553791
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.16666667
+        value: 0.31285816
+        inSlope: 0.27952823
+        outSlope: 0.27952823
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
@@ -505,7 +523,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.x
-    path: CharacterSpritePivot/CharacterSprite/AttackLightTrigger
+    path: CharacterSpritePivot/CharacterSprite/AttackLightTriggerPivot/AttackLightTrigger
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -524,6 +542,15 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.041666668
+        value: 0.34014478
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.16666667
         value: 0.34014478
         inSlope: 0
         outSlope: 0
@@ -544,7 +571,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.y
-    path: CharacterSpritePivot/CharacterSprite/AttackLightTrigger
+    path: CharacterSpritePivot/CharacterSprite/AttackLightTriggerPivot/AttackLightTrigger
     classID: 4
     script: {fileID: 0}
     flags: 0
@@ -571,6 +598,15 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
+        time: 0.16666667
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
         time: 0.29166666
         value: 1
         inSlope: 0
@@ -583,7 +619,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalScale.z
-    path: CharacterSpritePivot/CharacterSprite/AttackLightTrigger
+    path: CharacterSpritePivot/CharacterSprite/AttackLightTriggerPivot/AttackLightTrigger
     classID: 4
     script: {fileID: 0}
     flags: 0

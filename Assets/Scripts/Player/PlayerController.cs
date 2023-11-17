@@ -458,6 +458,10 @@ public class PlayerController : MonoBehaviour
         float newTransformScale = transformSizeModifiers[CurLevel];
         transform.localScale = new Vector3(newTransformScale, newTransformScale, newTransformScale);
 
+        float newHitboxScale = rangeModifiers[CurLevel];
+        _lightAttackTriggerGameObject.transform.localScale =
+            new Vector3(newHitboxScale, newHitboxScale , newHitboxScale);
+
         if (CurLevel == size2Level)
         {
             animator.SetTrigger("Size2Grow");
