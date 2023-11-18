@@ -389,11 +389,13 @@ public class PlayerController : MonoBehaviour
 
         //##############################################################################################################
         CurrentAttackState = AttackState.ActiveAttack;
-        _rigidbody.velocity = Vector2.zero; //always stop
-
+        if(lightAttackWindupRestriction is AttackMovementRestriction.Stop or AttackMovementRestriction.HalfSpeed)
+            _rigidbody.velocity = Vector2.zero;
+        
         //enables the triggers, calls OnEnable() on it
         _lightAttackTriggerGameObject.SetActive(true);
         attackLightEffect.SetActive(true);
+        animator.SetTrigger("AttackMain");
         yield return new WaitForSeconds(lightAttackTriggerActiveTime * cooldownModifiers[CurLevel]);
 
         //##############################################################################################################
@@ -403,10 +405,13 @@ public class PlayerController : MonoBehaviour
         
         _lightAttackTriggerGameObject.SetActive(false);
         attackLightEffect.SetActive(false);
+        animator.SetTrigger("AttackWinddown");
         yield return new WaitForSeconds(lightAttackWinddown * cooldownModifiers[CurLevel]);
 
         //##############################################################################################################
         CurrentAttackState = AttackState.Cooldown;
+        
+        animator.SetTrigger("AttackExit");
         yield return new WaitForSeconds(lightAttackCooldown * cooldownModifiers[CurLevel]);
 
         //##############################################################################################################

@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: hero_size1_attack_A_wind_down_anim
+  m_Name: hero_size1_attack_D_wind_down_anim
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -20,7 +20,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0.29166666
-        value: {x: -0.176, y: 0.248, z: 0}
+        value: {x: 0.142, y: 0.27, z: 0}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -53,7 +53,7 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0.29166666
-      value: {fileID: 1929273208, guid: ab00a25bfa28c0f48bf9c6993666775d, type: 3}
+      value: {fileID: -208557609, guid: 703014fc78aa97a4bbce0676c3fc4fd2, type: 3}
     attribute: m_Sprite
     path: CharacterSpritePivot/CharacterSprite
     classID: 212
@@ -94,7 +94,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 1929273208, guid: ab00a25bfa28c0f48bf9c6993666775d, type: 3}
+    - {fileID: -208557609, guid: 703014fc78aa97a4bbce0676c3fc4fd2, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -122,7 +122,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0.29166666
-        value: -0.176
+        value: 0.142
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -143,7 +143,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0.29166666
-        value: 0.248
+        value: 0.27
         inSlope: 0
         outSlope: 0
         tangentMode: 136

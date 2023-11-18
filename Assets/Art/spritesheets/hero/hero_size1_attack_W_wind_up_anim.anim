@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: hero_size1_attack_A_wind_down_anim
+  m_Name: hero_size1_attack_W_wind_up_anim
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -19,8 +19,8 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.29166666
-        value: {x: -0.176, y: 0.248, z: 0}
+        time: 0
+        value: {x: 0.196, y: 0.104, z: 0}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -31,35 +31,19 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     path: CharacterSpritePivot/CharacterSprite/AttackLightTriggerPivot/AttackLightTrigger
-  m_ScaleCurves:
-  - curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0.29166666
-        value: {x: 0.33032867, y: 0.34014478, z: 1}
-        inSlope: {x: 0, y: 0, z: 0}
-        outSlope: {x: 0, y: 0, z: 0}
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    path: CharacterSpritePivot/CharacterSprite/AttackLightTriggerPivot/AttackLightTrigger
+  m_ScaleCurves: []
   m_FloatCurves: []
   m_PPtrCurves:
   - serializedVersion: 2
     curve:
-    - time: 0.29166666
-      value: {fileID: 1929273208, guid: ab00a25bfa28c0f48bf9c6993666775d, type: 3}
+    - time: 0
+      value: {fileID: -1957495206, guid: 81a633775024d4048b2bd641ce1466f0, type: 3}
     attribute: m_Sprite
     path: CharacterSpritePivot/CharacterSprite
     classID: 212
     script: {fileID: 0}
     flags: 2
-  m_SampleRate: 24
+  m_SampleRate: 21
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -84,23 +68,14 @@ AnimationClip:
       isPPtrCurve: 0
       isIntCurve: 0
       isSerializeReferenceCurve: 0
-    - serializedVersion: 2
-      path: 2177436991
-      attribute: 3
-      script: {fileID: 0}
-      typeID: 4
-      customType: 0
-      isPPtrCurve: 0
-      isIntCurve: 0
-      isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 1929273208, guid: ab00a25bfa28c0f48bf9c6993666775d, type: 3}
+    - {fileID: -1957495206, guid: 81a633775024d4048b2bd641ce1466f0, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.3333333
+    m_StopTime: 0.04761905
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -121,8 +96,8 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.29166666
-        value: -0.176
+        time: 0
+        value: 0.196
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -142,8 +117,8 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.29166666
-        value: 0.248
+        time: 0
+        value: 0.104
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -163,7 +138,7 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.29166666
+        time: 0
         value: 0
         inSlope: 0
         outSlope: 0
@@ -175,69 +150,6 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: CharacterSpritePivot/CharacterSprite/AttackLightTriggerPivot/AttackLightTrigger
-    classID: 4
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0.29166666
-        value: 0.33032867
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalScale.x
-    path: CharacterSpritePivot/CharacterSprite/AttackLightTriggerPivot/AttackLightTrigger
-    classID: 4
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0.29166666
-        value: 0.34014478
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalScale.y
-    path: CharacterSpritePivot/CharacterSprite/AttackLightTriggerPivot/AttackLightTrigger
-    classID: 4
-    script: {fileID: 0}
-    flags: 0
-  - serializedVersion: 2
-    curve:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0.29166666
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 136
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-    attribute: m_LocalScale.z
     path: CharacterSpritePivot/CharacterSprite/AttackLightTriggerPivot/AttackLightTrigger
     classID: 4
     script: {fileID: 0}
