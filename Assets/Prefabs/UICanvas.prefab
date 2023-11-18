@@ -725,7 +725,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Spwan enemy
+  m_Text: Spawn enemy
 --- !u!1 &2003715626935673309
 GameObject:
   m_ObjectHideFlags: 0
@@ -3667,7 +3667,7 @@ RectTransform:
   - {fileID: 257939755603955312}
   - {fileID: 2666094451574821333}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
