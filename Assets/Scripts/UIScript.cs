@@ -1,14 +1,21 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Mime;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UIScript : MonoBehaviour
 {
     public Text timerText;
+    public Text timescaleValueText;
 
     public GameObject debugPanel;
+
+    private void Start()
+    {
+        ChangeTimeSlider(1);
+    }
 
     private void Update()
     {
@@ -32,5 +39,13 @@ public class UIScript : MonoBehaviour
     void ToggleDebugPanel()
     {
         debugPanel.SetActive(!debugPanel.activeInHierarchy);
+    }
+
+    public void ChangeTimeSlider(float value)
+    {
+        bool success = GameManager.Instance.ChangeTime(value);
+        if(!success) return;
+
+        timescaleValueText.text = value.ToString();
     }
 }

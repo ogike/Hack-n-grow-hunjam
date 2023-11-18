@@ -48,6 +48,18 @@ public class GameManager : MonoBehaviour
     
     public void ToggleEnemyMovementEnabled() { EnemyMovementEnabled = !EnemyMovementEnabled; }
 
+    public bool ChangeTime(float newValue)
+    {
+        if (newValue < 0.05f)
+        {
+            Debug.LogWarning("Tried to set the Timescale lower than 0.05, invalid number!");
+            return false;
+        }
+
+        Time.timeScale = newValue;
+        return true;
+    }
+    
     public void SpawnEnemy()
     {
         Vector3 spawnPos = _playerTransform.position;
