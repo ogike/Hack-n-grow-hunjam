@@ -117,6 +117,10 @@ public class PlayerHealth : MonoBehaviour
         return true;
     }
 
+    /// <summary>
+    /// Resets stats according to CurLevel
+    /// Refills to Max HP
+    /// </summary>
     public void Grow()
     {
         curMaxHp = maxHps[_playerController.CurLevel];

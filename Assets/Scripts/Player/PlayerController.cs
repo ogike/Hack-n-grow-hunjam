@@ -441,15 +441,21 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    private void Grow()
+    public void Grow(bool negative = false)
     {
-        if (CurLevel >= maxLevel)
+        if (CurLevel >= maxLevel && !negative)
         {
             Debug.Log("....you won?");
             return;
         }
 
-        CurLevel++;
+        if (CurLevel - 1 < 0 && negative)
+        {
+            Debug.LogWarning("Trying to degrow into negative levels!");
+            return;
+        }
+
+        CurLevel = (negative) ? CurLevel - 1 : CurLevel + 1;
 
         AudioManager.Instance.PlayAudio(growAudio);
 
@@ -462,15 +468,24 @@ public class PlayerController : MonoBehaviour
         _lightAttackTriggerGameObject.transform.localScale =
             new Vector3(newHitboxScale, newHitboxScale , newHitboxScale);
 
-        if (CurLevel == size2Level)
+        if (CurLevel == size2Level && !negative)
         {
             animator.SetTrigger("Size2Grow");
             animator.SetBool("Size2", true);
+        } //implement degrowth
+
+        if (CurLevel == size2Level - 1 && negative)
+        {
+            animator.SetTrigger("Size1Grow");
+            animator.SetBool("Size2", false);
         }
         
         UpdateXpMeter();
         _playerHealth.Grow();
-        EnemySpawner.Instance.Grow();
+        
+        //there might be no enemy spawners present (debug room)
+        if(EnemySpawner.Instance != null)
+            EnemySpawner.Instance.Grow();
     }
 
     private void UpdateXpMeter()

@@ -48,7 +48,8 @@ public class EnemyHealth : MonoBehaviour
     public void Die()
     {
         AudioManager.Instance.PlayAudio(enemyDieAudio);
-        EnemySpawner.Instance.DecreaseEnemyCount();
+        if(EnemySpawner.Instance != null)
+            EnemySpawner.Instance.DecreaseEnemyCount();
         PlayerController.Instance.AddXp(xpDrop);
         
         GameObject.Destroy(gameObject);

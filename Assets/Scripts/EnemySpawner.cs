@@ -132,6 +132,19 @@ public class EnemySpawner : MonoBehaviour
         GameObject spawnedEnemy = GameObject.Instantiate(enemyToSpawn, spawnPos, Quaternion.identity, _myTrans);
     }
 
+    /// <summary>
+    /// Used by debug menu
+    /// </summary>
+    public static void SpawnSingleDefaultEnemy(Vector3 position, GameObject enemy)
+    {
+        if (enemy == null)
+        {
+            Debug.LogError("No enemy given to spawn in debug menu!");
+        }
+
+        GameObject spawnedEnemy = GameObject.Instantiate(enemy, position, Quaternion.identity);
+    }
+
     public void IncreaseEnemyCount()
     {
         _curEnemyCount++;
@@ -154,6 +167,9 @@ public class EnemySpawner : MonoBehaviour
             _curWaitModifier = 1;
     }
 
+    /// <summary>
+    /// Resets stats according to CurLevel
+    /// </summary>
     public void Grow()
     {
         _curLevel = _playerController.CurLevel;

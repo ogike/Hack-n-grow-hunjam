@@ -16,6 +16,11 @@ public class GameManager : MonoBehaviour
     public bool EnemyAttackEnabled { get; private set; }
     public bool EnemyMovementEnabled { get; private set; }
 
+    public GameObject enemyToDebugSpawn;
+    [Tooltip("From what distance from the player should the enemy be spawned?")]
+    public float enemyToDebugSpawnDistance;
+    private Transform _playerTransform;
+
     private void Awake()
     {
         if (Instance != null)
@@ -30,6 +35,11 @@ public class GameManager : MonoBehaviour
         EnemyMovementEnabled = true;
     }
 
+    private void Start()
+    {
+        _playerTransform = PlayerController.Instance.transform;
+    }
+
     public void ToggleNormalMode() { CurrentGodModeType = GodModeType.Normal; }
     public void ToggleGodMode() { CurrentGodModeType = GodModeType.GodMode; }
     public void ToggleDemiGodMode() { CurrentGodModeType = GodModeType.DemigodMode; }
@@ -38,4 +48,11 @@ public class GameManager : MonoBehaviour
     
     public void ToggleEnemyMovementEnabled() { EnemyMovementEnabled = !EnemyMovementEnabled; }
 
+    public void SpawnEnemy()
+    {
+        Vector3 spawnPos = _playerTransform.position;
+        spawnPos += _playerTransform.up * enemyToDebugSpawnDistance;
+        
+        EnemySpawner.SpawnSingleDefaultEnemy(spawnPos, enemyToDebugSpawn);
+    }
 }
