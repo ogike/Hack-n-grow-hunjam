@@ -1117,6 +1117,22 @@ PrefabInstance:
       propertyPath: levelDisplayText
       value: 
       objectReference: {fileID: 1942233853}
+    - target: {fileID: 2793193698236965643, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
+      propertyPath: lightAttackCancelable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793193698236965643, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
+      propertyPath: lightAttackAttackRestriction
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793193698236965643, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
+      propertyPath: lightAttackWindupRestriction
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793193698236965643, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
+      propertyPath: lightAttackWinddownRestriction
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4267810570245420615, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
       propertyPath: m_IsActive
       value: 1

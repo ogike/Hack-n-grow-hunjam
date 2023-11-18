@@ -221,7 +221,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4267810570245420615}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.196, y: 0.104, z: 0}
+  m_LocalPosition: {x: 0.008, y: -0.006, z: 0}
   m_LocalScale: {x: 0.33050126, y: 0.34014478, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -407,7 +407,7 @@ Transform:
   - {fileID: 2290537870328620308}
   - {fileID: 578832250694927079}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2793193698236965643
 MonoBehaviour:
@@ -425,7 +425,6 @@ MonoBehaviour:
   maxLevel: 5
   size2Level: 3
   levelXpRequirements: 080000000c000000120000001b00000028000000b80b0000
-  curSize: 0
   speedModifiers:
   - 1
   - 1.1
@@ -469,13 +468,10 @@ MonoBehaviour:
   - 3
   - 4
   growAudio: {fileID: 8300000, guid: 06a73f649ac9009419186535ae384700, type: 3}
-  attackLightTrigger: {fileID: 1066274787122297353}
-  playerSprite: {fileID: 6349390377570868896}
   lightAttackRange: 0.65
   lightAttackDamage: 10
   lightAttackKnockoutTime: 1
   lightAttackKnockoutForce: 1000
-  attackLightEffect: {fileID: 6881052492403597158}
   lightAttackCooldown: 0.3
   lightAttackWindup: 0.05
   lightAttackTriggerActiveTime: 0.2
@@ -483,7 +479,9 @@ MonoBehaviour:
   lightAttackWindupRestriction: 0
   lightAttackAttackRestriction: 0
   lightAttackWinddownRestriction: 0
+  lightAttackCancelable: 0
   lightAttackAudio: {fileID: 8300000, guid: 71ff7bc82b9119f42abe9fd1f1ba5aa3, type: 3}
+  attackLightEffect: {fileID: 6881052492403597158}
   lightAttackTrigger: {fileID: 5874156988860361159}
   dashSpeed: 30000
   dashActiveTime: 0.05
@@ -495,6 +493,7 @@ MonoBehaviour:
   xpMeter: {fileID: 0}
   levelDisplayText: {fileID: 0}
   animator: {fileID: 6543660245478961490}
+  playerSprite: {fileID: 6349390377570868896}
 --- !u!114 &1735569420791241970
 MonoBehaviour:
   m_ObjectHideFlags: 0

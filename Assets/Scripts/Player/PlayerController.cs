@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance { get; private set; }
 
+    [Header("Moving")] //###############################################################################################
     public float baseSpeed = 15;
 
     private float plusRotValue;
@@ -22,37 +23,25 @@ public class PlayerController : MonoBehaviour
     private float _floatingTolerance = 0.001f;
     
     //starting level = 0
-    [Header("Growth levels")]
+    [Header("Growth levels")] //########################################################################################
     public int maxLevel;
-
     public int size2Level = 3;
-    
+
     public List<int> levelXpRequirements;
     
-    private int curXp;
-    public int CurLevel { get; private set; }
-
-    public int curSize;
-
-
     public List<float> speedModifiers;
     public List<float> damageModifiers;
     public List<float> rangeModifiers;
     public List<float> cooldownModifiers;
     public List<float> knockbackModifiers;
-
     public List<float> transformSizeModifiers;
+    
+    private int curXp;
+    public int CurLevel { get; private set; }
 
     public AudioClip growAudio;
 
-    //references
-    private Transform _trans;
-    public Collider2D attackLightTrigger;
-    public Transform playerSprite;
-    private Rigidbody2D _rigidbody;
-    private PlayerHealth _playerHealth;
-
-    //Attack
+    //Attack //#########################################################################################################
 
     public enum AttackState { NotAttacking, Windup, ActiveAttack, Wincdown, Cooldown }
     public enum AttackMovementRestriction {None, Stop, HalfSpeed}
@@ -60,14 +49,12 @@ public class PlayerController : MonoBehaviour
     public AttackState CurrentAttackState { get; private set; }
     private IEnumerator _activeAttackCoroutine;
 
-    [Header("Light attack")]
+    [Header("Light attack")] //#########################################################################################
     public float lightAttackRange; //TODO: use for scaling
     public float lightAttackDamage;
     public float lightAttackKnockoutTime;
     public float lightAttackKnockoutForce;
     
-    public GameObject attackLightEffect; //enabled when trigger is active
-
     public float lightAttackCooldown;
     public float lightAttackWindup;
     public float lightAttackTriggerActiveTime;
@@ -77,13 +64,17 @@ public class PlayerController : MonoBehaviour
     public AttackMovementRestriction lightAttackAttackRestriction;
     public AttackMovementRestriction lightAttackWinddownRestriction;
     
+    [Tooltip("Can the attack be cancelled by a dash")]
+    public bool lightAttackCancelable;
+    
     public AudioClip lightAttackAudio;
+    public GameObject attackLightEffect; //enabled when trigger is active
     public PlayerWeaponTrigger lightAttackTrigger;
     private GameObject _lightAttackTriggerGameObject;
 
     private Vector2 _last4WayDir;
 
-    [Header("Dashing")] 
+    [Header("Dashing")] //##############################################################################################
     public float dashSpeed;
     public float dashActiveTime;
     public float dashCooldownTime;
@@ -98,13 +89,20 @@ public class PlayerController : MonoBehaviour
     private float curDashCooldownLeft;
     private float curDashFreezeLeft;
 
-    [Header("UI")]
+    [Header("UI")] //###################################################################################################
     public Image dashCooldownMeter;
     public Image xpMeter;
     public Text levelDisplayText;
 
-    [Header("Animations")] 
+    [Header("Animations")]  //##########################################################################################
     public Animator animator;
+    
+    [Header("References")] //#####################################################################################################
+    public Transform playerSprite;
+    
+    private Transform _trans;
+    private Rigidbody2D _rigidbody;
+    private PlayerHealth _playerHealth;
     
     private void Awake()
     {
@@ -161,9 +159,19 @@ public class PlayerController : MonoBehaviour
             return;
         }
         
-        if (curDashCooldownLeft <= 0 && Input.GetButtonDown("Dash") && CurrentAttackState == AttackState.NotAttacking)
+        if (curDashCooldownLeft <= 0 && Input.GetButtonDown("Dash"))
         { //if we can dash and press dash
-            DashStart();
+            if (CurrentAttackState == AttackState.NotAttacking)
+            {
+                //just dash normally
+                DashStart();
+            }
+            else if (lightAttackCancelable)
+            {
+                //cancel attack animation
+                DashStart();
+                StopLightAttack();
+            }
         }
 
         if (CanMove())
@@ -298,10 +306,6 @@ public class PlayerController : MonoBehaviour
             _rigidbody.velocity = Vector2.zero;
             animator.SetBool("isMoving", false);
         }
-
-        //moving
-        // _trans.Translate(new Vector3(inputH, inputV, 0) * (baseSpeed * speedModifier * Time.deltaTime), Space.World);
-        // _rigidbody.velocity = new Vector2(inputH, inputV) * (baseSpeed * speedModifier);
     }
 
     void DashStart()
@@ -378,7 +382,7 @@ public class PlayerController : MonoBehaviour
         
         //##############################################################################################################
         CurrentAttackState = AttackState.Windup;
-        if(lightAttackWindupRestriction == AttackMovementRestriction.Stop)
+        if(lightAttackWindupRestriction is AttackMovementRestriction.Stop or AttackMovementRestriction.HalfSpeed)
             _rigidbody.velocity = Vector2.zero;
         
         yield return new WaitForSeconds(lightAttackWindup * cooldownModifiers[CurLevel]);
@@ -394,7 +398,7 @@ public class PlayerController : MonoBehaviour
 
         //##############################################################################################################
         CurrentAttackState = AttackState.Wincdown;
-        if(lightAttackWinddownRestriction == AttackMovementRestriction.Stop)
+        if(lightAttackWinddownRestriction is AttackMovementRestriction.Stop or AttackMovementRestriction.HalfSpeed)
             _rigidbody.velocity = Vector2.zero;
         
         _lightAttackTriggerGameObject.SetActive(false);
@@ -412,6 +416,7 @@ public class PlayerController : MonoBehaviour
 
     public void StopLightAttack()
     {
+        StartCoroutine(_activeAttackCoroutine);
         CurrentAttackState = AttackState.NotAttacking;
         
         //make sure we disable everything, regardless of actual state
@@ -491,8 +496,7 @@ public class PlayerController : MonoBehaviour
     private void UpdateXpMeter()
     {
         xpMeter.fillAmount = (curXp * 1.0f) / (levelXpRequirements[CurLevel] * 1.0f);
-        curSize = CurLevel + 1;                
-        levelDisplayText.text = "Size " + curSize;
+        levelDisplayText.text = "Size " + CurLevel + 1;
     }
     
 }
