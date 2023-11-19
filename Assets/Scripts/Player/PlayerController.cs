@@ -96,6 +96,10 @@ public class PlayerController : MonoBehaviour
 
     [Header("Animations")]  //##########################################################################################
     public Animator animator;
+
+    public AnimationClip attackWindUpReferenceAnim;
+    public AnimationClip attackMainReferenceAnim;
+    public AnimationClip attackWindDownReferenceAnim;
     
     [Header("References")] //#####################################################################################################
     public Transform playerSprite;
@@ -380,6 +384,9 @@ public class PlayerController : MonoBehaviour
         AudioManager.Instance.PlayAudio(lightAttackAudio);
         animator.SetTrigger("Attack");
         
+        //TODO: should add listeners so it isnt calculated here every time
+        RecalculateAttackAnimSpeeds();
+        
         //##############################################################################################################
         CurrentAttackState = AttackState.Windup;
         if(lightAttackWindupRestriction is AttackMovementRestriction.Stop or AttackMovementRestriction.HalfSpeed)
@@ -427,6 +434,18 @@ public class PlayerController : MonoBehaviour
         //make sure we disable everything, regardless of actual state
         _lightAttackTriggerGameObject.SetActive(false);
         attackLightEffect.SetActive(false);
+    }
+
+    private void RecalculateAttackAnimSpeeds()
+    {
+        animator.SetFloat("AttackWindupTime", 
+            attackWindUpReferenceAnim.length / (lightAttackWindup * cooldownModifiers[CurLevel]));
+        
+        animator.SetFloat("AttackMainTime", 
+            attackMainReferenceAnim.length / (lightAttackTriggerActiveTime * cooldownModifiers[CurLevel]));
+        
+        animator.SetFloat("AttackWinddownTime", 
+            attackWindDownReferenceAnim.length / (lightAttackWinddown * cooldownModifiers[CurLevel]));
     }
 
     public void LightAttackHit(EnemyHealth enemy)

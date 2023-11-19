@@ -407,7 +407,7 @@ Transform:
   - {fileID: 2290537870328620308}
   - {fileID: 578832250694927079}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2793193698236965643
 MonoBehaviour:
@@ -473,13 +473,13 @@ MonoBehaviour:
   lightAttackKnockoutTime: 1
   lightAttackKnockoutForce: 1000
   lightAttackCooldown: 0.3
-  lightAttackWindup: 0.05
-  lightAttackTriggerActiveTime: 0.2
-  lightAttackWinddown: 0.05
-  lightAttackWindupRestriction: 0
-  lightAttackAttackRestriction: 0
-  lightAttackWinddownRestriction: 0
-  lightAttackCancelable: 0
+  lightAttackWindup: 0.2
+  lightAttackTriggerActiveTime: 0.4
+  lightAttackWinddown: 0.2
+  lightAttackWindupRestriction: 2
+  lightAttackAttackRestriction: 1
+  lightAttackWinddownRestriction: 2
+  lightAttackCancelable: 1
   lightAttackAudio: {fileID: 8300000, guid: 71ff7bc82b9119f42abe9fd1f1ba5aa3, type: 3}
   attackLightEffect: {fileID: 6881052492403597158}
   lightAttackTrigger: {fileID: 5874156988860361159}
@@ -493,6 +493,9 @@ MonoBehaviour:
   xpMeter: {fileID: 0}
   levelDisplayText: {fileID: 0}
   animator: {fileID: 6543660245478961490}
+  attackWindUpReferenceAnim: {fileID: 7400000, guid: 634ad3047fa8a324aa955b0020d2510c, type: 2}
+  attackMainReferenceAnim: {fileID: 7400000, guid: db9c534f356adc94f8cccf0f7f08ff59, type: 2}
+  attackWindDownReferenceAnim: {fileID: 7400000, guid: 80d7cecb50dec6e42b49adcf814006e4, type: 2}
   playerSprite: {fileID: 6349390377570868896}
 --- !u!114 &1735569420791241970
 MonoBehaviour:
