@@ -42,7 +42,7 @@ public class PlayerWeaponTrigger : MonoBehaviour
         EnemyHealth enemy = col.GetComponent<EnemyHealth>();
         if (enemy == null)
         {
-            Debug.LogWarning("GameObject hit with \"Enemy\" tag doesnt have EnemyHealth component!");
+            Debug.LogWarning( col.transform.name + ", with \"Enemy\" tag was hit but doesnt have EnemyHealth component!");
             return;
         }
 
@@ -54,7 +54,7 @@ public class PlayerWeaponTrigger : MonoBehaviour
         //do i even need to do anything
     }
     
-    public void Register(EnemyHitCallback callback)
+    public void RegisterOnHit(EnemyHitCallback callback)
     {
         onHitCallback = callback;
     }

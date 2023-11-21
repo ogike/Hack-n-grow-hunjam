@@ -72,7 +72,7 @@ public class PlayerHealth : MonoBehaviour
         
         AudioManager.Instance.PlayAudio(takeDamageAudio);
         
-        //this will derail us if we are in a substate - make sure the logic side steps out too
+        //this will derail mecanim if we are in a substate - make sure the logic side steps out too
         _playerAnimator.SetTrigger("Damaged");
         
         _playerController.PlayerGetDamage();

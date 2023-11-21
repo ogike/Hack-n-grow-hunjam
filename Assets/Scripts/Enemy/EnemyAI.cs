@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public enum EnemyAttackState { NotAttacking, Windup, ActiveAttack, Wincdown, Cooldown }
 
@@ -16,8 +17,15 @@ public class EnemyAI : MonoBehaviour
     [Header("Attacking")]
     public float attackRange;
     public int attackDamage;
-    public float attackCooldown;
 
+    public float attackWindupTime;
+    public float attackActiveTime;
+    public float attackWinddownTime;
+    public float attackCooldownTime;
+
+    private IEnumerator _attackCoroutine;
+    
+    //TODO: should not exist
     private float curAttackCooldown;
     private float curKnockoutTime;
 
@@ -26,7 +34,7 @@ public class EnemyAI : MonoBehaviour
     public AudioClip attackAudio;
     
     [Header("References")]
-    // public AttackHitbox attackHitbox;
+    public EnemyAttackTrigger attackHitbox;
     public Animator animator;
     public GameObject attackEffect;
 
@@ -35,6 +43,7 @@ public class EnemyAI : MonoBehaviour
     private Rigidbody2D _myRigid;
     private PlayerHealth _playerHealth;
     private GameManager _gameManager;
+    private GameObject _attackHitboxGameObject;
     
     //Update() cached variables
     private Vector2 dirToPlayer;
@@ -56,6 +65,14 @@ public class EnemyAI : MonoBehaviour
             Debug.LogError("No animator attached to this enemy!");
         }
 
+        if (attackHitbox == null)
+        {
+            Debug.LogError("No attack hitbox/trigger attached to this enemy!");
+        }
+        attackHitbox.RegisterOnHit(AttackOnHit);
+        _attackHitboxGameObject = attackHitbox.gameObject;
+        _attackHitboxGameObject.SetActive(false);
+        
         //this is a hack - has to be replaced by triggers
         attackRange *= PlayerController.Instance.transform.localScale.x;
 
@@ -85,7 +102,8 @@ public class EnemyAI : MonoBehaviour
         {
             if (distanceToPlayer < attackRange && _gameManager.EnemyAttackEnabled)
             {
-                Attack(dirToPlayer);
+                _attackCoroutine = Attack();
+                StartCoroutine(_attackCoroutine);
             }
             else if (_gameManager.EnemyMovementEnabled) //Move towards player
             {
@@ -96,22 +114,52 @@ public class EnemyAI : MonoBehaviour
 
     }
 
-    void Attack(Vector2 dir)
+    IEnumerator Attack()
     {
         _state = EnemyState.Attacking;
+        _attackState = EnemyAttackState.Windup;
         
+        //Charging up
         attackEffect.SetActive(true);
-        curAttackCooldown = attackCooldown;
-        
-        _playerHealth.TakeDamage(attackDamage);
-        
-        AudioManager.Instance.PlayAudio(attackAudio);
 
-        //TODO: extra states
+        yield return new WaitForSeconds(attackWindupTime);
+        
+        //Active attack
+        _attackState = EnemyAttackState.ActiveAttack;
+        _attackHitboxGameObject.SetActive(true);
+        
+        //TODO: play animation
+        AudioManager.Instance.PlayAudio(attackAudio);
+        attackEffect.SetActive(false);
+        
+        yield return new WaitForSeconds(attackActiveTime);
+
+        _attackState = EnemyAttackState.Wincdown;
+        _attackHitboxGameObject.SetActive(false);
+
+        yield return new WaitForSeconds(attackWinddownTime);
+
+        _attackState = EnemyAttackState.Cooldown;
+        //TODO: make sure we can move in this state
+
+        yield return new WaitForSeconds(attackCooldownTime);
+
         
         //TODO: check if we are in knockback
         //  or would we be interrupted then...?
         _state = EnemyState.Moving;
+        _attackState = EnemyAttackState.NotAttacking;
+    }
+
+    /// <summary>
+    /// Called by the EnemyAttackTrigger hitbox component on collision
+    /// </summary>
+    public void AttackOnHit(PlayerHealth playerHealth)
+    {
+        //TODO: attack cancelling
+        playerHealth.TakeDamage(attackDamage);
+        
+        //effects go here
     }
 
     void HandleCooldowns()

@@ -131,7 +131,7 @@ public class PlayerController : MonoBehaviour
         if(animator == null) Debug.LogError("Animator not set!");
 
         if(lightAttackTrigger == null) Debug.LogError("Light attack trigger not set!");
-        lightAttackTrigger.Register(LightAttackHit);
+        lightAttackTrigger.RegisterOnHit(LightAttackHit);
         _lightAttackTriggerGameObject = lightAttackTrigger.gameObject;
         _lightAttackTriggerGameObject.SetActive(false);
         CurrentAttackState = AttackState.NotAttacking;
@@ -505,7 +505,7 @@ public class PlayerController : MonoBehaviour
         float newTransformScale = transformSizeModifiers[CurLevel];
         transform.localScale = new Vector3(newTransformScale, newTransformScale, newTransformScale);
 
-        float newHitboxScale = rangeModifiers[CurLevel];
+        float newHitboxScale = lightAttackRange * rangeModifiers[CurLevel];
         _lightAttackTriggerGameObject.transform.localScale =
             new Vector3(newHitboxScale, newHitboxScale , newHitboxScale);
 
