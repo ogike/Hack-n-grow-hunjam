@@ -377,8 +377,6 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator LightAttack()
     {
-        if (CurrentAttackState != AttackState.NotAttacking) yield break;
-        
         attackLightEffect.SetActive(true);
         
         AudioManager.Instance.PlayAudio(lightAttackAudio);
@@ -434,6 +432,12 @@ public class PlayerController : MonoBehaviour
         //make sure we disable everything, regardless of actual state
         _lightAttackTriggerGameObject.SetActive(false);
         attackLightEffect.SetActive(false);
+        
+        //reset mecanim triggers too
+        animator.ResetTrigger("Attack");
+        animator.ResetTrigger("AttackMain");
+        animator.ResetTrigger("AttackWinddown");
+        animator.ResetTrigger("AttackExit");
     }
 
     private void RecalculateAttackAnimSpeeds()
@@ -454,6 +458,14 @@ public class PlayerController : MonoBehaviour
         enemy.Damage(Mathf.FloorToInt(lightAttackDamage * damageModifiers[CurLevel]));
         enemy.Knockback(lightAttackKnockoutTime * knockbackModifiers[CurLevel],
             dirToTarg * (lightAttackKnockoutForce * knockbackModifiers[CurLevel]));
+    }
+
+    /// <summary>
+    /// Called from PlayerHealth
+    /// </summary>
+    public void PlayerGetDamage()
+    {
+        StopLightAttack();   
     }
 
     public bool IsDashing()

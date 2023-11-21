@@ -66,13 +66,18 @@ public class PlayerHealth : MonoBehaviour
     {
         if (IsVulnerable() == false) return;
 
-        AudioManager.Instance.PlayAudio(takeDamageAudio);
 
         curHp -= damage;
-
         UpdateHealthUI();
+        
+        AudioManager.Instance.PlayAudio(takeDamageAudio);
+        
+        //this will derail us if we are in a substate - make sure the logic side steps out too
         _playerAnimator.SetTrigger("Damaged");
-
+        
+        _playerController.PlayerGetDamage();
+        
+        
         curIFrameTime = invisibilityFrameTime;
         
         if (curHp <= 0)
