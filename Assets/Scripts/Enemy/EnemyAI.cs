@@ -128,7 +128,7 @@ public class EnemyAI : MonoBehaviour
         _attackState = EnemyAttackState.ActiveAttack;
         _attackHitboxGameObject.SetActive(true);
         
-        //TODO: play animation
+        animator.SetTrigger("AttackState");
         AudioManager.Instance.PlayAudio(attackAudio);
         attackEffect.SetActive(false);
         
