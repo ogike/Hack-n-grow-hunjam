@@ -14,16 +14,19 @@ public class EnemyAttackTrigger : MonoBehaviour
     
     private void OnEnable()
     {
-        hasHitPlayer = true;
+        hasHitPlayer = false;
+        Debug.Log("AttackTrigger OnEnable()");
     }
     
     
-    private void OnTriggerEnter2D(Collider2D col)
+    private void OnTriggerStay2D(Collider2D col)
     {
+        //dont hit an enemy twice
+        if (hasHitPlayer) {Debug.Log("already hit: " + col.tag); return;  }
+        
+        Debug.Log("Tag of GO that attackTrigger hit: " + col.tag);
         if(!col.CompareTag(playerTag)) return;
 
-        //dont hit an enemy twice
-        if (hasHitPlayer) return;
 
         PlayerHealth playerHealth = col.GetComponent<PlayerHealth>();
         if (playerHealth == null)
@@ -31,8 +34,9 @@ public class EnemyAttackTrigger : MonoBehaviour
             Debug.LogWarning("GameObject with \"Player\" tag doesnt have EnemyHealth component!");
             return;
         }
-
+        
         onHitCallback(playerHealth);
+        hasHitPlayer = true;
     }
 
     public void RegisterOnHit(PlayerHitCallback callback)

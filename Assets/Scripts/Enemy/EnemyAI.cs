@@ -17,6 +17,7 @@ public class EnemyAI : MonoBehaviour
     [Header("Attacking")]
     public float attackRange;
     public int attackDamage;
+    public float attackKnockBackAmount = 1;
 
     public float attackWindupTime;
     public float attackActiveTime;
@@ -157,7 +158,8 @@ public class EnemyAI : MonoBehaviour
     public void AttackOnHit(PlayerHealth playerHealth)
     {
         //TODO: attack cancelling
-        playerHealth.TakeDamage(attackDamage);
+        Debug.Log("Hitting player with: " + attackDamage);
+        playerHealth.TakeDamage(attackDamage, dirToPlayer * attackKnockBackAmount);
         
         //effects go here
     }

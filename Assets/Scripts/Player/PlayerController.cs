@@ -14,6 +14,9 @@ public class PlayerController : MonoBehaviour
     [Header("Moving")] //###############################################################################################
     public float baseSpeed = 15;
 
+    [Tooltip("The force by which the player will be knocked back")]
+    public float baseKnockBackedForce = 1;
+
     private float plusRotValue;
 
     private float lastInputH;
@@ -426,7 +429,9 @@ public class PlayerController : MonoBehaviour
 
     public void StopLightAttack()
     {
-        StartCoroutine(_activeAttackCoroutine);
+        if(_activeAttackCoroutine != null)
+            StartCoroutine(_activeAttackCoroutine);
+        
         CurrentAttackState = AttackState.NotAttacking;
         
         //make sure we disable everything, regardless of actual state
@@ -463,9 +468,11 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// Called from PlayerHealth
     /// </summary>
-    public void PlayerGetDamage()
+    public void PlayerGetDamage(Vector2 knockBackVector)
     {
-        StopLightAttack();   
+        StopLightAttack();
+        
+        _rigidbody.AddForce(knockBackVector * baseKnockBackedForce);
     }
 
     public bool IsDashing()

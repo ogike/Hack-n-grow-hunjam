@@ -326,6 +326,7 @@ MonoBehaviour:
   speed: 750
   attackRange: 0.5
   attackDamage: 1
+  attackKnockBackAmount: 1
   attackWindupTime: 0.2
   attackActiveTime: 0.2
   attackWinddownTime: 0.1

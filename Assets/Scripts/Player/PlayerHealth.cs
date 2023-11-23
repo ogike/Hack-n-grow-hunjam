@@ -62,10 +62,9 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, Vector2 knockBackVector)
     {
         if (IsVulnerable() == false) return;
-
 
         curHp -= damage;
         UpdateHealthUI();
@@ -75,7 +74,7 @@ public class PlayerHealth : MonoBehaviour
         //this will derail mecanim if we are in a substate - make sure the logic side steps out too
         _playerAnimator.SetTrigger("Damaged");
         
-        _playerController.PlayerGetDamage();
+        _playerController.PlayerGetDamage(knockBackVector);
         
         
         curIFrameTime = invisibilityFrameTime;
