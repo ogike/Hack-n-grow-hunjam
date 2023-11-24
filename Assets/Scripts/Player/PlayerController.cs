@@ -58,10 +58,10 @@ public class PlayerController : MonoBehaviour
     public float lightAttackKnockoutTime;
     public float lightAttackKnockoutForce;
     
-    public float lightAttackCooldown;
     public float lightAttackWindup;
     public float lightAttackTriggerActiveTime;
     public float lightAttackWinddown;
+    public float lightAttackCooldown;
 
     public AttackMovementRestriction lightAttackWindupRestriction;
     public AttackMovementRestriction lightAttackAttackRestriction;

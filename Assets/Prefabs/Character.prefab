@@ -422,6 +422,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseSpeed: 1200
+  baseKnockBackedForce: 250
   maxLevel: 5
   size2Level: 3
   levelXpRequirements: 080000000c000000120000001b00000028000000b80b0000
@@ -473,9 +474,9 @@ MonoBehaviour:
   lightAttackKnockoutTime: 1
   lightAttackKnockoutForce: 1000
   lightAttackCooldown: 0.3
-  lightAttackWindup: 0.2
-  lightAttackTriggerActiveTime: 0.4
-  lightAttackWinddown: 0.2
+  lightAttackWindup: 0.15
+  lightAttackTriggerActiveTime: 0.2
+  lightAttackWinddown: 0.1
   lightAttackWindupRestriction: 2
   lightAttackAttackRestriction: 1
   lightAttackWinddownRestriction: 2

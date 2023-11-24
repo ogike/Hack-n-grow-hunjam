@@ -1,7 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
@@ -38,6 +38,14 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         _playerTransform = PlayerController.Instance.transform;
+    }
+
+    public void Update()
+    {
+        if (Input.GetButtonDown("Debug Spawn"))
+        {
+            SpawnEnemy();
+        }
     }
 
     public void ToggleNormalMode() { CurrentGodModeType = GodModeType.Normal; }
