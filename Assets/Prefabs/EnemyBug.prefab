@@ -335,6 +335,9 @@ MonoBehaviour:
   attackHitbox: {fileID: 2868435147375317271}
   animator: {fileID: 4587654721892864854}
   attackEffect: {fileID: 5893845575705871965}
+  attackWindUpReferenceAnim: {fileID: 7400000, guid: 58a7464f72aa15145a08f84145997fd5, type: 2}
+  attackMainReferenceAnim: {fileID: 7400000, guid: 66e66b9613fd4e0418b9c16474b3f19e, type: 2}
+  attackWindDownReferenceAnim: {fileID: 7400000, guid: 468bc800ffe0de04fbc692303ccd630f, type: 2}
 --- !u!50 &8439850509543023855
 Rigidbody2D:
   serializedVersion: 4

@@ -290,6 +290,24 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
+  - m_Name: AttackWindupTime
+    m_Type: 1
+    m_DefaultFloat: 1
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: AttackMainTime
+    m_Type: 1
+    m_DefaultFloat: 1
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: AttackWinddownTime
+    m_Type: 1
+    m_DefaultFloat: 1
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -479,7 +497,7 @@ BlendTree:
   m_Name: BugAttackWinddown
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 58a7464f72aa15145a08f84145997fd5, type: 2}
+    m_Motion: {fileID: 7400000, guid: 468bc800ffe0de04fbc692303ccd630f, type: 2}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -487,7 +505,7 @@ BlendTree:
     m_DirectBlendParameter: dirH
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: be02a292c575a5342b9d15ca4fe371f5, type: 2}
+    m_Motion: {fileID: 7400000, guid: 38965622493263c49ba5ff900281eac3, type: 2}
     m_Threshold: 1
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1

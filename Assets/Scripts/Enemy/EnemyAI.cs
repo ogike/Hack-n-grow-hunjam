@@ -39,6 +39,10 @@ public class EnemyAI : MonoBehaviour
     public Animator animator;
     public GameObject attackEffect;
 
+    public AnimationClip attackWindUpReferenceAnim;
+    public AnimationClip attackMainReferenceAnim;
+    public AnimationClip attackWindDownReferenceAnim;
+    
     //private refs, state vars
     private Transform _playerTrans;
     private Rigidbody2D _myRigid;
@@ -118,6 +122,7 @@ public class EnemyAI : MonoBehaviour
     IEnumerator Attack()
     {
         _state = EnemyState.Attacking;
+        AttackRecalculateAnimationSpeed();
         
         //Charging up
         _attackState = EnemyAttackState.Windup;
@@ -168,6 +173,18 @@ public class EnemyAI : MonoBehaviour
         playerHealth.TakeDamage(attackDamage, dirToPlayer * attackKnockBackAmount);
         
         //effects go here
+    }
+
+    private void AttackRecalculateAnimationSpeed()
+    {
+        animator.SetFloat("AttackWindupTime", 
+                attackWindUpReferenceAnim.length / attackWindupTime);
+        
+        animator.SetFloat("AttackMainTime", 
+            attackMainReferenceAnim.length / attackActiveTime);
+    
+        animator.SetFloat("AttackWinddownTime", 
+            attackWindDownReferenceAnim.length / attackWinddownTime);
     }
 
     void HandleCooldowns()
