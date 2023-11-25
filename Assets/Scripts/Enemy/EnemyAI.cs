@@ -118,9 +118,10 @@ public class EnemyAI : MonoBehaviour
     IEnumerator Attack()
     {
         _state = EnemyState.Attacking;
-        _attackState = EnemyAttackState.Windup;
         
         //Charging up
+        _attackState = EnemyAttackState.Windup;
+        animator.SetTrigger("AttackState");
         attackEffect.SetActive(true);
 
         yield return new WaitForSeconds(attackWindupTime);
@@ -129,7 +130,7 @@ public class EnemyAI : MonoBehaviour
         _attackState = EnemyAttackState.ActiveAttack;
         _attackHitboxGameObject.SetActive(true);
         
-        animator.SetTrigger("AttackState");
+        animator.SetTrigger("AttackMain");
         AudioManager.Instance.PlayAudio(attackAudio);
         attackEffect.SetActive(false);
         
@@ -138,10 +139,15 @@ public class EnemyAI : MonoBehaviour
         _attackState = EnemyAttackState.Wincdown;
         _attackHitboxGameObject.SetActive(false);
 
+        animator.SetTrigger("AttackWinddown");
+
+        
         yield return new WaitForSeconds(attackWinddownTime);
 
         _attackState = EnemyAttackState.Cooldown;
         //TODO: make sure we can move in this state
+
+        animator.SetTrigger("AttackExit");
 
         yield return new WaitForSeconds(attackCooldownTime);
 
