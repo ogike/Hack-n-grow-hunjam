@@ -219,6 +219,10 @@ public class EnemyAI : MonoBehaviour
     {
         _state = EnemyState.Knockback;
         curKnockoutTime += knockoutTime;
+        
+        //cancel any ongoing attack
+        if(_attackCoroutine != null)
+            StopCoroutine(_attackCoroutine);
        
         //put effects here
     }
