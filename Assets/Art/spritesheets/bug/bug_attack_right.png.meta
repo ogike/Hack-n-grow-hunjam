@@ -126,10 +126,10 @@ TextureImporter:
       name: bug_attack_right_0
       rect:
         serializedVersion: 2
-        x: 4
-        y: 8
-        width: 36
-        height: 29
+        x: 0
+        y: 0
+        width: 50
+        height: 50
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -147,10 +147,10 @@ TextureImporter:
       name: bug_attack_right_1
       rect:
         serializedVersion: 2
-        x: 54
-        y: 8
-        width: 36
-        height: 28
+        x: 50
+        y: 0
+        width: 50
+        height: 50
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -168,10 +168,10 @@ TextureImporter:
       name: bug_attack_right_2
       rect:
         serializedVersion: 2
-        x: 103
-        y: 8
-        width: 37
-        height: 27
+        x: 100
+        y: 0
+        width: 50
+        height: 50
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -189,10 +189,10 @@ TextureImporter:
       name: bug_attack_right_3
       rect:
         serializedVersion: 2
-        x: 156
-        y: 8
-        width: 34
-        height: 29
+        x: 150
+        y: 0
+        width: 50
+        height: 50
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -210,10 +210,10 @@ TextureImporter:
       name: bug_attack_right_4
       rect:
         serializedVersion: 2
-        x: 206
-        y: 9
-        width: 36
-        height: 30
+        x: 200
+        y: 0
+        width: 50
+        height: 50
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -231,10 +231,10 @@ TextureImporter:
       name: bug_attack_right_5
       rect:
         serializedVersion: 2
-        x: 256
-        y: 12
-        width: 38
-        height: 27
+        x: 250
+        y: 0
+        width: 50
+        height: 50
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -252,10 +252,10 @@ TextureImporter:
       name: bug_attack_right_6
       rect:
         serializedVersion: 2
-        x: 310
-        y: 12
-        width: 38
-        height: 27
+        x: 300
+        y: 0
+        width: 50
+        height: 50
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -273,10 +273,10 @@ TextureImporter:
       name: bug_attack_right_7
       rect:
         serializedVersion: 2
-        x: 356
-        y: 8
-        width: 36
-        height: 29
+        x: 350
+        y: 0
+        width: 50
+        height: 50
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
