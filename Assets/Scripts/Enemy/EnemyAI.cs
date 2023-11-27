@@ -215,15 +215,29 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    public void StopAttack()
+    {
+        if(_attackCoroutine != null)
+            StopCoroutine(_attackCoroutine);
+       
+        _attackHitboxGameObject.SetActive(false);
+        attackEffect.SetActive(false);
+        
+        //reset mecanim triggers too
+        animator.ResetTrigger("AttackState");
+        animator.ResetTrigger("AttackMain");
+        animator.ResetTrigger("AttackWinddown");
+        animator.ResetTrigger("AttackExit");
+    }
+    
     public void KnockBack(float knockoutTime)
     {
         _state = EnemyState.Knockback;
         curKnockoutTime += knockoutTime;
         
         //cancel any ongoing attack
-        if(_attackCoroutine != null)
-            StopCoroutine(_attackCoroutine);
-       
+        StopAttack();
+        
         //put effects here
     }
 }
