@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 363169133997966316}
   - component: {fileID: 6227481633643210619}
-  - component: {fileID: 4587654721892864854}
   m_Layer: 7
   m_Name: Sprite
   m_TagString: Untagged
@@ -85,27 +84,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &4587654721892864854
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1724605071819600577}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3757e7cbc07c2a64db32fee229c4bb83, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5045399839824435321
 GameObject:
   m_ObjectHideFlags: 0
@@ -371,6 +349,7 @@ GameObject:
   - component: {fileID: -4032406640489837486}
   - component: {fileID: -2381551867642983841}
   - component: {fileID: 8439850509543023855}
+  - component: {fileID: 7510140366897405254}
   m_Layer: 7
   m_Name: EnemyScientist
   m_TagString: Enemy
@@ -467,8 +446,11 @@ MonoBehaviour:
   attackCooldownTime: 0
   attackAudio: {fileID: 8300000, guid: 5d2585ddc5fc3684f8cebd2435f8a286, type: 3}
   attackHitbox: {fileID: 7299229301168557604}
-  animator: {fileID: 4587654721892864854}
+  animator: {fileID: 7510140366897405254}
   attackEffect: {fileID: 5893845575705871965}
+  attackWindUpReferenceAnim: {fileID: 7400000, guid: 84ba0b0e4703e964da246358fad1a056, type: 2}
+  attackMainReferenceAnim: {fileID: 7400000, guid: 9de7dd8dfe46e0d499bfb9b38789f699, type: 2}
+  attackWindDownReferenceAnim: {fileID: 7400000, guid: fbf170d85e2c1ea4fb161d71cb8ecb11, type: 2}
 --- !u!50 &8439850509543023855
 Rigidbody2D:
   serializedVersion: 4
@@ -496,3 +478,24 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!95 &7510140366897405254
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8221827501506133857}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f6101252f55c49d40863fbc6e1ad82e4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

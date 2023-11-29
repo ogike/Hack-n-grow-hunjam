@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: scientist_walk_left_anim
+  m_Name: scientist_dmg_right_anim
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,19 +21,17 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: -2097796831, guid: 0068e73493b392741bc1c0f775b42bfa, type: 3}
-    - time: 0.25
-      value: {fileID: -503408398, guid: 0068e73493b392741bc1c0f775b42bfa, type: 3}
-    - time: 0.5
-      value: {fileID: 1726492395, guid: 0068e73493b392741bc1c0f775b42bfa, type: 3}
-    - time: 0.75
-      value: {fileID: 1557396718, guid: 0068e73493b392741bc1c0f775b42bfa, type: 3}
+      value: {fileID: -1259976124, guid: 2614f353f5fc4ef47af0dcbd1b968157, type: 3}
+    - time: 0.33333334
+      value: {fileID: -1262069309, guid: 2614f353f5fc4ef47af0dcbd1b968157, type: 3}
+    - time: 0.6666667
+      value: {fileID: -459588159, guid: 2614f353f5fc4ef47af0dcbd1b968157, type: 3}
     attribute: m_Sprite
     path: SpritePivot/Sprite
     classID: 212
     script: {fileID: 0}
     flags: 2
-  m_SampleRate: 4
+  m_SampleRate: 3
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -50,10 +48,9 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: -2097796831, guid: 0068e73493b392741bc1c0f775b42bfa, type: 3}
-    - {fileID: -503408398, guid: 0068e73493b392741bc1c0f775b42bfa, type: 3}
-    - {fileID: 1726492395, guid: 0068e73493b392741bc1c0f775b42bfa, type: 3}
-    - {fileID: 1557396718, guid: 0068e73493b392741bc1c0f775b42bfa, type: 3}
+    - {fileID: -1259976124, guid: 2614f353f5fc4ef47af0dcbd1b968157, type: 3}
+    - {fileID: -1262069309, guid: 2614f353f5fc4ef47af0dcbd1b968157, type: 3}
+    - {fileID: -459588159, guid: 2614f353f5fc4ef47af0dcbd1b968157, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
