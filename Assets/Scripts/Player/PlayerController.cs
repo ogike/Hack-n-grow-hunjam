@@ -524,7 +524,7 @@ public class PlayerController : MonoBehaviour
 
         if (CurLevel == size2Level - 1 && negative)
         {
-            animator.SetTrigger("Size1Grow");
+            animator.SetTrigger("Size1Degrow");
             animator.SetBool("Size2", false);
         }
         
@@ -539,7 +539,8 @@ public class PlayerController : MonoBehaviour
     private void UpdateXpMeter()
     {
         xpMeter.fillAmount = (curXp * 1.0f) / (levelXpRequirements[CurLevel] * 1.0f);
-        levelDisplayText.text = "Size " + CurLevel + 1;
+        int levelToDisplay = CurLevel + 1;
+        levelDisplayText.text = "Size " + levelToDisplay;
     }
     
 }

@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: hero2_idle_w
+  m_Name: hero2_idle_w_anim
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,7 +21,7 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: -1586669119, guid: 49d65e3c498cd5e4ab99c9cfc4ad4626, type: 3}
+      value: {fileID: -1586669119, guid: 47dcef0da1431ba4cbf38e6f6d747350, type: 3}
     attribute: m_Sprite
     path: CharacterSpritePivot/CharacterSprite
     classID: 212
@@ -44,7 +44,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: -1586669119, guid: 49d65e3c498cd5e4ab99c9cfc4ad4626, type: 3}
+    - {fileID: -1586669119, guid: 47dcef0da1431ba4cbf38e6f6d747350, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
