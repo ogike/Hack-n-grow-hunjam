@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Enemy;
 using UnityEngine;
 
 public delegate void EnemyHitCallback(EnemyHealth enemy);
