@@ -108,7 +108,7 @@ namespace Enemy
 
             DirToPlayer = playerPos - myPos;
             DistanceToPlayer = DirToPlayer.magnitude;
-            DirToPlayer.Normalize();
+            DirToPlayer = DirToPlayer.normalized;
 
             //state machine
             CheckTransitions();
