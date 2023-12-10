@@ -63,7 +63,7 @@ namespace Enemy.States
             //TODO: attack cancelling
             Debug.Log("Hitting player with: " + attackDamage);
             playerHealth.TakeDamage(attackDamage, 
-                        _controller.DirToPlayer * attackKnockBackAmount);
+                        _controller.DirForward * attackKnockBackAmount);
 
             //effects go here
         }

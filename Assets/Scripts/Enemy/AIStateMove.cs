@@ -7,7 +7,7 @@ namespace Enemy.States
     public class AIStateMove : AIState
     {
         public float speed = 5;
-        
+        public float rotationSpeed = 5;
 
         /// <summary>
         /// Called every frame by the state machine.
@@ -18,9 +18,11 @@ namespace Enemy.States
             
             if(!_gameManager.EnemyMovementEnabled) return;
 
-            Vector2 newForce = _controller.DirToPlayer * (speed * Time.deltaTime); 
+            _controller.RotateTowardsDir(_controller.DirToPlayer, rotationSpeed);
             
-            _controller.AnimatorSetFloat("dirH", _controller.DirToPlayer.x);
+            Vector2 newForce = _controller.DirForward * (speed * Time.deltaTime); 
+            
+            _controller.AnimatorSetFloat("dirH", _controller.DirForward.x);
             _controller.MoveRigidbody(newForce);
         }
     }

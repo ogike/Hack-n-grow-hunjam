@@ -29,7 +29,7 @@ namespace Enemy
         
         [Header("Attacking")]
         public AIStateAttackWindup stateAttackWindup;
-        public AIStateAttackMain stateAttackMain;
+        public AIStateAttackMainMoving stateAttackMain;
         public AIStateAttackWinddown stateAttackWinddown;
         
         [Header("Knockback")]
@@ -44,6 +44,9 @@ namespace Enemy
 
         //Update() cached variables
         public Vector2 DirToPlayer { get; private set; }
+        
+        public Vector2 DirForward { get; private set; }
+        
         public float DistanceToPlayer { get; private set; }
 
         private void Awake()
@@ -91,28 +94,48 @@ namespace Enemy
 
             //this is a hack - has to be replaced by triggers
             attackRange *= PlayerController.Instance.transform.localScale.x;
-            
+
             //TODO: derived class
             // _state = EnemyState.Moving;
             foreach (AIState state in states)
             {
                 state.Init();
             }
+            
+            UpdateCachedVariables();
+            DirForward = DirToPlayer;
         }
 
         void Update()
         {
-            //setting up cached vars
+            UpdateCachedVariables();
+
+            //state machine
+            CheckTransitions();
+            curState.Tick();
+        }
+
+        
+        /// <summary>
+        /// Updates the Distance and Direction interfaces
+        /// </summary>
+        public void UpdateCachedVariables()
+        {
             Vector2 myPos = transform.position;
             Vector2 playerPos = _playerTrans.position;
 
             DirToPlayer = playerPos - myPos;
             DistanceToPlayer = DirToPlayer.magnitude;
             DirToPlayer = DirToPlayer.normalized;
+        }
 
-            //state machine
-            CheckTransitions();
-            curState.Tick();
+        public void RotateTowardsDir(Vector2 newDir, float speed)
+        {
+            DirForward = Vector3.Slerp(
+                DirForward, 
+                DirToPlayer,
+                Time.deltaTime * speed
+            );
         }
 
         public void MoveRigidbody(Vector2 force)

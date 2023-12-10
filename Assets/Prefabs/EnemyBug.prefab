@@ -310,6 +310,7 @@ MonoBehaviour:
     AnimatorEntryTrigger: 
     AnimatorEntryTriggerIsBool: 0
     speed: 750
+    rotationSpeed: 5
   stateAttackWindup:
     stateDebugName: Windup
     exitsByDefault: 1
@@ -328,6 +329,7 @@ MonoBehaviour:
     attackAudio: {fileID: 8300000, guid: 5d2585ddc5fc3684f8cebd2435f8a286, type: 3}
     attackMainReferenceAnim: {fileID: 7400000, guid: 66e66b9613fd4e0418b9c16474b3f19e, type: 2}
     attackHitbox: {fileID: 2868435147375317271}
+    speed: 1250
   stateAttackWinddown:
     stateDebugName: 
     exitsByDefault: 1

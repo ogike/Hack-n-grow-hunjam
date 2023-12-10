@@ -1536,6 +1536,14 @@ PrefabInstance:
       propertyPath: levelDisplayText
       value: 
       objectReference: {fileID: 516262863}
+    - target: {fileID: 2793193698236965643, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
+      propertyPath: lightAttackWindup
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793193698236965643, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
+      propertyPath: lightAttackTriggerActiveTime
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 4314160570145983878, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.3305013
