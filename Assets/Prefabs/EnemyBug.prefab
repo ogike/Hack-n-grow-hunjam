@@ -318,6 +318,7 @@ MonoBehaviour:
     AnimatorEntryTrigger: AttackState
     AnimatorEntryTriggerIsBool: 0
     attackWindUpReferenceAnim: {fileID: 7400000, guid: 58a7464f72aa15145a08f84145997fd5, type: 2}
+    rotateSpeed: 10
   stateAttackMain:
     stateDebugName: 
     exitsByDefault: 1

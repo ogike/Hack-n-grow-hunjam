@@ -20,9 +20,7 @@ namespace Enemy.States
 
             _controller.RotateTowardsDir(_controller.DirToPlayer, rotationSpeed);
             
-            Vector2 newForce = _controller.DirForward * (speed * Time.deltaTime); 
-            
-            _controller.AnimatorSetFloat("dirH", _controller.DirForward.x);
+            Vector2 newForce = _controller.DirForward * (speed * Time.deltaTime);
             _controller.MoveRigidbody(newForce);
         }
     }

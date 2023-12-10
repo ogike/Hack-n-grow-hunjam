@@ -9,6 +9,8 @@ namespace Enemy.States
 
         public AnimationClip attackWindUpReferenceAnim;
 
+        public float rotateSpeed;
+        
         
         public override void Entry()
         {
@@ -18,5 +20,11 @@ namespace Enemy.States
                 attackWindUpReferenceAnim.length / exitTime);
         }
 
+        public override void Tick()
+        {
+            base.Tick();
+            
+            _controller.RotateTowardsDir(_controller.DirToPlayer, rotateSpeed);
+        }
     }
 }

@@ -136,6 +136,8 @@ namespace Enemy
                 DirToPlayer,
                 Time.deltaTime * speed
             );
+            
+            AnimatorSetFloat("dirH", DirForward.x);
         }
 
         public void MoveRigidbody(Vector2 force)
