@@ -473,10 +473,10 @@ MonoBehaviour:
   lightAttackDamage: 10
   lightAttackKnockoutTime: 1
   lightAttackKnockoutForce: 1000
-  lightAttackCooldown: 0.3
-  lightAttackWindup: 0.15
-  lightAttackTriggerActiveTime: 0.2
-  lightAttackWinddown: 0.1
+  lightAttackWindup: 0.001
+  lightAttackTriggerActiveTime: 0.05
+  lightAttackWinddown: 0.7
+  lightAttackCooldown: 0.001
   lightAttackWindupRestriction: 2
   lightAttackAttackRestriction: 1
   lightAttackWinddownRestriction: 2
