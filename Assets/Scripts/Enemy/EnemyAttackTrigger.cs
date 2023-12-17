@@ -12,12 +12,12 @@ namespace Enemy
     {
         public string playerTag = "Player";
 
-        private PlayerHitCallback onHitCallback;
-        private bool hasHitPlayer;
+        private PlayerHitCallback _onHitCallback;
+        private bool _hasHitPlayer;
 
         private void OnEnable()
         {
-            hasHitPlayer = false;
+            _hasHitPlayer = false;
             Debug.Log("AttackTrigger OnEnable()");
         }
 
@@ -25,7 +25,7 @@ namespace Enemy
         private void OnTriggerStay2D(Collider2D col)
         {
             //dont hit an enemy twice
-            if (hasHitPlayer)
+            if (_hasHitPlayer)
             {
                 Debug.Log("already hit: " + col.tag);
                 return;
@@ -42,13 +42,13 @@ namespace Enemy
                 return;
             }
 
-            onHitCallback(playerHealth);
-            hasHitPlayer = true;
+            _onHitCallback(playerHealth);
+            _hasHitPlayer = true;
         }
 
         public void RegisterOnHit(PlayerHitCallback callback)
         {
-            onHitCallback = callback;
+            _onHitCallback = callback;
         }
     }
 

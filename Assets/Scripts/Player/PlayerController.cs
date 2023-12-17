@@ -107,6 +107,8 @@ public class PlayerController : MonoBehaviour
     
     [Header("References")] //#####################################################################################################
     public Transform playerSprite;
+
+    public ParticleSystem hitParticleSystem;
     
     private Transform _trans;
     private Rigidbody2D _rigidbody;
@@ -474,6 +476,7 @@ public class PlayerController : MonoBehaviour
         StopLightAttack();
         
         _rigidbody.AddForce(knockBackVector * baseKnockBackedForce);
+        PlayParticleEffect();
     }
 
     public bool IsDashing()
@@ -542,6 +545,11 @@ public class PlayerController : MonoBehaviour
         xpMeter.fillAmount = (curXp * 1.0f) / (levelXpRequirements[CurLevel] * 1.0f);
         int levelToDisplay = CurLevel + 1;
         levelDisplayText.text = "Size " + levelToDisplay;
+    }
+
+    public void PlayParticleEffect()
+    {
+        hitParticleSystem.Play();
     }
     
 }
