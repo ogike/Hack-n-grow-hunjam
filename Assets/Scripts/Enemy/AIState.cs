@@ -1,27 +1,37 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Enemy.States
 {
+    public enum AnimatorEntryEventType { None, Bool, Trigger }
+    
+    [Serializable]
+    public class AIStateMecanimInfo
+    {
+
+        public bool exitsByDefault;
+        public float stateTime;
+        
+        [FormerlySerializedAs("AnimatorEntryTrigger")] [Tooltip("The Animator trigger or bool that will be set off on state entry")]
+        public String animatorEntryTrigger;
+
+        public AnimatorEntryEventType animatorEntryEventType;
+    }
+    
     [System.Serializable]
     public abstract class AIState
     {
-        public string stateDebugName;
+        public AIStateMecanimInfo animationInfo;
         
+        protected virtual string stateDebugName => "Default state name";
+        private float curTimeSinceEntry;
+
+
+        // REFERENCES //////////////////////
         protected EnemyAI _controller;
         protected GameManager _gameManager;
 
-        public bool exitsByDefault;
-        public float exitTime;
-        private float curTimeSinceEntry;
-
-        [Header("Animation")]
-        
-        [Tooltip("The Animator trigger or bool that will be set off on state entry")]
-        public String AnimatorEntryTrigger;
-
-        [Tooltip("Whether the Animator condition is a bool or trigger")]
-        public bool AnimatorEntryTriggerIsBool;
 
         /// <summary>
         /// Called during the Awake() call of the EnemyAI script
@@ -49,11 +59,11 @@ namespace Enemy.States
         {
             curTimeSinceEntry = 0;
             
-            if(string.IsNullOrEmpty(AnimatorEntryTrigger)) return;
-            if(AnimatorEntryTriggerIsBool)
-                _controller.AnimatorSetBool(AnimatorEntryTrigger, true);
-            else
-                _controller.AnimatorSetTrigger(AnimatorEntryTrigger);
+            if(string.IsNullOrEmpty(animationInfo.animatorEntryTrigger)) return;
+            if(animationInfo.animatorEntryEventType == AnimatorEntryEventType.Bool)
+                _controller.AnimatorSetBool(animationInfo.animatorEntryTrigger, true);
+            else if(animationInfo.animatorEntryEventType == AnimatorEntryEventType.Trigger)
+                _controller.AnimatorSetTrigger(animationInfo.animatorEntryTrigger);
         }
 
         /// <summary>
@@ -72,7 +82,7 @@ namespace Enemy.States
         {
             curTimeSinceEntry += Time.deltaTime;
 
-            if (exitsByDefault && curTimeSinceEntry >= exitTime)
+            if (animationInfo.exitsByDefault && curTimeSinceEntry >= animationInfo.stateTime)
             {
                 _controller.FinishState(this);
             }
@@ -84,8 +94,8 @@ namespace Enemy.States
         /// </summary>
         public virtual void Exit()
         {
-            if(AnimatorEntryTriggerIsBool)
-                _controller.AnimatorSetBool(AnimatorEntryTrigger, false);
+            if(animationInfo.animatorEntryEventType == AnimatorEntryEventType.Bool)
+                _controller.AnimatorSetBool(animationInfo.animatorEntryTrigger, false);
             return;
         }
         

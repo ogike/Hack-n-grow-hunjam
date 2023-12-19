@@ -6,6 +6,8 @@ namespace Enemy.States
     [System.Serializable]
     public class AIStateAttackMainMoving : AIStateAttackMain
     {
+        protected override string stateDebugName => "Attack Main Moving";
+
         public float speed;
         private Vector2 _dir;
 

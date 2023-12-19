@@ -12,16 +12,12 @@ namespace Enemy
     public class EnemyAI : MonoBehaviour
     {
         private AIState curState;
-        //useful for debugging
-        String curStateName;
+        String curStateName; //useful for debugging
         protected List<AIState> states;
         
         //transitions that will happen automatically on finish of state
-        protected Dictionary<AIState, AIState> defaultTransitions; 
-        
-        //TODO: this should be in the derived class
-        public float attackRange;
-        
+        protected Dictionary<AIState, AIState> defaultTransitions;
+
         private float _curAttackCooldown;
 
         [Header("Moving")] 
@@ -35,6 +31,7 @@ namespace Enemy
         [Header("Knockback")]
         public AIStateStateKnockBack stateKnockBack;
         
+        [Header("References")]
         public Animator animator;
 
         //private refs, state vars
@@ -91,9 +88,6 @@ namespace Enemy
             }
             
             stateAttackWindup.Init();
-
-            //this is a hack - has to be replaced by triggers
-            attackRange *= PlayerController.Instance.transform.localScale.x;
 
             //TODO: derived class
             // _state = EnemyState.Moving;
@@ -177,7 +171,7 @@ namespace Enemy
             switch (curState)
             {
                 case AIStateMove:
-                    if (DistanceToPlayer < attackRange && CanAttack())
+                    if (DistanceToPlayer < stateAttackMain.rangeToStartAttack && CanAttack())
                     {
                         ChangeState(stateAttackWindup);
                     }

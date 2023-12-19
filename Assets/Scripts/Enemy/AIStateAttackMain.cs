@@ -6,9 +6,12 @@ namespace Enemy.States
     [System.Serializable]
     public class AIStateAttackMain : AIState
     {
+        protected override string stateDebugName => "Attack Main";
+
         [Header("Attack values")]
         public int attackDamage;
         public float attackKnockBackAmount = 1;
+        public float rangeToStartAttack = 0.5f;
         
         //probably will be replaced by exiting the state...?
         //private IEnumerator _attackCoroutine;
@@ -35,6 +38,10 @@ namespace Enemy.States
             attackHitbox.RegisterOnHit(AttackOnHit);
             _attackHitboxGameObject = attackHitbox.gameObject;
             _attackHitboxGameObject.SetActive(false);
+            
+            //this is a hack - has to be replaced by triggers
+            //compensating for the fact that as the player gets bigger the center gets farther
+            rangeToStartAttack *= PlayerController.Instance.transform.localScale.x;
         }
 
         public override void Entry()
@@ -45,7 +52,7 @@ namespace Enemy.States
             AudioManager.Instance.PlayAudio(attackAudio);
             
             _controller.AnimatorSetFloat("AttackMainTime",
-                attackMainReferenceAnim.length / exitTime);
+                attackMainReferenceAnim.length / animationInfo.stateTime);
         }
 
         public override void Exit()

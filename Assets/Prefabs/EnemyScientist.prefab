@@ -446,46 +446,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b545f04ce4dfb974eba6d04eb7995206, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 0.5
   stateMove:
-    stateDebugName: Moving
-    exitsByDefault: 0
-    exitTime: 0
-    AnimatorEntryTrigger: 
-    AnimatorEntryTriggerIsBool: 0
+    animationInfo:
+      exitsByDefault: 0
+      stateTime: 0
+      animatorEntryTrigger: Moving
+      animatorEntryEventType: 1
     speed: 750
+    rotationSpeed: 5
   stateAttackWindup:
-    stateDebugName: Windup
-    exitsByDefault: 1
-    exitTime: 0.6
-    AnimatorEntryTrigger: AttackState
-    AnimatorEntryTriggerIsBool: 0
+    animationInfo:
+      exitsByDefault: 1
+      stateTime: 0.6
+      animatorEntryTrigger: AttackState
+      animatorEntryEventType: 2
     attackWindUpReferenceAnim: {fileID: 7400000, guid: 84ba0b0e4703e964da246358fad1a056, type: 2}
+    rotateSpeed: 10
   stateAttackMain:
-    stateDebugName: 
-    exitsByDefault: 1
-    exitTime: 0.3
-    AnimatorEntryTrigger: AttackMain
-    AnimatorEntryTriggerIsBool: 0
+    animationInfo:
+      exitsByDefault: 1
+      stateTime: 0.3
+      animatorEntryTrigger: AttackMain
+      animatorEntryEventType: 2
     attackDamage: 1
     attackKnockBackAmount: 1
+    rangeToStartAttack: 0.5
     attackAudio: {fileID: 8300000, guid: 5d2585ddc5fc3684f8cebd2435f8a286, type: 3}
     attackMainReferenceAnim: {fileID: 7400000, guid: 9de7dd8dfe46e0d499bfb9b38789f699, type: 2}
     attackHitbox: {fileID: 7299229301168557604}
+    speed: 0
   stateAttackWinddown:
-    stateDebugName: 
-    exitsByDefault: 1
-    exitTime: 0.5
-    AnimatorEntryTrigger: AttackWinddown
-    AnimatorEntryTriggerIsBool: 0
+    animationInfo:
+      exitsByDefault: 1
+      stateTime: 0.5
+      animatorEntryTrigger: AttackWinddown
+      animatorEntryEventType: 2
     attackWindDownReferenceAnim: {fileID: 7400000, guid: fbf170d85e2c1ea4fb161d71cb8ecb11, type: 2}
     attackCooldownTime: 0.5
   stateKnockBack:
-    stateDebugName: 
-    exitsByDefault: 0
-    exitTime: 0
-    AnimatorEntryTrigger: 
-    AnimatorEntryTriggerIsBool: 0
+    animationInfo:
+      exitsByDefault: 1
+      stateTime: 0
+      animatorEntryTrigger: 
+      animatorEntryEventType: 0
   animator: {fileID: 7510140366897405254}
 --- !u!50 &8439850509543023855
 Rigidbody2D:

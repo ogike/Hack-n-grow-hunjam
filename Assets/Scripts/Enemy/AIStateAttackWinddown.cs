@@ -6,6 +6,8 @@ namespace Enemy.States
     [System.Serializable]
     public class AIStateAttackWinddown : AIState
     {
+        protected override string stateDebugName => "Attack Winddown";
+
         public AnimationClip attackWindDownReferenceAnim;
 
         public float attackCooldownTime;
@@ -15,7 +17,7 @@ namespace Enemy.States
             base.Entry();
             
             _controller.AnimatorSetFloat("AttackWinddownTime",
-                attackWindDownReferenceAnim.length / exitTime);
+                attackWindDownReferenceAnim.length / animationInfo.stateTime);
         }
 
         public override void Exit()

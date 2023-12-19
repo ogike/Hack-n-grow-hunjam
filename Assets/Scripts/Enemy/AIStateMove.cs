@@ -6,6 +6,8 @@ namespace Enemy.States
     [System.Serializable]
     public class AIStateMove : AIState
     {
+        protected override string stateDebugName => "Moving";
+        
         public float speed = 5;
         public float rotationSpeed = 5;
 

@@ -302,21 +302,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b545f04ce4dfb974eba6d04eb7995206, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 750
-  attackRange: 0.5
-  attackDamage: 1
-  attackKnockBackAmount: 1
-  attackWindupTime: 0.6
-  attackActiveTime: 0.3
-  attackWinddownTime: 0.5
-  attackCooldownTime: 0
-  attackAudio: {fileID: 8300000, guid: 5d2585ddc5fc3684f8cebd2435f8a286, type: 3}
-  attackHitbox: {fileID: 2868435147375317271}
+  stateMove:
+    animationInfo:
+      exitsByDefault: 0
+      stateTime: 8
+      animatorEntryTrigger: Moving
+      animatorEntryEventType: 1
+    speed: 750
+    rotationSpeed: 5
+  stateAttackWindup:
+    animationInfo:
+      exitsByDefault: 1
+      stateTime: 0.6
+      animatorEntryTrigger: AttackState
+      animatorEntryEventType: 2
+    attackWindUpReferenceAnim: {fileID: 7400000, guid: 58a7464f72aa15145a08f84145997fd5, type: 2}
+    rotateSpeed: 10
+  stateAttackMain:
+    animationInfo:
+      exitsByDefault: 1
+      stateTime: 0.3
+      animatorEntryTrigger: AttackMain
+      animatorEntryEventType: 2
+    attackDamage: 1
+    attackKnockBackAmount: 1
+    rangeToStartAttack: 0.5
+    attackAudio: {fileID: 8300000, guid: 5d2585ddc5fc3684f8cebd2435f8a286, type: 3}
+    attackMainReferenceAnim: {fileID: 7400000, guid: 66e66b9613fd4e0418b9c16474b3f19e, type: 2}
+    attackHitbox: {fileID: 2868435147375317271}
+    speed: 1250
+  stateAttackWinddown:
+    animationInfo:
+      exitsByDefault: 1
+      stateTime: 0.5
+      animatorEntryTrigger: AttackWinddown
+      animatorEntryEventType: 2
+    attackWindDownReferenceAnim: {fileID: 7400000, guid: 468bc800ffe0de04fbc692303ccd630f, type: 2}
+    attackCooldownTime: 0.5
+  stateKnockBack:
+    animationInfo:
+      exitsByDefault: 1
+      stateTime: 0
+      animatorEntryTrigger: 
+      animatorEntryEventType: 0
   animator: {fileID: 8409859379796740788}
-  attackEffect: {fileID: 5893845575705871965}
-  attackWindUpReferenceAnim: {fileID: 7400000, guid: 58a7464f72aa15145a08f84145997fd5, type: 2}
-  attackMainReferenceAnim: {fileID: 7400000, guid: 66e66b9613fd4e0418b9c16474b3f19e, type: 2}
-  attackWindDownReferenceAnim: {fileID: 7400000, guid: 468bc800ffe0de04fbc692303ccd630f, type: 2}
 --- !u!50 &8439850509543023855
 Rigidbody2D:
   serializedVersion: 4
