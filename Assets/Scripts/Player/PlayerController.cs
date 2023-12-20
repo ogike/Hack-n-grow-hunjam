@@ -284,8 +284,7 @@ public class PlayerController : MonoBehaviour
                 lastInputH = inputH;
                 lastInputV = inputV;
                 
-                animator.SetFloat("lookH", inputH);
-                animator.SetFloat("lookV", inputV);
+                SetMecanimRotation(lookH, lookV);
             }
             
             //move if there is input
@@ -314,6 +313,26 @@ public class PlayerController : MonoBehaviour
             _rigidbody.velocity = Vector2.zero;
             animator.SetBool("isMoving", false);
         }
+    }
+
+    private void SetMecanimRotation(float inputH, float inputV)
+    {
+        float absH = Mathf.Abs(inputH);
+        float absV = Mathf.Abs(inputV);
+
+        Vector2 finalVec = Vector2.zero;
+
+        if (absH > absV)
+        {
+            finalVec = inputH > 0 ? Vector2.right : Vector2.left;
+        }
+        else if (absH < absV)
+        {
+            finalVec = inputV > 0 ? Vector2.up : Vector2.down;
+        }
+        
+        animator.SetFloat("lookH", finalVec.x);
+        animator.SetFloat("lookV", finalVec.y);
     }
 
     void DashStart()
