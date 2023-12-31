@@ -19,7 +19,7 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.2857143
+        time: 0
         value: {x: -0.191, y: 0.095, z: 0}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
@@ -36,7 +36,7 @@ AnimationClip:
   m_PPtrCurves:
   - serializedVersion: 2
     curve:
-    - time: 0.2857143
+    - time: 0
       value: {fileID: -1688241109, guid: 81a633775024d4048b2bd641ce1466f0, type: 3}
     attribute: m_Sprite
     path: CharacterSpritePivot/CharacterSprite
@@ -75,7 +75,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.33333334
+    m_StopTime: 0.04761905
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -96,7 +96,7 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.2857143
+        time: 0
         value: -0.191
         inSlope: 0
         outSlope: 0
@@ -117,7 +117,7 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.2857143
+        time: 0
         value: 0.095
         inSlope: 0
         outSlope: 0
@@ -138,7 +138,7 @@ AnimationClip:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.2857143
+        time: 0
         value: 0
         inSlope: 0
         outSlope: 0

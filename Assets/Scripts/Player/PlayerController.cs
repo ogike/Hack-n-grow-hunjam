@@ -5,6 +5,7 @@ using Enemy;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 
@@ -47,11 +48,15 @@ public class PlayerController : MonoBehaviour
 
     //Attack //#########################################################################################################
 
-    public enum AttackState { NotAttacking, Windup, ActiveAttack, Wincdown, Cooldown }
+    public enum AttackState { NotAttacking, Windup, ActiveAttack, WinddownPre, WinddownReady, Cooldown }
+    public enum AttackComboState { LeftSwing, RightSwing }
     public enum AttackMovementRestriction {None, Stop, HalfSpeed}
-    
+
     public AttackState CurrentAttackState { get; private set; }
     private IEnumerator _activeAttackCoroutine;
+    public AttackComboState CurrentAttackComboState { get; private set; }
+
+    private bool hasPressedAttackThisCombo;
 
     [Header("Light attack")] //#########################################################################################
     public float lightAttackRange; //TODO: use for scaling
@@ -61,7 +66,8 @@ public class PlayerController : MonoBehaviour
     
     public float lightAttackWindup;
     public float lightAttackTriggerActiveTime;
-    public float lightAttackWinddown;
+    public float lightAttackWinddownPreCombo = 0.1f;
+    public float lightAttackWinddownComboReady = 0.5f;
     public float lightAttackCooldown;
 
     public AttackMovementRestriction lightAttackWindupRestriction;
@@ -104,6 +110,8 @@ public class PlayerController : MonoBehaviour
     public AnimationClip attackWindUpReferenceAnim;
     public AnimationClip attackMainReferenceAnim;
     public AnimationClip attackWindDownReferenceAnim;
+    public AnimationClip attackWindDownComboReadyReferenceAnim;
+    
     
     [Header("References")] //#####################################################################################################
     public Transform playerSprite;
@@ -153,6 +161,7 @@ public class PlayerController : MonoBehaviour
 
         _lightAttackTriggerGameObject.SetActive(false);
         attackLightEffect.SetActive(false);
+        hasPressedAttackThisCombo = false;
     }
 
     // Update is called once per frame
@@ -189,10 +198,23 @@ public class PlayerController : MonoBehaviour
         
         //we can try to attack whenever
         // cooldown will be checked inside the function
-        if (Input.GetButtonDown("Fire1") && CurrentAttackState == AttackState.NotAttacking)
+        if (Input.GetButtonDown("Fire1"))
         {
-            _activeAttackCoroutine = LightAttack();
-            StartCoroutine(_activeAttackCoroutine);
+            if (CurrentAttackState == AttackState.NotAttacking)
+            {
+                _activeAttackCoroutine = LightAttack(false, AttackComboState.LeftSwing, false);
+                StartCoroutine(_activeAttackCoroutine);
+            }
+            else if(CurrentAttackState == AttackState.WinddownReady && !hasPressedAttackThisCombo)
+            {
+                StopLightAttack();
+                Debug.Log("Continuing combo from Update");
+                ContinueAttackCombo();
+            }
+            else if(CurrentAttackState == AttackState.WinddownPre && !hasPressedAttackThisCombo)
+            {
+                hasPressedAttackThisCombo = true;
+            }
         }
     }
 
@@ -228,7 +250,7 @@ public class PlayerController : MonoBehaviour
             return false;
 
 
-        if (CurrentAttackState == AttackState.Wincdown &&
+        if (CurrentAttackState is AttackState.WinddownPre or AttackState.WinddownReady &&
             lightAttackWinddownRestriction == AttackMovementRestriction.Stop)
             return false;
         
@@ -398,22 +420,33 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    IEnumerator LightAttack()
+    IEnumerator LightAttack(bool skipWindup, AttackComboState newComboState, bool chainedAttack = false)
     {
         attackLightEffect.SetActive(true);
+        hasPressedAttackThisCombo = false;
+        
+        Debug.Log("Started attaxck coroutine, skip: " + skipWindup + ", newState: " +  newComboState + ", chain: " + chainedAttack);
         
         AudioManager.Instance.PlayAudio(lightAttackAudio);
-        animator.SetTrigger("Attack");
+
+        if (!chainedAttack)
+        {
+            animator.SetTrigger("Attack");
         
-        //TODO: should add listeners so it isnt calculated here every time
-        RecalculateAttackAnimSpeeds();
-        
+            //TODO: should add listeners so it isnt calculated here every time
+            RecalculateAttackAnimSpeeds();
+        }
+
         //##############################################################################################################
-        CurrentAttackState = AttackState.Windup;
-        if(lightAttackWindupRestriction is AttackMovementRestriction.Stop or AttackMovementRestriction.HalfSpeed)
-            _rigidbody.velocity = Vector2.zero;
-        
-        yield return new WaitForSeconds(lightAttackWindup * cooldownModifiers[CurLevel]);
+        if (!skipWindup)
+        {
+            CurrentAttackState = AttackState.Windup;
+            if (lightAttackWindupRestriction is AttackMovementRestriction.Stop or AttackMovementRestriction.HalfSpeed)
+                _rigidbody.velocity = Vector2.zero;
+
+            yield return new WaitForSeconds(lightAttackWindup * cooldownModifiers[CurLevel]);
+        }
+
 
         //##############################################################################################################
         CurrentAttackState = AttackState.ActiveAttack;
@@ -423,18 +456,37 @@ public class PlayerController : MonoBehaviour
         //enables the triggers, calls OnEnable() on it
         _lightAttackTriggerGameObject.SetActive(true);
         attackLightEffect.SetActive(true);
+        //TODO: probably should check that we are in the right ComboState, especially if we want to get new values
         animator.SetTrigger("AttackMain");
         yield return new WaitForSeconds(lightAttackTriggerActiveTime * cooldownModifiers[CurLevel]);
 
         //##############################################################################################################
-        CurrentAttackState = AttackState.Wincdown;
+        CurrentAttackState = AttackState.WinddownPre;
         if(lightAttackWinddownRestriction is AttackMovementRestriction.Stop or AttackMovementRestriction.HalfSpeed)
             _rigidbody.velocity = Vector2.zero;
         
         _lightAttackTriggerGameObject.SetActive(false);
         attackLightEffect.SetActive(false);
         animator.SetTrigger("AttackWinddown");
-        yield return new WaitForSeconds(lightAttackWinddown * cooldownModifiers[CurLevel]);
+        yield return new WaitForSeconds(lightAttackWinddownPreCombo * cooldownModifiers[CurLevel]);
+        
+        
+        //##############################################################################################################
+        CurrentAttackState = AttackState.WinddownReady;
+        animator.SetTrigger("AttackWinddownPost");
+        
+        if (hasPressedAttackThisCombo)
+        {
+            _activeAttackCoroutine = null;
+            yield return new WaitForSeconds(0.01f); //wait until mecamin steps into new state TODO: test
+            
+            StopLightAttack();
+            Debug.Log("Continuing combo from inside coroutine");
+            ContinueAttackCombo();
+            yield return null;
+        }
+        
+        yield return new WaitForSeconds(lightAttackWinddownComboReady * cooldownModifiers[CurLevel]);
 
         //##############################################################################################################
         CurrentAttackState = AttackState.Cooldown;
@@ -444,13 +496,21 @@ public class PlayerController : MonoBehaviour
 
         //##############################################################################################################
         CurrentAttackState = AttackState.NotAttacking;
-        yield break;
+    }
+
+    public void ContinueAttackCombo()
+    {
+        CurrentAttackComboState = (CurrentAttackComboState == AttackComboState.LeftSwing)
+            ? AttackComboState.RightSwing
+            : AttackComboState.LeftSwing;
+        _activeAttackCoroutine = LightAttack(true, CurrentAttackComboState, true);
+        StartCoroutine(_activeAttackCoroutine);
     }
 
     public void StopLightAttack()
     {
         if(_activeAttackCoroutine != null)
-            StartCoroutine(_activeAttackCoroutine);
+            StopCoroutine(_activeAttackCoroutine);
         
         CurrentAttackState = AttackState.NotAttacking;
         
@@ -462,6 +522,7 @@ public class PlayerController : MonoBehaviour
         animator.ResetTrigger("Attack");
         animator.ResetTrigger("AttackMain");
         animator.ResetTrigger("AttackWinddown");
+        animator.ResetTrigger("AttackWinddownPost");
         animator.ResetTrigger("AttackExit");
     }
 
@@ -474,7 +535,10 @@ public class PlayerController : MonoBehaviour
             attackMainReferenceAnim.length / (lightAttackTriggerActiveTime * cooldownModifiers[CurLevel]));
         
         animator.SetFloat("AttackWinddownTime", 
-            attackWindDownReferenceAnim.length / (lightAttackWinddown * cooldownModifiers[CurLevel]));
+            attackWindDownReferenceAnim.length / (lightAttackWinddownPreCombo * cooldownModifiers[CurLevel]));
+        
+        animator.SetFloat("AttackWinddownComboReadyTime", 
+            attackWindDownComboReadyReferenceAnim.length / (lightAttackWinddownComboReady * cooldownModifiers[CurLevel]));
     }
 
     public void LightAttackHit(EnemyHealth enemy)
