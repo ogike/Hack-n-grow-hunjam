@@ -211,10 +211,10 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("Continuing combo from Update");
                 ContinueAttackCombo();
             }
-            else if(CurrentAttackState == AttackState.WinddownPre && !hasPressedAttackThisCombo)
-            {
-                hasPressedAttackThisCombo = true;
-            }
+            // else if(CurrentAttackState == AttackState.WinddownPre && !hasPressedAttackThisCombo)
+            // {
+            //     hasPressedAttackThisCombo = true;
+            // }
         }
     }
 
@@ -478,8 +478,8 @@ public class PlayerController : MonoBehaviour
         if (hasPressedAttackThisCombo)
         {
             _activeAttackCoroutine = null;
-            yield return new WaitForSeconds(0.01f); //wait until mecamin steps into new state TODO: test
-            
+            //TODO: may have to wait until mecanim steps into new state?
+
             StopLightAttack();
             Debug.Log("Continuing combo from inside coroutine");
             ContinueAttackCombo();
