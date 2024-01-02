@@ -474,9 +474,10 @@ MonoBehaviour:
   lightAttackKnockoutTime: 1
   lightAttackKnockoutForce: 1000
   lightAttackWindup: 0.15
-  lightAttackTriggerActiveTime: 5
-  lightAttackWinddown: 0.1
-  lightAttackCooldown: 0.3
+  lightAttackTriggerActiveTime: 0.2
+  lightAttackWinddownPreCombo: 0.2
+  lightAttackWinddownComboReady: 0.2
+  lightAttackCooldown: 0
   lightAttackWindupRestriction: 2
   lightAttackAttackRestriction: 1
   lightAttackWinddownRestriction: 2
@@ -497,6 +498,7 @@ MonoBehaviour:
   attackWindUpReferenceAnim: {fileID: 7400000, guid: 634ad3047fa8a324aa955b0020d2510c, type: 2}
   attackMainReferenceAnim: {fileID: 7400000, guid: db9c534f356adc94f8cccf0f7f08ff59, type: 2}
   attackWindDownReferenceAnim: {fileID: 7400000, guid: 80d7cecb50dec6e42b49adcf814006e4, type: 2}
+  attackWindDownComboReadyReferenceAnim: {fileID: 7400000, guid: 80d7cecb50dec6e42b49adcf814006e4, type: 2}
   playerSprite: {fileID: 6349390377570868896}
 --- !u!114 &1735569420791241970
 MonoBehaviour:
