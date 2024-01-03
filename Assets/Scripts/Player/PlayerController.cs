@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Enemy;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Player
@@ -56,29 +57,15 @@ namespace Player
 
         private bool hasPressedAttackThisCombo;
 
-        [Header("Light attack")] //#########################################################################################
-        public float lightAttackRange; //TODO: use for scaling
-        public float lightAttackDamage;
-        public float lightAttackKnockoutTime;
-        public float lightAttackKnockoutForce;
-    
-        public float lightAttackWindup;
-        public float lightAttackTriggerActiveTime;
-        public float lightAttackWinddownPreCombo = 0.1f;
-        public float lightAttackWinddownComboReady = 0.5f;
-        public float lightAttackCooldown;
+        [Header("Attacks")] //#########################################################################################
+        // public float attackRanges; //TODO: remove this, instead of using it for scaling...?
+        public AttackComboValues lightAttackLeftSwing;
+        public AttackComboValues lightAttackRightSwing;
+        private AttackComboValues _curAttack;
+        
 
-        public AttackMovementRestriction lightAttackWindupRestriction;
-        public AttackMovementRestriction lightAttackAttackRestriction;
-        public AttackMovementRestriction lightAttackWinddownRestriction;
-    
-        [Tooltip("Can the attack be cancelled by a dash")]
-        public bool lightAttackCancelable;
-    
-        public AudioClip lightAttackAudio;
-        public GameObject attackLightEffect; //enabled when trigger is active
-        public PlayerWeaponTrigger lightAttackTrigger;
-        private GameObject _lightAttackTriggerGameObject;
+        public PlayerWeaponTrigger attackTrigger;
+        private GameObject _attackTriggerGameObject;
 
         private Vector2 _last4WayDir;
 
@@ -105,12 +92,7 @@ namespace Player
         [Header("Animations")]  //##########################################################################################
         public Animator animator;
 
-        public AnimationClip attackWindUpReferenceAnim;
-        public AnimationClip attackMainReferenceAnim;
-        public AnimationClip attackWindDownReferenceAnim;
-        public AnimationClip attackWindDownComboReadyReferenceAnim;
-    
-    
+
         [Header("References")] //#####################################################################################################
         public Transform playerSprite;
     
@@ -140,10 +122,10 @@ namespace Player
 
             if(animator == null) Debug.LogError("Animator not set!");
 
-            if(lightAttackTrigger == null) Debug.LogError("Light attack trigger not set!");
-            lightAttackTrigger.RegisterOnHit(LightAttackHit);
-            _lightAttackTriggerGameObject = lightAttackTrigger.gameObject;
-            _lightAttackTriggerGameObject.SetActive(false);
+            if(attackTrigger == null) Debug.LogError("Light attack trigger not set!");
+            attackTrigger.RegisterOnHit(AttackHit);
+            _attackTriggerGameObject = attackTrigger.gameObject;
+            _attackTriggerGameObject.SetActive(false);
             CurrentAttackState = AttackState.NotAttacking;
         
             CurLevel = 0;
@@ -157,8 +139,9 @@ namespace Player
             _rigidbody = GetComponent<Rigidbody2D>();
             _playerHealth = GetComponent<PlayerHealth>();
 
-            _lightAttackTriggerGameObject.SetActive(false);
-            attackLightEffect.SetActive(false);
+            _attackTriggerGameObject.SetActive(false);
+            lightAttackLeftSwing.strikeEffectSprite.SetActive(false);
+            lightAttackRightSwing.strikeEffectSprite.SetActive(false);
             hasPressedAttackThisCombo = false;
         }
 
@@ -181,11 +164,11 @@ namespace Player
                     //just dash normally
                     DashStart();
                 }
-                else if (lightAttackCancelable)
+                else if (_curAttack != null && _curAttack.dashCancelable)
                 {
                     //cancel attack animation
                     DashStart();
-                    StopLightAttack();
+                    StopCurrentAttack();
                 }
             }
 
@@ -200,16 +183,14 @@ namespace Player
             {
                 if (CurrentAttackState == AttackState.NotAttacking)
                 {
-                    Debug.Log("Starting attack from 0");
                     CurrentAttackComboState = AttackComboState.LeftSwing;
-                    _activeAttackCoroutine = LightAttack(false, AttackComboState.LeftSwing, false);
+                    _activeAttackCoroutine = Attack(false, AttackComboState.LeftSwing, false);
                     StartCoroutine(_activeAttackCoroutine);
                 }
                 else if(CurrentAttackState == AttackState.WinddownReady && !hasPressedAttackThisCombo)
                 {
-                    StopLightAttack();
+                    StopCurrentAttack();
                     CurrentAttackState = AttackState.ActiveAttack;
-                    Debug.Log("Continuing combo from Update");
                     ContinueAttackCombo();
                 }
                 else if(CurrentAttackState == AttackState.WinddownPre && !hasPressedAttackThisCombo)
@@ -244,15 +225,15 @@ namespace Player
         {
             if (curDashFreezeLeft > 0) return false;
 
-            if (CurrentAttackState == AttackState.ActiveAttack && lightAttackAttackRestriction == AttackMovementRestriction.Stop)
+            if (CurrentAttackState == AttackState.ActiveAttack && _curAttack.strikeRestriction == AttackMovementRestriction.Stop)
                 return false;
 
-            if (CurrentAttackState == AttackState.Windup && lightAttackWindupRestriction == AttackMovementRestriction.Stop)
+            if (CurrentAttackState == AttackState.Windup && _curAttack.anticipationRestriction == AttackMovementRestriction.Stop)
                 return false;
 
 
             if (CurrentAttackState is AttackState.WinddownPre or AttackState.WinddownReady &&
-                lightAttackWinddownRestriction == AttackMovementRestriction.Stop)
+                _curAttack.recoveryRestriction == AttackMovementRestriction.Stop)
                 return false;
         
             return true;
@@ -313,11 +294,11 @@ namespace Player
                 //move if there is input
                 float finalSpeed = baseSpeed * speedModifiers[CurLevel];
                 if ((CurrentAttackState == AttackState.Windup &&
-                     lightAttackWindupRestriction == AttackMovementRestriction.HalfSpeed)
+                     _curAttack.anticipationRestriction == AttackMovementRestriction.HalfSpeed)
                     || (CurrentAttackState == AttackState.Windup &&
-                        lightAttackWindupRestriction == AttackMovementRestriction.HalfSpeed)
+                        _curAttack.anticipationRestriction == AttackMovementRestriction.HalfSpeed)
                     || (CurrentAttackState == AttackState.ActiveAttack &&
-                        lightAttackAttackRestriction == AttackMovementRestriction.HalfSpeed))
+                        _curAttack.strikeRestriction == AttackMovementRestriction.HalfSpeed))
                 {
                     finalSpeed /= 2;
                 }
@@ -421,29 +402,31 @@ namespace Player
             }
         }
 
-        IEnumerator LightAttack(bool skipWindup, AttackComboState newComboState, bool chainedAttack = false)
+        IEnumerator Attack(bool skipWindup, AttackComboState newComboState, bool chainedAttack = false)
         {
-            attackLightEffect.SetActive(true);
-            hasPressedAttackThisCombo = false;
-        
-            Debug.Log("Started attaxck coroutine, skip: " + skipWindup + ", newState: " +  newComboState + ", chain: " + chainedAttack);
-        
-            AudioManager.Instance.PlayAudio(lightAttackAudio);
-         
-            //TODO: should add listeners so it isnt calculated here every time
-            RecalculateAttackAnimSpeeds();
-
             switch (newComboState)
             {
                 case AttackComboState.LeftSwing:
                     animator.SetFloat("AttackCombo", 0);
+                    _curAttack = lightAttackLeftSwing;
                     break;
                 case AttackComboState.RightSwing:
-                //fall through
-                default:
                     animator.SetFloat("AttackCombo", 1);
+                    _curAttack = lightAttackRightSwing;
+                    break;
+                default:
+                    Debug.LogError("Brother you forgot to implement this attack properly");
                     break;
             }
+            
+            _curAttack.strikeEffectSprite.SetActive(true);
+            hasPressedAttackThisCombo = false;
+            
+            AudioManager.Instance.PlayAudio(_curAttack.strikeAudio);
+         
+            //TODO: should add listeners so it isnt calculated here every time
+            RecalculateAttackAnimSpeeds();
+
 
             //##############################################################################################################
             if (!skipWindup)
@@ -451,10 +434,10 @@ namespace Player
                 CurrentAttackState = AttackState.Windup;
                 animator.SetTrigger("Attack");
             
-                if (lightAttackWindupRestriction is AttackMovementRestriction.Stop or AttackMovementRestriction.HalfSpeed)
+                if (_curAttack.anticipationRestriction is AttackMovementRestriction.Stop or AttackMovementRestriction.HalfSpeed)
                     _rigidbody.velocity = Vector2.zero;
 
-                yield return new WaitForSeconds(lightAttackWindup * cooldownModifiers[CurLevel]);
+                yield return new WaitForSeconds(_curAttack.anticipationTime * cooldownModifiers[CurLevel]);
             }
             else
             {
@@ -464,22 +447,22 @@ namespace Player
 
             //##############################################################################################################
             CurrentAttackState = AttackState.ActiveAttack;
-            if(lightAttackWindupRestriction is AttackMovementRestriction.Stop or AttackMovementRestriction.HalfSpeed)
+            if(_curAttack.anticipationRestriction is AttackMovementRestriction.Stop or AttackMovementRestriction.HalfSpeed)
                 _rigidbody.velocity = Vector2.zero;
         
             //enables the triggers, calls OnEnable() on it
-            _lightAttackTriggerGameObject.SetActive(true);
-            attackLightEffect.SetActive(true);
-            yield return new WaitForSeconds(lightAttackTriggerActiveTime * cooldownModifiers[CurLevel]);
+            _attackTriggerGameObject.SetActive(true);
+            _curAttack.strikeEffectSprite.SetActive(true);
+            yield return new WaitForSeconds(_curAttack.strikeTime * cooldownModifiers[CurLevel]);
 
             //##############################################################################################################
             CurrentAttackState = AttackState.WinddownPre;
-            if(lightAttackWinddownRestriction is AttackMovementRestriction.Stop or AttackMovementRestriction.HalfSpeed)
+            if(_curAttack.recoveryRestriction is AttackMovementRestriction.Stop or AttackMovementRestriction.HalfSpeed)
                 _rigidbody.velocity = Vector2.zero;
         
-            _lightAttackTriggerGameObject.SetActive(false);
-            attackLightEffect.SetActive(false);
-            yield return new WaitForSeconds(lightAttackWinddownPreCombo * cooldownModifiers[CurLevel]);
+            _attackTriggerGameObject.SetActive(false);
+            _curAttack.strikeEffectSprite.SetActive(false);
+            yield return new WaitForSeconds(_curAttack.recoveryTime * cooldownModifiers[CurLevel]);
         
         
             //##############################################################################################################
@@ -488,22 +471,20 @@ namespace Player
                 _activeAttackCoroutine = null;
                 //TODO: may have to wait until mecanim steps into new state?
 
-                StopLightAttack();
+                StopCurrentAttack();
                 CurrentAttackState = AttackState.ActiveAttack;
-                Debug.Log("Continuing combo from inside coroutine");
                 ContinueAttackCombo();
                 yield break;
-                Debug.LogError("This doesnt work?");
             }
         
             CurrentAttackState = AttackState.WinddownReady;
         
-            yield return new WaitForSeconds(lightAttackWinddownComboReady * cooldownModifiers[CurLevel]);
+            yield return new WaitForSeconds(_curAttack.recoveryReadiedTime * cooldownModifiers[CurLevel]);
 
             //##############################################################################################################
             CurrentAttackState = AttackState.Cooldown;
         
-            yield return new WaitForSeconds(lightAttackCooldown * cooldownModifiers[CurLevel]);
+            yield return new WaitForSeconds(_curAttack.cooldownTime * cooldownModifiers[CurLevel]);
 
             //##############################################################################################################
             CurrentAttackState = AttackState.NotAttacking;
@@ -514,11 +495,11 @@ namespace Player
             CurrentAttackComboState = (CurrentAttackComboState == AttackComboState.LeftSwing)
                 ? AttackComboState.RightSwing
                 : AttackComboState.LeftSwing;
-            _activeAttackCoroutine = LightAttack(true, CurrentAttackComboState, true);
+            _activeAttackCoroutine = Attack(true, CurrentAttackComboState, true);
             StartCoroutine(_activeAttackCoroutine);
         }
 
-        public void StopLightAttack()
+        public void StopCurrentAttack()
         {
             if(_activeAttackCoroutine != null)
                 StopCoroutine(_activeAttackCoroutine);
@@ -526,8 +507,8 @@ namespace Player
             CurrentAttackState = AttackState.NotAttacking;
         
             //make sure we disable everything, regardless of actual state
-            _lightAttackTriggerGameObject.SetActive(false);
-            attackLightEffect.SetActive(false);
+            _attackTriggerGameObject.SetActive(false);
+            _curAttack.strikeEffectSprite.SetActive(false);
         
             //reset mecanim triggers too
             animator.ResetTrigger("Attack");
@@ -537,24 +518,24 @@ namespace Player
         private void RecalculateAttackAnimSpeeds()
         {
             animator.SetFloat("AttackWindupTime", 
-                attackWindUpReferenceAnim.length / (lightAttackWindup * cooldownModifiers[CurLevel]));
+                _curAttack.anticipationReferenceAnim.length / (_curAttack.anticipationTime * cooldownModifiers[CurLevel]));
         
             animator.SetFloat("AttackMainTime", 
-                attackMainReferenceAnim.length / (lightAttackTriggerActiveTime * cooldownModifiers[CurLevel]));
+                _curAttack.strikeReferenceAnim.length / (_curAttack.strikeTime * cooldownModifiers[CurLevel]));
         
             animator.SetFloat("AttackWinddownTime", 
-                attackWindDownReferenceAnim.length / (lightAttackWinddownPreCombo * cooldownModifiers[CurLevel]));
+                _curAttack.recoveryReferenceAnim.length / (_curAttack.recoveryTime * cooldownModifiers[CurLevel]));
         
             animator.SetFloat("AttackWinddownComboReadyTime", 
-                attackWindDownComboReadyReferenceAnim.length / (lightAttackWinddownComboReady * cooldownModifiers[CurLevel]));
+                _curAttack.recoveryReadiedReferenceAnim.length / (_curAttack.recoveryReadiedTime * cooldownModifiers[CurLevel]));
         }
 
-        public void LightAttackHit(EnemyHealth enemy)
+        public void AttackHit(EnemyHealth enemy)
         {
             Vector2 dirToTarg = enemy.transform.position - _trans.position;
-            enemy.Damage(Mathf.FloorToInt(lightAttackDamage * damageModifiers[CurLevel]));
-            enemy.Knockback(lightAttackKnockoutTime * knockbackModifiers[CurLevel],
-                dirToTarg * (lightAttackKnockoutForce * knockbackModifiers[CurLevel]));
+            enemy.Damage(Mathf.FloorToInt(_curAttack.damage * damageModifiers[CurLevel]));
+            enemy.Knockback(_curAttack.knockoutTime * knockbackModifiers[CurLevel],
+                dirToTarg * (_curAttack.knockoutForce * knockbackModifiers[CurLevel]));
         }
 
         /// <summary>
@@ -562,7 +543,7 @@ namespace Player
         /// </summary>
         public void PlayerGetDamage(Vector2 knockBackVector)
         {
-            StopLightAttack();
+            StopCurrentAttack();
         
             _rigidbody.AddForce(knockBackVector * baseKnockBackedForce);
         }
@@ -604,9 +585,10 @@ namespace Player
             float newTransformScale = transformSizeModifiers[CurLevel];
             transform.localScale = new Vector3(newTransformScale, newTransformScale, newTransformScale);
 
-            float newHitboxScale = lightAttackRange * rangeModifiers[CurLevel];
-            _lightAttackTriggerGameObject.transform.localScale =
-                new Vector3(newHitboxScale, newHitboxScale , newHitboxScale);
+            //TODO: this should be removed, right...?
+            // float newHitboxScale = attackRanges * rangeModifiers[CurLevel];
+            // _lightAttackTriggerGameObject.transform.localScale =
+            //     new Vector3(newHitboxScale, newHitboxScale , newHitboxScale);
 
             if (CurLevel == size2Level && !negative)
             {

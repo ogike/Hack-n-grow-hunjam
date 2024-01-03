@@ -1154,9 +1154,17 @@ PrefabInstance:
       propertyPath: levelDisplayText
       value: 
       objectReference: {fileID: 1942233853}
+    - target: {fileID: 2793193698236965643, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
+      propertyPath: lightAttackLeftSwing.name
+      value: Light Attack Left Swing
+      objectReference: {fileID: 0}
     - target: {fileID: 6358756388176844130, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
       propertyPath: m_Name
       value: Character
+      objectReference: {fileID: 0}
+    - target: {fileID: 6881052492403597158, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7983094789832182027, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
       propertyPath: m_RootOrder
