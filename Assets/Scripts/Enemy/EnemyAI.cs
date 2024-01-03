@@ -5,6 +5,7 @@ using Enemy.States;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Enemy.States;
+using Player;
 
 
 namespace Enemy
