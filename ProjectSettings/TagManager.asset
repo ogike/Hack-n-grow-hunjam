@@ -15,8 +15,8 @@ TagManager:
   - UI
   - PlayerCollision
   - Enemy
-  - 
-  - 
+  - PlayerAttackHitbox
+  - EnemyAttackHitbox
   - 
   - 
   - 

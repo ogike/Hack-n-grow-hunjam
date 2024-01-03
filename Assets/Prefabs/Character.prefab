@@ -206,7 +206,7 @@ GameObject:
   - component: {fileID: 3902259068839039999}
   - component: {fileID: 1066274787122297353}
   - component: {fileID: 5874156988860361159}
-  m_Layer: 3
+  m_Layer: 8
   m_Name: AttackLightTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
