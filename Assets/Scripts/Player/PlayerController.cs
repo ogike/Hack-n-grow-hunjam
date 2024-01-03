@@ -508,7 +508,7 @@ namespace Player
         
             //make sure we disable everything, regardless of actual state
             _attackTriggerGameObject.SetActive(false);
-            _curAttack.strikeEffectSprite.SetActive(false);
+            _curAttack?.strikeEffectSprite.SetActive(false);
         
             //reset mecanim triggers too
             animator.ResetTrigger("Attack");
@@ -517,6 +517,8 @@ namespace Player
 
         private void RecalculateAttackAnimSpeeds()
         {
+            if(_curAttack == null) return;
+            
             animator.SetFloat("AttackWindupTime", 
                 _curAttack.anticipationReferenceAnim.length / (_curAttack.anticipationTime * cooldownModifiers[CurLevel]));
         
