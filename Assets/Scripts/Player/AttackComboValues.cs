@@ -22,8 +22,8 @@ namespace Player
         public AttackMovementRestriction strikeRestriction;
         public AttackMovementRestriction recoveryRestriction;
         
-        [Tooltip("Can the attack be cancelled by a dash")]
-        public bool dashCancelable;
+        // [Tooltip("Can the attack be cancelled by a dash")]
+        // public bool dashCancelable;
         
         [Header("Reference animations")]
         public AnimationClip anticipationReferenceAnim;

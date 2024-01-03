@@ -70,12 +70,12 @@ namespace Player
         private Vector2 _last4WayDir;
 
         [Header("Dashing")] //##############################################################################################
-        public float dashSpeed;
-        public float dashActiveTime;
-        public float dashCooldownTime;
-        public float dashPostFreezeTime;
+        [HideInInspector]public float dashSpeed;
+        [HideInInspector]public float dashActiveTime;
+        [HideInInspector]public float dashCooldownTime;
+        [HideInInspector]public float dashPostFreezeTime;
 
-        public AudioClip dashAudio;
+        [HideInInspector]public AudioClip dashAudio;
 
         public enum DashType {DashForward, QuickstepBack}
         public DashType dashType;
@@ -85,7 +85,7 @@ namespace Player
         private float curDashFreezeLeft;
 
         [Header("UI")] //###################################################################################################
-        public Image dashCooldownMeter;
+        [HideInInspector]public Image dashCooldownMeter;
         public Image xpMeter;
         public Text levelDisplayText;
 
@@ -110,7 +110,7 @@ namespace Player
             Instance = this;
             curDashCooldownLeft = 0;
             curDashFreezeLeft = 0;
-            dashCooldownMeter.fillAmount = 0;
+            // dashCooldownMeter.fillAmount = 0;
         
             if (levelXpRequirements.Count != maxLevel + 1) Debug.LogError("LevelXpReqs array length not matching!");
             if (speedModifiers.Count != maxLevel + 1) Debug.LogError("speedModifiers array length not matching!");
@@ -157,20 +157,20 @@ namespace Player
                 return;
             }
         
-            if (curDashCooldownLeft <= 0 && Input.GetButtonDown("Dash"))
-            { //if we can dash and press dash
-                if (CurrentAttackState == AttackState.NotAttacking)
-                {
-                    //just dash normally
-                    DashStart();
-                }
-                else if (_curAttack != null && _curAttack.dashCancelable)
-                {
-                    //cancel attack animation
-                    DashStart();
-                    StopCurrentAttack();
-                }
-            }
+            // if (curDashCooldownLeft <= 0 && Input.GetButtonDown("Dash"))
+            // { //if we can dash and press dash
+            //     if (CurrentAttackState == AttackState.NotAttacking)
+            //     {
+            //         //just dash normally
+            //         DashStart();
+            //     }
+            //     else if (_curAttack != null && _curAttack.dashCancelable)
+            //     {
+            //         //cancel attack animation
+            //         DashStart();
+            //         StopCurrentAttack();
+            //     }
+            // }
 
             if (CanMove())
             {
@@ -208,7 +208,7 @@ namespace Player
 
                 float dashMeterFill = (curDashCooldownLeft > 0) ? curDashCooldownLeft / dashCooldownTime : 0;
 
-                dashCooldownMeter.fillAmount = dashMeterFill;
+                // dashCooldownMeter.fillAmount = dashMeterFill;
             }
         
             if(curDashFreezeLeft > 0)
@@ -343,7 +343,7 @@ namespace Player
         {
             curDashActiveLeft = dashActiveTime;
             curDashCooldownLeft = dashCooldownTime;
-            dashCooldownMeter.fillAmount = 1;
+            // dashCooldownMeter.fillAmount = 1;
 
             curDashFreezeLeft = dashPostFreezeTime; //will only start decreasing after curDashActiveLeft
 

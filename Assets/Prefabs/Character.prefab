@@ -49,7 +49,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7619859239687124149
 RectTransform:
   m_ObjectHideFlags: 0
@@ -481,7 +481,6 @@ MonoBehaviour:
     anticipationRestriction: 2
     strikeRestriction: 1
     recoveryRestriction: 2
-    dashCancelable: 1
     anticipationReferenceAnim: {fileID: 7400000, guid: 634ad3047fa8a324aa955b0020d2510c, type: 2}
     strikeReferenceAnim: {fileID: 7400000, guid: db9c534f356adc94f8cccf0f7f08ff59, type: 2}
     recoveryReferenceAnim: {fileID: 7400000, guid: 80d7cecb50dec6e42b49adcf814006e4, type: 2}
@@ -500,7 +499,6 @@ MonoBehaviour:
     anticipationRestriction: 2
     strikeRestriction: 1
     recoveryRestriction: 2
-    dashCancelable: 1
     anticipationReferenceAnim: {fileID: 7400000, guid: 634ad3047fa8a324aa955b0020d2510c, type: 2}
     strikeReferenceAnim: {fileID: 7400000, guid: f5d055003ef2a0440b9f27ae64344024, type: 2}
     recoveryReferenceAnim: {fileID: 7400000, guid: 80d7cecb50dec6e42b49adcf814006e4, type: 2}
