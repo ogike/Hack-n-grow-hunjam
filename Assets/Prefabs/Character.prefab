@@ -505,6 +505,24 @@ MonoBehaviour:
     recoveryReadiedReferenceAnim: {fileID: 7400000, guid: 80d7cecb50dec6e42b49adcf814006e4, type: 2}
     strikeAudio: {fileID: 8300000, guid: 71ff7bc82b9119f42abe9fd1f1ba5aa3, type: 3}
     strikeEffectSprite: {fileID: 6881052492403597158}
+  heavyAttackThrust:
+    damage: 20
+    knockoutTime: 2
+    knockoutForce: 1300
+    anticipationTime: 0.3
+    strikeTime: 0.3
+    recoveryTime: 0.3
+    recoveryReadiedTime: 0.15
+    cooldownTime: 0
+    anticipationRestriction: 1
+    strikeRestriction: 1
+    recoveryRestriction: 1
+    anticipationReferenceAnim: {fileID: 7400000, guid: 634ad3047fa8a324aa955b0020d2510c, type: 2}
+    strikeReferenceAnim: {fileID: 7400000, guid: 3698110ee56c4d24192122e9f8ae45d3, type: 2}
+    recoveryReferenceAnim: {fileID: 7400000, guid: 80d7cecb50dec6e42b49adcf814006e4, type: 2}
+    recoveryReadiedReferenceAnim: {fileID: 7400000, guid: 80d7cecb50dec6e42b49adcf814006e4, type: 2}
+    strikeAudio: {fileID: 8300000, guid: 71ff7bc82b9119f42abe9fd1f1ba5aa3, type: 3}
+    strikeEffectSprite: {fileID: 6881052492403597158}
   attackTrigger: {fileID: 5874156988860361159}
   dashSpeed: 30000
   dashActiveTime: 0.05

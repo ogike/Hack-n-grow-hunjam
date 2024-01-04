@@ -48,7 +48,7 @@ namespace Player
         //Attack //#########################################################################################################
 
         public enum AttackState { NotAttacking, Windup, ActiveAttack, WinddownPre, WinddownReady, Cooldown }
-        public enum AttackComboState { LeftSwing, RightSwing }
+        public enum AttackComboState { LeftSwing, RightSwing, HeavyThrust }
         public enum AttackMovementRestriction {None, Stop, HalfSpeed}
 
         public AttackState CurrentAttackState { get; private set; }
@@ -61,6 +61,7 @@ namespace Player
         // public float attackRanges; //TODO: remove this, instead of using it for scaling...?
         public AttackComboValues lightAttackLeftSwing;
         public AttackComboValues lightAttackRightSwing;
+        public AttackComboValues heavyAttackThrust;
         private AttackComboValues _curAttack;
         
 
@@ -196,6 +197,20 @@ namespace Player
                 else if(CurrentAttackState == AttackState.WinddownPre && !hasPressedAttackThisCombo)
                 {
                     hasPressedAttackThisCombo = true;
+                }
+            } else if (Input.GetButtonDown("Dash"))
+            {
+                if (CurrentAttackState == AttackState.NotAttacking)
+                {
+                    CurrentAttackComboState = AttackComboState.HeavyThrust;
+                    _activeAttackCoroutine = Attack(false, AttackComboState.HeavyThrust, false);
+                    StartCoroutine(_activeAttackCoroutine);
+                }
+                else if(CurrentAttackState is AttackState.WinddownReady or AttackState.WinddownPre)
+                {
+                    StopCurrentAttack();
+                    _activeAttackCoroutine = Attack(true, AttackComboState.HeavyThrust, false);
+                    StartCoroutine(_activeAttackCoroutine);
                 }
             }
         }
@@ -413,6 +428,10 @@ namespace Player
                 case AttackComboState.RightSwing:
                     animator.SetFloat("AttackCombo", 1);
                     _curAttack = lightAttackRightSwing;
+                    break;
+                case AttackComboState.HeavyThrust:
+                    animator.SetFloat("AttackCombo", 2);
+                    _curAttack = heavyAttackThrust;
                     break;
                 default:
                     Debug.LogError("Brother you forgot to implement this attack properly");
