@@ -121,15 +121,15 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: bug_attack_left_Frame_0
     originalName: 
-    pivot: {x: 0.41666666, y: -0.27586207}
+    pivot: {x: 0.43243244, y: -0.19354838}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
-      y: 42
-      width: 36
-      height: 29
+      y: 127
+      width: 37
+      height: 31
     spriteID: f3b2a44301b6f7e4b90dfdb3f0464ef1
     spriteBone: []
     spriteOutline: []
@@ -138,18 +138,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 42}
+    uvTransform: {x: 4, y: 127}
   - name: bug_attack_left_Frame_1
     originalName: 
-    pivot: {x: 0.41666666, y: -0.28571427}
+    pivot: {x: 0.48648652, y: -0.18181817}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
-      y: 116
-      width: 36
-      height: 28
+      y: 86
+      width: 37
+      height: 33
     spriteID: 8985f630157439946ab59338a6afe811
     spriteBone: []
     spriteOutline: []
@@ -158,18 +158,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 116}
+    uvTransform: {x: 4, y: 86}
   - name: bug_attack_left_Frame_2
     originalName: 
-    pivot: {x: 0.40540543, y: -0.2962963}
+    pivot: {x: 0.5, y: -0.18181817}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 48
-      y: 74
-      width: 37
-      height: 27
+      x: 4
+      y: 45
+      width: 38
+      height: 33
     spriteID: 69f2a674585ef114e910f9d9fd945158
     spriteBone: []
     spriteOutline: []
@@ -178,18 +178,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 48, y: 74}
+    uvTransform: {x: 4, y: 45}
   - name: bug_attack_left_Frame_3
     originalName: 
-    pivot: {x: 0.44117647, y: -0.27586207}
+    pivot: {x: 0.61538464, y: -0.18181817}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
-      y: 152
-      width: 34
-      height: 29
+      y: 4
+      width: 39
+      height: 33
     spriteID: 4e19aaa7f038cb042af6d347416d1ff5
     spriteBone: []
     spriteOutline: []
@@ -198,18 +198,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 152}
+    uvTransform: {x: 4, y: 4}
   - name: bug_attack_left_Frame_4
     originalName: 
-    pivot: {x: 0.4722222, y: -0.3}
+    pivot: {x: 0.48648652, y: -0.19354838}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
-      y: 4
-      width: 36
-      height: 30
+      y: 166
+      width: 37
+      height: 31
     spriteID: 62249ea3e71a3704f85732793de15918
     spriteBone: []
     spriteOutline: []
@@ -218,18 +218,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 4}
+    uvTransform: {x: 4, y: 166}
   - name: bug_attack_left_Frame_5
     originalName: 
-    pivot: {x: 0.5, y: -0.44444442}
+    pivot: {x: 0.43243244, y: -0.19999999}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 48
-      y: 4
-      width: 38
-      height: 27
+      x: 4
+      y: 205
+      width: 37
+      height: 30
     spriteID: 4e38d043a7839c243bd7d77bab1a5868
     spriteBone: []
     spriteOutline: []
@@ -238,18 +238,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 48, y: 4}
+    uvTransform: {x: 4, y: 205}
   - name: bug_attack_left_Frame_6
     originalName: 
-    pivot: {x: 0.6052632, y: -0.44444442}
+    pivot: {x: 0.4210526, y: -0.20689654}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 48
-      y: 39
+      x: 51
+      y: 4
       width: 38
-      height: 27
+      height: 29
     spriteID: e73d10563d66b3b45924c45dde0e483a
     spriteBone: []
     spriteOutline: []
@@ -258,18 +258,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 48, y: 39}
+    uvTransform: {x: 51, y: 4}
   - name: bug_attack_left_Frame_7
     originalName: 
-    pivot: {x: 0.4722222, y: -0.27586207}
+    pivot: {x: 0.45714286, y: -0.19354838}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
-      y: 79
-      width: 36
-      height: 29
+      x: 51
+      y: 41
+      width: 35
+      height: 31
     spriteID: e7ee54c70f014a347a12cba4a101c89f
     spriteBone: []
     spriteOutline: []
@@ -278,7 +278,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 79}
+    uvTransform: {x: 51, y: 41}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
@@ -291,66 +291,66 @@ ScriptedImporter:
     - name: bug_attack_left_Frame_0
       frameIndex: 0
       cellRect:
-        x: 10
-        y: 8
-        width: 36
-        height: 29
-      spriteId: f3b2a44301b6f7e4b90dfdb3f0464ef1
-    - name: bug_attack_left_Frame_1
-      frameIndex: 1
-      cellRect:
-        x: 10
-        y: 8
-        width: 36
-        height: 28
-      spriteId: 8985f630157439946ab59338a6afe811
-    - name: bug_attack_left_Frame_2
-      frameIndex: 2
-      cellRect:
-        x: 10
-        y: 8
+        x: 9
+        y: 6
         width: 37
-        height: 27
-      spriteId: 69f2a674585ef114e910f9d9fd945158
-    - name: bug_attack_left_Frame_3
-      frameIndex: 3
-      cellRect:
-        x: 10
-        y: 8
-        width: 34
-        height: 29
-      spriteId: 4e19aaa7f038cb042af6d347416d1ff5
+        height: 31
+      spriteId: f3b2a44301b6f7e4b90dfdb3f0464ef1
     - name: bug_attack_left_Frame_4
       frameIndex: 4
       cellRect:
-        x: 8
-        y: 9
-        width: 36
-        height: 30
-      spriteId: 62249ea3e71a3704f85732793de15918
+        x: 7
+        y: 6
+        width: 37
+        height: 33
+      spriteId: 8985f630157439946ab59338a6afe811
     - name: bug_attack_left_Frame_5
       frameIndex: 5
       cellRect:
         x: 6
-        y: 12
+        y: 6
         width: 38
-        height: 27
-      spriteId: 4e38d043a7839c243bd7d77bab1a5868
+        height: 33
+      spriteId: 69f2a674585ef114e910f9d9fd945158
     - name: bug_attack_left_Frame_6
       frameIndex: 6
       cellRect:
-        x: 2
-        y: 12
-        width: 38
-        height: 27
-      spriteId: e73d10563d66b3b45924c45dde0e483a
+        x: 1
+        y: 6
+        width: 39
+        height: 33
+      spriteId: 4e19aaa7f038cb042af6d347416d1ff5
     - name: bug_attack_left_Frame_7
       frameIndex: 7
       cellRect:
-        x: 8
-        y: 8
-        width: 36
+        x: 7
+        y: 6
+        width: 37
+        height: 31
+      spriteId: 62249ea3e71a3704f85732793de15918
+    - name: bug_attack_left_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 9
+        y: 6
+        width: 37
+        height: 30
+      spriteId: 4e38d043a7839c243bd7d77bab1a5868
+    - name: bug_attack_left_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 9
+        y: 6
+        width: 38
         height: 29
+      spriteId: e73d10563d66b3b45924c45dde0e483a
+    - name: bug_attack_left_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 9
+        y: 6
+        width: 35
+        height: 31
       spriteId: e7ee54c70f014a347a12cba4a101c89f
     linkedCells: []
     parentIndex: -1

@@ -121,15 +121,15 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: bug_walk_left_Frame_0
     originalName: 
-    pivot: {x: 0.5833333, y: -0.27586207}
+    pivot: {x: 0.5675676, y: -0.19354838}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
-      y: 42
-      width: 36
-      height: 29
+      y: 220
+      width: 37
+      height: 31
     spriteID: 7484feb3c2e41d343a11e4c6cfc66a3f
     spriteBone: []
     spriteOutline: []
@@ -138,18 +138,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 42}
+    uvTransform: {x: 4, y: 220}
   - name: bug_walk_left_Frame_1
     originalName: 
-    pivot: {x: 0.5833333, y: -0.28571427}
+    pivot: {x: 0.5675676, y: -0.19999999}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 4
-      y: 190
-      width: 36
-      height: 28
+      x: 49
+      y: 4
+      width: 37
+      height: 30
     spriteID: c164c5a28b2facc4c9c9782b3e284805
     spriteBone: []
     spriteOutline: []
@@ -158,18 +158,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 190}
+    uvTransform: {x: 49, y: 4}
   - name: bug_walk_left_Frame_2
     originalName: 
-    pivot: {x: 0.5833333, y: -0.28571427}
+    pivot: {x: 0.5675676, y: -0.19999999}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 48
-      y: 4
-      width: 36
-      height: 28
+      x: 49
+      y: 42
+      width: 37
+      height: 30
     spriteID: 552e086d8ed2c574394530bff53306ba
     spriteBone: []
     spriteOutline: []
@@ -178,18 +178,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 48, y: 4}
+    uvTransform: {x: 49, y: 42}
   - name: bug_walk_left_Frame_3
     originalName: 
-    pivot: {x: 0.5833333, y: -0.28571427}
+    pivot: {x: 0.5675676, y: -0.19999999}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 48
-      y: 40
-      width: 36
-      height: 28
+      x: 49
+      y: 80
+      width: 37
+      height: 30
     spriteID: 5c7f40a6548f72d408e2160b6e98144b
     spriteBone: []
     spriteOutline: []
@@ -198,18 +198,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 48, y: 40}
+    uvTransform: {x: 49, y: 80}
   - name: bug_walk_left_Frame_4
     originalName: 
-    pivot: {x: 0.5833333, y: -0.4074074}
+    pivot: {x: 0.5675676, y: -0.1875}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
-      x: 48
-      y: 76
-      width: 36
-      height: 27
+      x: 4
+      y: 180
+      width: 37
+      height: 32
     spriteID: 78539588034e12642ba532f65d648fe8
     spriteBone: []
     spriteOutline: []
@@ -218,18 +218,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 48, y: 76}
+    uvTransform: {x: 4, y: 180}
   - name: bug_walk_left_Frame_5
     originalName: 
-    pivot: {x: 0.5833333, y: -0.44827583}
+    pivot: {x: 0.5675676, y: -0.16666666}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
-      y: 79
-      width: 36
-      height: 29
+      y: 94
+      width: 37
+      height: 36
     spriteID: 89aa77bc2b661ad4c8e8c03c69331cae
     spriteBone: []
     spriteOutline: []
@@ -238,18 +238,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 79}
+    uvTransform: {x: 4, y: 94}
   - name: bug_walk_left_Frame_6
     originalName: 
-    pivot: {x: 0.5833333, y: -0.4827586}
+    pivot: {x: 0.5675676, y: -0.16216215}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
-      y: 116
-      width: 36
-      height: 29
+      y: 4
+      width: 37
+      height: 37
     spriteID: bcd1b4d6fea23624f973eba8ac6efbe7
     spriteBone: []
     spriteOutline: []
@@ -258,18 +258,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 116}
+    uvTransform: {x: 4, y: 4}
   - name: bug_walk_left_Frame_7
     originalName: 
-    pivot: {x: 0.5833333, y: -0.4333333}
+    pivot: {x: 0.5675676, y: -0.16216215}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
-      y: 4
-      width: 36
-      height: 30
+      y: 49
+      width: 37
+      height: 37
     spriteID: 6324b14b5aa0ee0439335b035ac536c4
     spriteBone: []
     spriteOutline: []
@@ -278,18 +278,18 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 4}
+    uvTransform: {x: 4, y: 49}
   - name: bug_walk_left_Frame_8
     originalName: 
-    pivot: {x: 0.5833333, y: -0.37931034}
+    pivot: {x: 0.5675676, y: -0.17647058}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
-      y: 153
-      width: 36
-      height: 29
+      y: 138
+      width: 37
+      height: 34
     spriteID: 77045e4af78b18b469eb79857ac05be1
     spriteBone: []
     spriteOutline: []
@@ -298,7 +298,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 153}
+    uvTransform: {x: 4, y: 138}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
@@ -312,73 +312,73 @@ ScriptedImporter:
       frameIndex: 0
       cellRect:
         x: 4
-        y: 8
-        width: 36
-        height: 29
+        y: 6
+        width: 37
+        height: 31
       spriteId: 7484feb3c2e41d343a11e4c6cfc66a3f
     - name: bug_walk_left_Frame_1
       frameIndex: 1
       cellRect:
         x: 4
-        y: 8
-        width: 36
-        height: 28
+        y: 6
+        width: 37
+        height: 30
       spriteId: c164c5a28b2facc4c9c9782b3e284805
     - name: bug_walk_left_Frame_2
       frameIndex: 2
       cellRect:
         x: 4
-        y: 8
-        width: 36
-        height: 28
+        y: 6
+        width: 37
+        height: 30
       spriteId: 552e086d8ed2c574394530bff53306ba
     - name: bug_walk_left_Frame_3
       frameIndex: 3
       cellRect:
         x: 4
-        y: 8
-        width: 36
-        height: 28
+        y: 6
+        width: 37
+        height: 30
       spriteId: 5c7f40a6548f72d408e2160b6e98144b
     - name: bug_walk_left_Frame_4
       frameIndex: 4
       cellRect:
         x: 4
-        y: 11
-        width: 36
-        height: 27
+        y: 6
+        width: 37
+        height: 32
       spriteId: 78539588034e12642ba532f65d648fe8
     - name: bug_walk_left_Frame_5
       frameIndex: 5
       cellRect:
         x: 4
-        y: 13
-        width: 36
-        height: 29
+        y: 6
+        width: 37
+        height: 36
       spriteId: 89aa77bc2b661ad4c8e8c03c69331cae
     - name: bug_walk_left_Frame_6
       frameIndex: 6
       cellRect:
         x: 4
-        y: 14
-        width: 36
-        height: 29
+        y: 6
+        width: 37
+        height: 37
       spriteId: bcd1b4d6fea23624f973eba8ac6efbe7
     - name: bug_walk_left_Frame_7
       frameIndex: 7
       cellRect:
         x: 4
-        y: 13
-        width: 36
-        height: 30
+        y: 6
+        width: 37
+        height: 37
       spriteId: 6324b14b5aa0ee0439335b035ac536c4
     - name: bug_walk_left_Frame_8
       frameIndex: 8
       cellRect:
         x: 4
-        y: 11
-        width: 36
-        height: 29
+        y: 6
+        width: 37
+        height: 34
       spriteId: 77045e4af78b18b469eb79857ac05be1
     linkedCells: []
     parentIndex: -1
