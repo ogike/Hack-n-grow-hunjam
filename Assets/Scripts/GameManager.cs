@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using Player;
 using UnityEngine;
+
+public delegate void OnEnableChange(bool newValue);
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
@@ -16,11 +19,18 @@ public class GameManager : MonoBehaviour
     
     public bool EnemyAttackEnabled { get; private set; }
     public bool EnemyMovementEnabled { get; private set; }
+    
+    public bool ShowAttackTriggers { get; private set; }
+
+    public bool showAttackTriggerDefault;
+    public GodModeType godModeTypeDefault;
 
     public GameObject enemyToDebugSpawn;
     [Tooltip("From what distance from the player should the enemy be spawned?")]
     public float enemyToDebugSpawnDistance;
     private Transform _playerTransform;
+
+    public OnEnableChange OnShowAttackTriggerChange;
 
     private void Awake()
     {
@@ -31,7 +41,8 @@ public class GameManager : MonoBehaviour
         }
         Instance = this;
 
-        CurrentGodModeType = GodModeType.Normal;
+        CurrentGodModeType = godModeTypeDefault;
+        ShowAttackTriggers = showAttackTriggerDefault;
         EnemyAttackEnabled = true;
         EnemyMovementEnabled = true;
     }
@@ -56,6 +67,14 @@ public class GameManager : MonoBehaviour
     public void ToggleEnemyAttackEnabled() { EnemyAttackEnabled = !EnemyAttackEnabled; }
     
     public void ToggleEnemyMovementEnabled() { EnemyMovementEnabled = !EnemyMovementEnabled; }
+
+    public void ToggleShowAttackTriggers()
+    {
+        ShowAttackTriggers = !ShowAttackTriggers;
+        
+        if(OnShowAttackTriggerChange != null)
+            OnShowAttackTriggerChange(ShowAttackTriggers);
+    }
 
     public bool ChangeTime(float newValue)
     {

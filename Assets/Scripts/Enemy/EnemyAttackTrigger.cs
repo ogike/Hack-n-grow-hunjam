@@ -8,17 +8,36 @@ namespace Enemy
 
     public delegate void PlayerHitCallback(PlayerHealth player);
 
+    [RequireComponent(typeof(Sprite))]
     public class EnemyAttackTrigger : MonoBehaviour
     {
         public string playerTag = "Player";
 
         private PlayerHitCallback onHitCallback;
         private bool hasHitPlayer;
+        private SpriteRenderer _renderer;
+
+        private void Awake()
+        {
+            _renderer = GetComponent<SpriteRenderer>();
+        }
 
         private void OnEnable()
         {
             hasHitPlayer = false;
-            Debug.Log("AttackTrigger OnEnable()");
+
+            SetRendererVisibility(GameManager.Instance.ShowAttackTriggers);
+            GameManager.Instance.OnShowAttackTriggerChange += SetRendererVisibility;
+        }
+
+        private void OnDisable()
+        {
+            GameManager.Instance.OnShowAttackTriggerChange -= SetRendererVisibility;
+        }
+
+        public void SetRendererVisibility(bool visible)
+        {
+            _renderer.enabled = visible;
         }
 
 

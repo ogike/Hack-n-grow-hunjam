@@ -6,29 +6,39 @@ using UnityEngine;
 
 public delegate void EnemyHitCallback(EnemyHealth enemy);
 
+[RequireComponent(typeof(Sprite))]
 public class PlayerWeaponTrigger : MonoBehaviour
 {
-    
-    
     public string enemyTag = "Enemy";
     
     private HashSet<Collider2D> _enemiesHit;
     private EnemyHitCallback onHitCallback;
     private int _startingHashSetCapacity = 10;
 
+    private SpriteRenderer _renderer;
+
     private void Awake()
     {
         _enemiesHit = new HashSet<Collider2D>(_startingHashSetCapacity);
+        _renderer = GetComponent<SpriteRenderer>();
     }
 
     private void OnEnable()
     {
         _enemiesHit.Clear();
+        
+        SetRendererVisibility(GameManager.Instance.ShowAttackTriggers);
+        GameManager.Instance.OnShowAttackTriggerChange += SetRendererVisibility;
     }
 
     private void OnDisable()
     {
-        //do i even need to do anything here
+        GameManager.Instance.OnShowAttackTriggerChange -= SetRendererVisibility;
+    }
+    
+    public void SetRendererVisibility(bool visible)
+    {
+        _renderer.enabled = visible;
     }
     
     private void OnTriggerEnter2D(Collider2D col)
