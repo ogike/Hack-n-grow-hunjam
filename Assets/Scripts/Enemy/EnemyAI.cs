@@ -10,28 +10,15 @@ using Player;
 
 namespace Enemy
 {
-    public class EnemyAI : MonoBehaviour
+    public abstract class EnemyAI : MonoBehaviour
     {
-        private AIState curState;
+        protected AIState curState;
         String curStateName; //useful for debugging
         protected List<AIState> states;
         
         //transitions that will happen automatically on finish of state
         protected Dictionary<AIState, AIState> defaultTransitions;
 
-        private float _curAttackCooldown;
-
-        [Header("Moving")] 
-        public AIStateMove stateMove;
-        
-        [Header("Attacking")]
-        public AIStateAttackWindup stateAttackWindup;
-        public AIStateAttackMainMoving stateAttackMain;
-        public AIStateAttackWinddown stateAttackWinddown;
-        
-        [Header("Knockback")]
-        public AIStateStateKnockBack stateKnockBack;
-        
         [Header("References")]
         public Animator animator;
 
@@ -46,17 +33,12 @@ namespace Enemy
         public Vector2 DirForward { get; private set; }
         
         public float DistanceToPlayer { get; private set; }
+        
+        protected float _curAttackCooldown;
 
         private void Awake()
         {
-            states = new List<AIState>
-            {
-                stateMove,
-                stateAttackWindup,
-                stateAttackMain,
-                stateAttackWinddown,
-                stateKnockBack
-            };
+            CreateStates();
 
             foreach (AIState state in states)
             {
@@ -64,14 +46,14 @@ namespace Enemy
             }
 
             defaultTransitions = new Dictionary<AIState, AIState>();
-            AddDefaultTransition(stateAttackWindup, stateAttackMain);
-            AddDefaultTransition(stateAttackMain, stateAttackWinddown);
-            AddDefaultTransition(stateAttackWinddown, stateMove);
-            
-            AddDefaultTransition(stateKnockBack, stateMove);
-            
-            ChangeState(stateMove);
+            SetDefaultTransitions();
         }
+
+        protected abstract void CreateStates();
+        
+        protected abstract void SetDefaultTransitions();
+
+        protected abstract void SetToDefaultState();
 
         void Start()
         {
@@ -88,10 +70,6 @@ namespace Enemy
                 Debug.LogError("No animator attached to this enemy!");
             }
             
-            stateAttackWindup.Init();
-
-            //TODO: derived class
-            // _state = EnemyState.Moving;
             foreach (AIState state in states)
             {
                 state.Init();
@@ -99,6 +77,8 @@ namespace Enemy
             
             UpdateCachedVariables();
             DirForward = DirToPlayer;
+
+            SetToDefaultState();
         }
 
         void Update()
@@ -122,6 +102,16 @@ namespace Enemy
             DirToPlayer = playerPos - myPos;
             DistanceToPlayer = DirToPlayer.magnitude;
             DirToPlayer = DirToPlayer.normalized;
+            
+            if (_curAttackCooldown > 0)
+            {
+                _curAttackCooldown -= Time.deltaTime;
+            }
+        }
+        
+        public void SetAttackCooldownTime(float newCooldown)
+        {
+            _curAttackCooldown = newCooldown;
         }
 
         public void RotateTowardsDir(Vector2 newDir, float speed)
@@ -140,61 +130,9 @@ namespace Enemy
             _myRigid.AddForce(force);
         }
 
-        public void ResetAttackTriggers()
-        {
-            //reset animator triggers too
-            AnimatorResetTrigger("AttackState");
-            AnimatorResetTrigger("AttackMain");
-            AnimatorResetTrigger("AttackWinddown");
-            AnimatorResetTrigger("AttackExit");
-        }
+        public abstract void KnockBack(float knockoutTime);
 
-        public void KnockBack(float knockoutTime)
-        {
-            stateKnockBack.SetKnockbackAmount(knockoutTime);
-            ChangeState(stateKnockBack);
-            
-            
-
-            //cancel any ongoing attack
-            ResetAttackTriggers();
-
-            //put effects here
-        }
-
-        public virtual void CheckTransitions()
-        {
-            if (_curAttackCooldown > 0)
-            {
-                _curAttackCooldown -= Time.deltaTime;
-            }
-
-            switch (curState)
-            {
-                case AIStateMove:
-                    if (DistanceToPlayer < stateAttackMain.rangeToStartAttack && CanAttack())
-                    {
-                        ChangeState(stateAttackWindup);
-                    }
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        public bool CanAttack()
-        {
-            if (!_gameManager.EnemyAttackEnabled) return false;
-
-            if (_curAttackCooldown > 0) return false;
-            
-            return true;
-        }
-
-        public void SetAttackCooldownTime(float newCooldown)
-        {
-            _curAttackCooldown = newCooldown;
-        }
+        public abstract void CheckTransitions();
 
         public void AddDefaultTransition(AIState from, AIState to)
         {
