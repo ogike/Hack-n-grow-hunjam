@@ -1130,6 +1130,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3069128968370130926, guid: 0883607cdc0c00347bcf7694c868bb6d, type: 3}
+      propertyPath: enemyToDebugSpawn
+      value: 
+      objectReference: {fileID: 8221827501506133857, guid: 5c40113e74d4dfb4298288e528609559, type: 3}
+    - target: {fileID: 3069128968370130926, guid: 0883607cdc0c00347bcf7694c868bb6d, type: 3}
       propertyPath: godModeTypeDefault
       value: 2
       objectReference: {fileID: 0}
