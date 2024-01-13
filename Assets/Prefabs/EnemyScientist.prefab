@@ -690,9 +690,11 @@ MonoBehaviour:
     attackAudio: {fileID: 8300000, guid: 5d2585ddc5fc3684f8cebd2435f8a286, type: 3}
     attackMainReferenceAnim: {fileID: -5735446460916955084, guid: 11c833b2c9503594bb9291a30dd234a7, type: 3}
     attackHitbox: {fileID: 2505098806801007546}
-    trackingSpeed: 0.6
+    fastTrackingTime: 0.25
+    fastTrackingSpeed: 1.5
+    slowTrackingSpeed: 0.3
     trackingMaxRange: 3
-    startingLaserLength: 0.6
+    startingLaserLength: 0
     raycastTickTime: 0.05
     attackLayerMask:
       serializedVersion: 2

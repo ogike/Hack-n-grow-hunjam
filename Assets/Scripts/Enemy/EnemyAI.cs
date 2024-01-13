@@ -122,7 +122,7 @@ namespace Enemy
                 Time.deltaTime * speed
             );
             
-            AnimatorSetFloat("dirH", DirForward.x);
+            AnimatorSetFloat("dirH", DirForward.x > 0 ? 1 : -1);
         }
 
         public void MoveRigidbody(Vector2 force)

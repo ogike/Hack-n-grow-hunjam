@@ -2,6 +2,7 @@ using System;
 using Player;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Enemy.States
 {
@@ -11,7 +12,11 @@ namespace Enemy.States
         protected override string stateDebugName => "Attack Main Laser";
 
         [Header("Laser values")]
-        public float trackingSpeed;
+        public float fastTrackingTime;
+        public float fastTrackingSpeed;
+        [FormerlySerializedAs("trackingSpeed")] public float slowTrackingSpeed;
+        private float _curTrackingSpeed;
+        
         public float trackingMaxRange;
         public float startingLaserLength;
 
@@ -67,6 +72,7 @@ namespace Enemy.States
             lineRenderer.SetPosition(1, _trackingPos);
 
             _curRaycastTickTime = 0;
+            _curTrackingSpeed = fastTrackingSpeed;
         }
 
 
@@ -74,8 +80,10 @@ namespace Enemy.States
         {
             base.Tick();
 
+            if (curTimeSinceEntry >= fastTrackingTime) _curTrackingSpeed = slowTrackingSpeed;
+            
             _trackingPos = Vector3.MoveTowards(_trackingPos, _playerTrans.position,
-                trackingSpeed * Time.deltaTime);
+                _curTrackingSpeed * Time.deltaTime);
 
             if (Vector2.Distance(trackingStartPos.position, _trackingPos) > trackingMaxRange)
             {
@@ -90,6 +98,7 @@ namespace Enemy.States
             if (_curRaycastTickTime <= 0)
             {
                 RaycastCheck();
+                _curRaycastTickTime = raycastTickTime;
             }
             else
             {

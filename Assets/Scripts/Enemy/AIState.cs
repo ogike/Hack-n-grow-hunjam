@@ -25,7 +25,7 @@ namespace Enemy.States
         public AIStateMecanimInfo animationInfo;
         
         protected virtual string stateDebugName => "Default state name";
-        private float curTimeSinceEntry;
+        protected float curTimeSinceEntry;
 
 
         // REFERENCES //////////////////////
