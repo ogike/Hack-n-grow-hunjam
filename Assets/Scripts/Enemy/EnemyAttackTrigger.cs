@@ -13,6 +13,10 @@ namespace Enemy
     {
         public string playerTag = "Player";
 
+        public bool canHitMultipleTimes = false;
+        public float hitFrequencyTime = 0.3f;
+        private float _timeUntilNextAttackTime;
+        
         private PlayerHitCallback onHitCallback;
         private bool hasHitPlayer;
         private SpriteRenderer _renderer;
@@ -20,6 +24,18 @@ namespace Enemy
         private void Awake()
         {
             _renderer = GetComponent<SpriteRenderer>();
+        }
+
+        private void Update()
+        {
+            if (hasHitPlayer && canHitMultipleTimes)
+            {
+                _timeUntilNextAttackTime -= Time.deltaTime;
+                if (_timeUntilNextAttackTime <= 0)
+                {
+                    hasHitPlayer = false;
+                }
+            }
         }
 
         private void OnEnable()
@@ -57,12 +73,17 @@ namespace Enemy
             PlayerHealth playerHealth = col.GetComponent<PlayerHealth>();
             if (playerHealth == null)
             {
-                Debug.LogWarning("GameObject with \"Player\" tag doesnt have EnemyHealth component!");
+                Debug.LogWarning("GameObject with \"Player\" tag doesnt have PlayerHealth component!");
                 return;
             }
 
             onHitCallback(playerHealth);
+            
             hasHitPlayer = true;
+            if (canHitMultipleTimes)
+            {
+                _timeUntilNextAttackTime = hitFrequencyTime;
+            }
         }
 
         public void RegisterOnHit(PlayerHitCallback callback)

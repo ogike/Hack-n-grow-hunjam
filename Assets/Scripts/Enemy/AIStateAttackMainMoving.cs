@@ -9,8 +9,8 @@ namespace Enemy.States
         protected override string stateDebugName => "Attack Main Moving";
 
         public float speed;
-        private Vector2 _dir;
 
+        private Vector2 _dir;
         private Rigidbody2D _rigidbody2D;
 
         public override void Init()

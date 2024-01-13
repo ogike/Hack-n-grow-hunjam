@@ -1,5 +1,6 @@
 using System;
 using Player;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 namespace Enemy.States
@@ -9,10 +10,21 @@ namespace Enemy.States
     {
         protected override string stateDebugName => "Attack Main Laser";
 
+        [Header("Laser values")]
         public float trackingSpeed;
+        public float trackingMaxRange;
+        public float startingLaserLength;
+
+        public float raycastTickTime = 0.1f;
+        private float _curRaycastTickTime;
+        public LayerMask attackLayerMask;
+
+        [Header("References")]
         public Transform trackingStartPos;
         public GameObject laserEndEffect;
         private Transform _laserEndEffectTransform;
+
+        public LineRenderer lineRenderer;
 
         private Vector3 _trackingPos;
 
@@ -32,15 +44,29 @@ namespace Enemy.States
             _playerTrans = PlayerController.Instance.transform;
             _laserEndEffectTransform = laserEndEffect.transform;
             laserEndEffect.SetActive(false);
+            lineRenderer.enabled = false;
+
+            if (startingLaserLength > trackingMaxRange)
+            {
+                Debug.LogWarning("Starting laser length is longer than max range!");
+            }
         }
 
         public override void Entry()
         {
             base.Entry();
 
-            _trackingPos = trackingStartPos.position;
+            Vector3 startPos = trackingStartPos.position;
+            _trackingPos = Vector3.MoveTowards(startPos, _playerTrans.position, startingLaserLength);
+            
             _laserEndEffectTransform.position = _trackingPos;
             laserEndEffect.SetActive(true);
+
+            lineRenderer.enabled = true;
+            lineRenderer.SetPosition(0, startPos);
+            lineRenderer.SetPosition(1, _trackingPos);
+
+            _curRaycastTickTime = 0;
         }
 
 
@@ -50,12 +76,55 @@ namespace Enemy.States
 
             _trackingPos = Vector3.MoveTowards(_trackingPos, _playerTrans.position,
                 trackingSpeed * Time.deltaTime);
+
+            if (Vector2.Distance(trackingStartPos.position, _trackingPos) > trackingMaxRange)
+            {
+                _trackingPos = Vector3.MoveTowards(trackingStartPos.position, _playerTrans.position, trackingMaxRange);
+            }
+            
             _laserEndEffectTransform.position = _trackingPos;
+            
+            lineRenderer.SetPosition(0, trackingStartPos.position);
+            lineRenderer.SetPosition(1, _trackingPos);
+
+            if (_curRaycastTickTime <= 0)
+            {
+                RaycastCheck();
+            }
+            else
+            {
+                _curRaycastTickTime -= Time.deltaTime;
+            }
+        }
+
+        public void RaycastCheck()
+        {
+            Vector3 startPos = trackingStartPos.position;
+            Vector3 endPos = _trackingPos;
+            float dist = Vector3.Distance(startPos, endPos);
+
+            RaycastHit2D hit = Physics2D.Raycast(
+                startPos, endPos, 
+                dist, attackLayerMask
+                );
+
+            if (hit)
+            {
+                PlayerHealth playerHealth = hit.transform.GetComponent<PlayerHealth>();
+                if (playerHealth == null)
+                {
+                    Debug.LogWarning("Raycast hit result "  + hit.transform.name + "doesnt have PlayerHealth component!");
+                    return;
+                }
+
+                base.AttackOnHit(playerHealth);
+            }
         }
 
         public override void Exit()
         {
-            laserEndEffect.SetActive(false);   
+            laserEndEffect.SetActive(false);
+            lineRenderer.enabled = false;
         }
     }
 }

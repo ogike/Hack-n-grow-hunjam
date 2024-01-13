@@ -328,6 +328,7 @@ MonoBehaviour:
     attackDamage: 1
     attackKnockBackAmount: 1
     rangeToStartAttack: 0.5
+    stopOnSuccesfulHit: 1
     attackAudio: {fileID: 8300000, guid: 5d2585ddc5fc3684f8cebd2435f8a286, type: 3}
     attackMainReferenceAnim: {fileID: 7400000, guid: 66e66b9613fd4e0418b9c16474b3f19e, type: 2}
     attackHitbox: {fileID: 2868435147375317271}
@@ -493,6 +494,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTag: Player
+  canHitMultipleTimes: 0
+  hitFrequencyTime: 0.3
 --- !u!61 &1886071421897675019
 BoxCollider2D:
   m_ObjectHideFlags: 0

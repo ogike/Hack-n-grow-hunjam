@@ -14,8 +14,7 @@ namespace Enemy.States
         public float attackKnockBackAmount = 1;
         public float rangeToStartAttack = 0.5f;
         
-        //probably will be replaced by exiting the state...?
-        //private IEnumerator _attackCoroutine;
+        public bool stopOnSuccesfulHit;
         
         [Header("Sounds")] 
         public AudioClip attackAudio;
@@ -72,6 +71,9 @@ namespace Enemy.States
             Debug.Log("Hitting player with: " + attackDamage);
             playerHealth.TakeDamage(attackDamage, 
                         _controller.DirForward * attackKnockBackAmount);
+            
+            if(stopOnSuccesfulHit)
+                _controller.FinishState(this);
 
             //effects go here
         }
