@@ -185,7 +185,7 @@ namespace Player
                 if (CurrentAttackState == AttackState.NotAttacking)
                 {
                     CurrentAttackComboState = AttackComboState.LeftSwing;
-                    _activeAttackCoroutine = Attack(false, AttackComboState.LeftSwing, false);
+                    _activeAttackCoroutine = Attack(AttackComboState.LeftSwing, false);
                     StartCoroutine(_activeAttackCoroutine);
                 }
                 else if(CurrentAttackState == AttackState.WinddownReady && !hasPressedAttackThisCombo)
@@ -203,13 +203,13 @@ namespace Player
                 if (CurrentAttackState == AttackState.NotAttacking)
                 {
                     CurrentAttackComboState = AttackComboState.HeavyThrust;
-                    _activeAttackCoroutine = Attack(false, AttackComboState.HeavyThrust, false);
+                    _activeAttackCoroutine = Attack(AttackComboState.HeavyThrust, false);
                     StartCoroutine(_activeAttackCoroutine);
                 }
                 else if(CurrentAttackState is AttackState.WinddownReady or AttackState.WinddownPre)
                 {
                     StopCurrentAttack();
-                    _activeAttackCoroutine = Attack(true, AttackComboState.HeavyThrust, false);
+                    _activeAttackCoroutine = Attack(AttackComboState.HeavyThrust, true);
                     StartCoroutine(_activeAttackCoroutine);
                 }
             }
@@ -417,7 +417,7 @@ namespace Player
             }
         }
 
-        IEnumerator Attack(bool skipWindup, AttackComboState newComboState, bool chainedAttack = false)
+        IEnumerator Attack(AttackComboState newComboState, bool chainedAttack = false)
         {
             switch (newComboState)
             {
@@ -448,7 +448,7 @@ namespace Player
 
 
             //##############################################################################################################
-            if (!skipWindup)
+            if (_curAttack.anticipationTime.frames > 0 && !(chainedAttack && _curAttack.skipAnticipationInCombos))
             {
                 CurrentAttackState = AttackState.Windup;
                 animator.SetTrigger("Attack");
@@ -514,7 +514,7 @@ namespace Player
             CurrentAttackComboState = (CurrentAttackComboState == AttackComboState.LeftSwing)
                 ? AttackComboState.RightSwing
                 : AttackComboState.LeftSwing;
-            _activeAttackCoroutine = Attack(true, CurrentAttackComboState, true);
+            _activeAttackCoroutine = Attack(CurrentAttackComboState, true);
             StartCoroutine(_activeAttackCoroutine);
         }
 

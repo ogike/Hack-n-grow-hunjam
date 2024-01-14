@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 using static Player.PlayerController;
 
 namespace Player
@@ -12,6 +13,7 @@ namespace Player
         public float knockoutForce;
     
         [Header("Timing")]
+        public bool skipAnticipationInCombos;
         public TimeValue anticipationTime;
         public TimeValue strikeTime;
         public TimeValue recoveryTime;
@@ -21,6 +23,7 @@ namespace Player
         public AttackMovementRestriction anticipationRestriction;
         public AttackMovementRestriction strikeRestriction;
         public AttackMovementRestriction recoveryRestriction;
+
         
         // [Tooltip("Can the attack be cancelled by a dash")]
         // public bool dashCancelable;

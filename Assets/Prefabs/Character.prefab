@@ -407,7 +407,7 @@ Transform:
   - {fileID: 2290537870328620308}
   - {fileID: 578832250694927079}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2793193698236965643
 MonoBehaviour:
@@ -472,16 +472,17 @@ MonoBehaviour:
   lightAttackLeftSwing:
     damage: 10
     knockoutTime:
-      frames: 0
+      frames: 20
     knockoutForce: 1000
+    skipAnticipationInCombos: 0
     anticipationTime:
-      frames: 0
+      frames: 3
     strikeTime:
-      frames: 0
+      frames: 4
     recoveryTime:
-      frames: 0
+      frames: 4
     recoveryReadiedTime:
-      frames: 0
+      frames: 4
     cooldownTime:
       frames: 0
     anticipationRestriction: 2
@@ -496,16 +497,17 @@ MonoBehaviour:
   lightAttackRightSwing:
     damage: 10
     knockoutTime:
-      frames: 0
+      frames: 20
     knockoutForce: 1000
+    skipAnticipationInCombos: 1
     anticipationTime:
-      frames: 0
+      frames: 3
     strikeTime:
-      frames: 0
+      frames: 2
     recoveryTime:
-      frames: 0
+      frames: 6
     recoveryReadiedTime:
-      frames: 0
+      frames: 6
     cooldownTime:
       frames: 0
     anticipationRestriction: 2
@@ -520,16 +522,17 @@ MonoBehaviour:
   heavyAttackThrust:
     damage: 20
     knockoutTime:
-      frames: 0
+      frames: 40
     knockoutForce: 1300
+    skipAnticipationInCombos: 0
     anticipationTime:
-      frames: 0
+      frames: 6
     strikeTime:
-      frames: 0
+      frames: 6
     recoveryTime:
-      frames: 0
+      frames: 6
     recoveryReadiedTime:
-      frames: 0
+      frames: 3
     cooldownTime:
       frames: 0
     anticipationRestriction: 1
@@ -568,7 +571,7 @@ MonoBehaviour:
   maxHps: 0a0000000f00000019000000280000003c00000055000000
   gameOverScreen: {fileID: 0}
   invisibilityFrameTime:
-    frames: 10
+    frames: 4
   healthText: {fileID: 0}
   healthMeter: {fileID: 0}
   takeDamageAudio: {fileID: 8300000, guid: 348162697ce5df949a77fd5b76a5e562, type: 3}
