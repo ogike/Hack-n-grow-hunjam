@@ -52,7 +52,7 @@ namespace Enemy.States
             AudioManager.Instance.PlayAudio(attackAudio);
             
             _controller.AnimatorSetFloat("AttackMainTime",
-                attackMainReferenceAnim.length / animationInfo.stateTime);
+                attackMainReferenceAnim.length / animationInfo.stateTime.Seconds);
         }
 
         public override void Exit()

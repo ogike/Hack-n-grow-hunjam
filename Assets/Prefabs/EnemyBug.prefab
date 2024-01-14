@@ -305,16 +305,18 @@ MonoBehaviour:
   animator: {fileID: 8409859379796740788}
   stateMove:
     animationInfo:
-      exitsByDefault: 0
-      stateTime: 0
+      exitsByDefault: 1
+      stateTime:
+        frames: 0
       animatorEntryTrigger: 
-      animatorEntryEventType: 0
+      animatorEntryEventType: 1
     speed: 750
     rotationSpeed: 5
   stateAttackWindup:
     animationInfo:
       exitsByDefault: 1
-      stateTime: 0.6
+      stateTime:
+        frames: 12
       animatorEntryTrigger: AttackState
       animatorEntryEventType: 2
     attackWindUpReferenceAnim: {fileID: 7400000, guid: 58a7464f72aa15145a08f84145997fd5, type: 2}
@@ -322,7 +324,8 @@ MonoBehaviour:
   stateAttackMain:
     animationInfo:
       exitsByDefault: 1
-      stateTime: 0.3
+      stateTime:
+        frames: 6
       animatorEntryTrigger: AttackMain
       animatorEntryEventType: 2
     attackDamage: 1
@@ -336,7 +339,8 @@ MonoBehaviour:
   stateAttackWinddown:
     animationInfo:
       exitsByDefault: 1
-      stateTime: 0.5
+      stateTime:
+        frames: 10
       animatorEntryTrigger: AttackWinddown
       animatorEntryEventType: 2
     attackWindDownReferenceAnim: {fileID: 7400000, guid: 468bc800ffe0de04fbc692303ccd630f, type: 2}
@@ -344,7 +348,8 @@ MonoBehaviour:
   stateKnockBack:
     animationInfo:
       exitsByDefault: 1
-      stateTime: 1
+      stateTime:
+        frames: 20
       animatorEntryTrigger: 
       animatorEntryEventType: 0
 --- !u!50 &8439850509543023855

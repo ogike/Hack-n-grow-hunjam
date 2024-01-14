@@ -72,7 +72,7 @@ namespace Player
 
         [Header("Dashing")] //##############################################################################################
         [HideInInspector]public float dashSpeed;
-        [HideInInspector]public float dashActiveTime;
+        [HideInInspector]public float dashActiveTime; //TODO: convert these to frame time
         [HideInInspector]public float dashCooldownTime;
         [HideInInspector]public float dashPostFreezeTime;
 
@@ -456,7 +456,7 @@ namespace Player
                 if (_curAttack.anticipationRestriction is AttackMovementRestriction.Stop or AttackMovementRestriction.HalfSpeed)
                     _rigidbody.velocity = Vector2.zero;
 
-                yield return new WaitForSeconds(_curAttack.anticipationTime * cooldownModifiers[CurLevel]);
+                yield return new WaitForSeconds(_curAttack.anticipationTime.Seconds * cooldownModifiers[CurLevel]);
             }
             else
             {
@@ -472,7 +472,7 @@ namespace Player
             //enables the triggers, calls OnEnable() on it
             _attackTriggerGameObject.SetActive(true);
             _curAttack.strikeEffectSprite.SetActive(true);
-            yield return new WaitForSeconds(_curAttack.strikeTime * cooldownModifiers[CurLevel]);
+            yield return new WaitForSeconds(_curAttack.strikeTime.Seconds * cooldownModifiers[CurLevel]);
 
             //##############################################################################################################
             CurrentAttackState = AttackState.WinddownPre;
@@ -481,7 +481,7 @@ namespace Player
         
             _attackTriggerGameObject.SetActive(false);
             _curAttack.strikeEffectSprite.SetActive(false);
-            yield return new WaitForSeconds(_curAttack.recoveryTime * cooldownModifiers[CurLevel]);
+            yield return new WaitForSeconds(_curAttack.recoveryTime.Seconds * cooldownModifiers[CurLevel]);
         
         
             //##############################################################################################################
@@ -498,12 +498,12 @@ namespace Player
         
             CurrentAttackState = AttackState.WinddownReady;
         
-            yield return new WaitForSeconds(_curAttack.recoveryReadiedTime * cooldownModifiers[CurLevel]);
+            yield return new WaitForSeconds(_curAttack.recoveryReadiedTime.Seconds * cooldownModifiers[CurLevel]);
 
             //##############################################################################################################
             CurrentAttackState = AttackState.Cooldown;
         
-            yield return new WaitForSeconds(_curAttack.cooldownTime * cooldownModifiers[CurLevel]);
+            yield return new WaitForSeconds(_curAttack.cooldownTime.Seconds * cooldownModifiers[CurLevel]);
 
             //##############################################################################################################
             CurrentAttackState = AttackState.NotAttacking;
@@ -539,23 +539,23 @@ namespace Player
             if(_curAttack == null) return;
             
             animator.SetFloat("AttackWindupTime", 
-                _curAttack.anticipationReferenceAnim.length / (_curAttack.anticipationTime * cooldownModifiers[CurLevel]));
+                _curAttack.anticipationReferenceAnim.length / (_curAttack.anticipationTime.Seconds * cooldownModifiers[CurLevel]));
         
             animator.SetFloat("AttackMainTime", 
-                _curAttack.strikeReferenceAnim.length / (_curAttack.strikeTime * cooldownModifiers[CurLevel]));
+                _curAttack.strikeReferenceAnim.length / (_curAttack.strikeTime.Seconds * cooldownModifiers[CurLevel]));
         
             animator.SetFloat("AttackWinddownTime", 
-                _curAttack.recoveryReferenceAnim.length / (_curAttack.recoveryTime * cooldownModifiers[CurLevel]));
+                _curAttack.recoveryReferenceAnim.length / (_curAttack.recoveryTime.Seconds * cooldownModifiers[CurLevel]));
         
             animator.SetFloat("AttackWinddownComboReadyTime", 
-                _curAttack.recoveryReadiedReferenceAnim.length / (_curAttack.recoveryReadiedTime * cooldownModifiers[CurLevel]));
+                _curAttack.recoveryReadiedReferenceAnim.length / (_curAttack.recoveryReadiedTime.Seconds * cooldownModifiers[CurLevel]));
         }
 
         public void AttackHit(EnemyHealth enemy)
         {
             Vector2 dirToTarg = enemy.transform.position - _trans.position;
             enemy.Damage(Mathf.FloorToInt(_curAttack.damage * damageModifiers[CurLevel]));
-            enemy.Knockback(_curAttack.knockoutTime * knockbackModifiers[CurLevel],
+            enemy.Knockback(_curAttack.knockoutTime.Seconds * knockbackModifiers[CurLevel],
                 dirToTarg * (_curAttack.knockoutForce * knockbackModifiers[CurLevel]));
         }
 

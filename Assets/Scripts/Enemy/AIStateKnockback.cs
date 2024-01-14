@@ -1,4 +1,5 @@
 using System;
+using TMPro.SpriteAssetUtilities;
 using UnityEngine;
 
 namespace Enemy.States
@@ -10,7 +11,7 @@ namespace Enemy.States
 
         public void SetKnockbackAmount(float amount)
         {
-            animationInfo.stateTime = amount;
+            animationInfo.stateTime.frames = Mathf.FloorToInt(amount / FrameTime.FrameTimeSeconds);
         }
         
     }

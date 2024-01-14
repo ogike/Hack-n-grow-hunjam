@@ -17,7 +17,7 @@ namespace Enemy.States
             base.Entry();
             
             _controller.AnimatorSetFloat("AttackWinddownTime",
-                attackWindDownReferenceAnim.length / animationInfo.stateTime);
+                attackWindDownReferenceAnim.length / animationInfo.stateTime.Seconds);
         }
 
         public override void Exit()

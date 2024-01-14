@@ -14,7 +14,7 @@ public class PlayerHealth : MonoBehaviour
 
     public GameObject gameOverScreen;
 
-    public float invisibilityFrameTime;
+    public TimeValue invisibilityFrameTime;
     private float curIFrameTime;
 
     [Header("UI")] 
@@ -78,7 +78,7 @@ public class PlayerHealth : MonoBehaviour
         _playerController.PlayerGetDamage(knockBackVector);
         
         
-        curIFrameTime = invisibilityFrameTime;
+        curIFrameTime = invisibilityFrameTime.Seconds;
         
         if (curHp <= 0)
         {

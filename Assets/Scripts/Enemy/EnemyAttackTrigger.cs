@@ -14,7 +14,7 @@ namespace Enemy
         public string playerTag = "Player";
 
         public bool canHitMultipleTimes = false;
-        public float hitFrequencyTime = 0.3f;
+        public TimeValue hitFrequencyTime;
         private float _timeUntilNextAttackTime;
         
         private PlayerHitCallback onHitCallback;
@@ -82,7 +82,7 @@ namespace Enemy
             hasHitPlayer = true;
             if (canHitMultipleTimes)
             {
-                _timeUntilNextAttackTime = hitFrequencyTime;
+                _timeUntilNextAttackTime = hitFrequencyTime.Seconds;
             }
         }
 

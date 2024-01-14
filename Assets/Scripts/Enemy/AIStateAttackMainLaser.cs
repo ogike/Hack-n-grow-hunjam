@@ -12,7 +12,7 @@ namespace Enemy.States
         protected override string stateDebugName => "Attack Main Laser";
 
         [Header("Laser values")]
-        public float fastTrackingTime;
+        public TimeValue fastTrackingTime;
         public float fastTrackingSpeed;
         [FormerlySerializedAs("trackingSpeed")] public float slowTrackingSpeed;
         private float _curTrackingSpeed;
@@ -20,7 +20,7 @@ namespace Enemy.States
         public float trackingMaxRange;
         public float startingLaserLength;
 
-        public float raycastTickTime = 0.1f;
+        public TimeValue raycastTickTime ;
         private float _curRaycastTickTime;
         public LayerMask attackLayerMask;
 
@@ -80,7 +80,7 @@ namespace Enemy.States
         {
             base.Tick();
 
-            if (curTimeSinceEntry >= fastTrackingTime) _curTrackingSpeed = slowTrackingSpeed;
+            if (curTimeSinceEntry >= fastTrackingTime.Seconds) _curTrackingSpeed = slowTrackingSpeed;
             
             _trackingPos = Vector3.MoveTowards(_trackingPos, _playerTrans.position,
                 _curTrackingSpeed * Time.deltaTime);
@@ -98,7 +98,7 @@ namespace Enemy.States
             if (_curRaycastTickTime <= 0)
             {
                 RaycastCheck();
-                _curRaycastTickTime = raycastTickTime;
+                _curRaycastTickTime = raycastTickTime.Seconds;
             }
             else
             {

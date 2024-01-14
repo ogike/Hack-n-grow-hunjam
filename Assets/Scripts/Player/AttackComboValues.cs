@@ -8,15 +8,15 @@ namespace Player
     public class AttackComboValues
     {
         public float damage;
-        public float knockoutTime;
+        public TimeValue knockoutTime;
         public float knockoutForce;
     
         [Header("Timing")]
-        public float anticipationTime;
-        public float strikeTime;
-        public float recoveryTime = 0.1f;
-        public float recoveryReadiedTime = 0.5f;
-        public float cooldownTime;
+        public TimeValue anticipationTime;
+        public TimeValue strikeTime;
+        public TimeValue recoveryTime;
+        public TimeValue recoveryReadiedTime;
+        public TimeValue cooldownTime;
 
         public AttackMovementRestriction anticipationRestriction;
         public AttackMovementRestriction strikeRestriction;

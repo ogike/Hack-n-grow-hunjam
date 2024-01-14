@@ -471,13 +471,19 @@ MonoBehaviour:
   growAudio: {fileID: 8300000, guid: 06a73f649ac9009419186535ae384700, type: 3}
   lightAttackLeftSwing:
     damage: 10
-    knockoutTime: 1
+    knockoutTime:
+      frames: 0
     knockoutForce: 1000
-    anticipationTime: 0.15
-    strikeTime: 0.2
-    recoveryTime: 0.2
-    recoveryReadiedTime: 0.2
-    cooldownTime: 0
+    anticipationTime:
+      frames: 0
+    strikeTime:
+      frames: 0
+    recoveryTime:
+      frames: 0
+    recoveryReadiedTime:
+      frames: 0
+    cooldownTime:
+      frames: 0
     anticipationRestriction: 2
     strikeRestriction: 1
     recoveryRestriction: 2
@@ -489,13 +495,19 @@ MonoBehaviour:
     strikeEffectSprite: {fileID: 6881052492403597158}
   lightAttackRightSwing:
     damage: 10
-    knockoutTime: 1
+    knockoutTime:
+      frames: 0
     knockoutForce: 1000
-    anticipationTime: 0.15
-    strikeTime: 0.13
-    recoveryTime: 0.3
-    recoveryReadiedTime: 0.3
-    cooldownTime: 0
+    anticipationTime:
+      frames: 0
+    strikeTime:
+      frames: 0
+    recoveryTime:
+      frames: 0
+    recoveryReadiedTime:
+      frames: 0
+    cooldownTime:
+      frames: 0
     anticipationRestriction: 2
     strikeRestriction: 1
     recoveryRestriction: 2
@@ -507,13 +519,19 @@ MonoBehaviour:
     strikeEffectSprite: {fileID: 6881052492403597158}
   heavyAttackThrust:
     damage: 20
-    knockoutTime: 2
+    knockoutTime:
+      frames: 0
     knockoutForce: 1300
-    anticipationTime: 0.3
-    strikeTime: 0.3
-    recoveryTime: 0.3
-    recoveryReadiedTime: 0.15
-    cooldownTime: 0
+    anticipationTime:
+      frames: 0
+    strikeTime:
+      frames: 0
+    recoveryTime:
+      frames: 0
+    recoveryReadiedTime:
+      frames: 0
+    cooldownTime:
+      frames: 0
     anticipationRestriction: 1
     strikeRestriction: 1
     recoveryRestriction: 1
@@ -549,7 +567,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHps: 0a0000000f00000019000000280000003c00000055000000
   gameOverScreen: {fileID: 0}
-  invisibilityFrameTime: 0.5
+  invisibilityFrameTime:
+    frames: 10
   healthText: {fileID: 0}
   healthMeter: {fileID: 0}
   takeDamageAudio: {fileID: 8300000, guid: 348162697ce5df949a77fd5b76a5e562, type: 3}

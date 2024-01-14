@@ -47,7 +47,7 @@ namespace EditorScripts
                     if (entryEventType.enumValueIndex != (int)AnimatorEntryEventType.None)
                     {
                         // EditorGUILayout.Space();
-                        EditorGUIUtility.labelWidth = 5; // so small it wont appear
+                        EditorGUIUtility.labelWidth = 1; // so small it wont appear
 
                         EditorGUILayout.PropertyField(
                             property.FindPropertyRelative("animatorEntryTrigger"),

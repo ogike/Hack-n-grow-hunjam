@@ -1694,6 +1694,10 @@ PrefabInstance:
       propertyPath: gameOverScreen
       value: 
       objectReference: {fileID: 1942233857}
+    - target: {fileID: 1735569420791241970, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
+      propertyPath: invisibilityFrameTime.frames
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2793193698236965643, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
       propertyPath: xpMeter
       value: 
@@ -1705,6 +1709,66 @@ PrefabInstance:
     - target: {fileID: 2793193698236965643, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
       propertyPath: lightAttackLeftSwing.name
       value: Light Attack Left Swing
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793193698236965643, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
+      propertyPath: heavyAttackThrust.strikeTime.frames
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793193698236965643, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
+      propertyPath: heavyAttackThrust.knockoutTime.frames
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793193698236965643, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
+      propertyPath: heavyAttackThrust.recoveryTime.frames
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793193698236965643, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
+      propertyPath: lightAttackLeftSwing.strikeTime.frames
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793193698236965643, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
+      propertyPath: lightAttackRightSwing.strikeTime.frames
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793193698236965643, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
+      propertyPath: lightAttackLeftSwing.knockoutTime.frames
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793193698236965643, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
+      propertyPath: lightAttackLeftSwing.recoveryTime.frames
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793193698236965643, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
+      propertyPath: heavyAttackThrust.anticipationTime.frames
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793193698236965643, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
+      propertyPath: lightAttackRightSwing.knockoutTime.frames
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793193698236965643, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
+      propertyPath: lightAttackRightSwing.recoveryTime.frames
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793193698236965643, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
+      propertyPath: heavyAttackThrust.recoveryReadiedTime.frames
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793193698236965643, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
+      propertyPath: lightAttackLeftSwing.anticipationTime.frames
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793193698236965643, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
+      propertyPath: lightAttackRightSwing.anticipationTime.frames
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793193698236965643, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
+      propertyPath: lightAttackLeftSwing.recoveryReadiedTime.frames
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793193698236965643, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
+      propertyPath: lightAttackRightSwing.recoveryReadiedTime.frames
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6358756388176844130, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
       propertyPath: m_Name

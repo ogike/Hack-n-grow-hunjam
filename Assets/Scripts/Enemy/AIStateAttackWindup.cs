@@ -18,7 +18,7 @@ namespace Enemy.States
             base.Entry();
             
             _controller.AnimatorSetFloat("AttackWindupTime",
-                attackWindUpReferenceAnim.length / animationInfo.stateTime);
+                attackWindUpReferenceAnim.length / animationInfo.stateTime.Seconds);
         }
 
         public override void Tick()

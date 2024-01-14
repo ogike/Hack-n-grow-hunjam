@@ -11,7 +11,7 @@ namespace Enemy.States
     {
 
         public bool exitsByDefault;
-        public float stateTime;
+        public TimeValue stateTime;
         
         [FormerlySerializedAs("AnimatorEntryTrigger")] [Tooltip("The Animator trigger or bool that will be set off on state entry")]
         public String animatorEntryTrigger;
@@ -82,7 +82,7 @@ namespace Enemy.States
         {
             curTimeSinceEntry += Time.deltaTime;
 
-            if (animationInfo.exitsByDefault && curTimeSinceEntry >= animationInfo.stateTime)
+            if (animationInfo.exitsByDefault && curTimeSinceEntry >= animationInfo.stateTime.Seconds)
             {
                 _controller.FinishState(this);
             }

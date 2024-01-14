@@ -388,7 +388,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTag: Player
   canHitMultipleTimes: 1
-  hitFrequencyTime: 0.1
+  hitFrequencyTime:
+    frames: 2
 --- !u!58 &3644991016626702456
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -664,7 +665,8 @@ MonoBehaviour:
   stateMove:
     animationInfo:
       exitsByDefault: 0
-      stateTime: 0
+      stateTime:
+        frames: 0
       animatorEntryTrigger: 
       animatorEntryEventType: 0
     speed: 750
@@ -672,7 +674,8 @@ MonoBehaviour:
   stateAttackWindup:
     animationInfo:
       exitsByDefault: 1
-      stateTime: 0.6
+      stateTime:
+        frames: 12
       animatorEntryTrigger: AttackState
       animatorEntryEventType: 2
     attackWindUpReferenceAnim: {fileID: 7400000, guid: 84ba0b0e4703e964da246358fad1a056, type: 2}
@@ -680,7 +683,8 @@ MonoBehaviour:
   stateAttackMain:
     animationInfo:
       exitsByDefault: 1
-      stateTime: 1
+      stateTime:
+        frames: 20
       animatorEntryTrigger: AttackMain
       animatorEntryEventType: 2
     attackDamage: 1
@@ -690,12 +694,14 @@ MonoBehaviour:
     attackAudio: {fileID: 8300000, guid: 5d2585ddc5fc3684f8cebd2435f8a286, type: 3}
     attackMainReferenceAnim: {fileID: -5735446460916955084, guid: 11c833b2c9503594bb9291a30dd234a7, type: 3}
     attackHitbox: {fileID: 2505098806801007546}
-    fastTrackingTime: 0.25
+    fastTrackingTime:
+      frames: 5
     fastTrackingSpeed: 1.5
     slowTrackingSpeed: 0.3
     trackingMaxRange: 3
     startingLaserLength: 0
-    raycastTickTime: 0.05
+    raycastTickTime:
+      frames: 1
     attackLayerMask:
       serializedVersion: 2
       m_Bits: 8
@@ -705,7 +711,8 @@ MonoBehaviour:
   stateAttackWinddown:
     animationInfo:
       exitsByDefault: 1
-      stateTime: 0.5
+      stateTime:
+        frames: 10
       animatorEntryTrigger: AttackWinddown
       animatorEntryEventType: 2
     attackWindDownReferenceAnim: {fileID: 7400000, guid: fbf170d85e2c1ea4fb161d71cb8ecb11, type: 2}
@@ -713,7 +720,8 @@ MonoBehaviour:
   stateKnockBack:
     animationInfo:
       exitsByDefault: 1
-      stateTime: 1
+      stateTime:
+        frames: 20
       animatorEntryTrigger: 
       animatorEntryEventType: 0
 --- !u!50 &8439850509543023855
