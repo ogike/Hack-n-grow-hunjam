@@ -67,9 +67,9 @@ namespace Enemy.States
             _laserEndEffectTransform.position = _trackingPos;
             laserEndEffect.SetActive(true);
 
-            lineRenderer.enabled = true;
             lineRenderer.SetPosition(0, startPos);
             lineRenderer.SetPosition(1, _trackingPos);
+            lineRenderer.enabled = true;
 
             _curRaycastTickTime = 0;
             _curTrackingSpeed = fastTrackingSpeed;
