@@ -305,7 +305,7 @@ MonoBehaviour:
   animator: {fileID: 8409859379796740788}
   stateMove:
     animationInfo:
-      exitsByDefault: 1
+      exitsByDefault: 0
       stateTime:
         frames: 0
       animatorEntryTrigger: 
@@ -328,7 +328,7 @@ MonoBehaviour:
         frames: 6
       animatorEntryTrigger: AttackMain
       animatorEntryEventType: 2
-    attackDamage: 1
+    attackDamage: 2
     attackKnockBackAmount: 1
     rangeToStartAttack: 0.5
     stopOnSuccesfulHit: 1
@@ -500,7 +500,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTag: Player
   canHitMultipleTimes: 0
-  hitFrequencyTime: 0.3
+  hitFrequencyTime:
+    frames: 0
 --- !u!61 &1886071421897675019
 BoxCollider2D:
   m_ObjectHideFlags: 0
