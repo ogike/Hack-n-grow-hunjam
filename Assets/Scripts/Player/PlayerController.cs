@@ -96,6 +96,7 @@ namespace Player
 
         [Header("References")] //#####################################################################################################
         public Transform playerSprite;
+        public Transform spritePivot;
     
         private Transform _trans;
         private Rigidbody2D _rigidbody;
@@ -334,6 +335,13 @@ namespace Player
             }
         }
 
+        public void RecenterToSpritePivot()
+        {
+            Vector3 newPos = spritePivot.position;
+            _trans.position = newPos;
+            spritePivot.position = newPos;
+        }
+
         private void SetMecanimRotation(float inputH, float inputV)
         {
             float absH = Mathf.Abs(inputH);
@@ -462,6 +470,7 @@ namespace Player
             {
                 animator.SetTrigger("AttackSkipWindup");
             }
+            RecenterToSpritePivot();
 
 
             //##############################################################################################################
@@ -473,6 +482,7 @@ namespace Player
             _attackTriggerGameObject.SetActive(true);
             _curAttack.strikeEffectSprite.SetActive(true);
             yield return new WaitForSeconds(_curAttack.strikeTime.Seconds * cooldownModifiers[CurLevel]);
+            RecenterToSpritePivot();
 
             //##############################################################################################################
             CurrentAttackState = AttackState.WinddownPre;
@@ -482,12 +492,14 @@ namespace Player
             _attackTriggerGameObject.SetActive(false);
             _curAttack.strikeEffectSprite.SetActive(false);
             yield return new WaitForSeconds(_curAttack.recoveryTime.Seconds * cooldownModifiers[CurLevel]);
+            RecenterToSpritePivot();
         
         
             //##############################################################################################################
             if (hasPressedAttackThisCombo)
             {
                 _activeAttackCoroutine = null;
+                RecenterToSpritePivot();
                 //TODO: may have to wait until mecanim steps into new state?
 
                 StopCurrentAttack();
@@ -499,11 +511,13 @@ namespace Player
             CurrentAttackState = AttackState.WinddownReady;
         
             yield return new WaitForSeconds(_curAttack.recoveryReadiedTime.Seconds * cooldownModifiers[CurLevel]);
+            RecenterToSpritePivot();
 
             //##############################################################################################################
             CurrentAttackState = AttackState.Cooldown;
         
             yield return new WaitForSeconds(_curAttack.cooldownTime.Seconds * cooldownModifiers[CurLevel]);
+            RecenterToSpritePivot();
 
             //##############################################################################################################
             CurrentAttackState = AttackState.NotAttacking;
@@ -532,6 +546,7 @@ namespace Player
             //reset mecanim triggers too
             animator.ResetTrigger("Attack");
             animator.ResetTrigger("AttackSkipWindup");
+            RecenterToSpritePivot();
         }
 
         private void RecalculateAttackAnimSpeeds()

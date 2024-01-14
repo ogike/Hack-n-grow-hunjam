@@ -407,7 +407,7 @@ Transform:
   - {fileID: 2290537870328620308}
   - {fileID: 578832250694927079}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2793193698236965643
 MonoBehaviour:
@@ -556,6 +556,7 @@ MonoBehaviour:
   levelDisplayText: {fileID: 0}
   animator: {fileID: 6543660245478961490}
   playerSprite: {fileID: 6349390377570868896}
+  spritePivot: {fileID: 6349390377570868896}
 --- !u!114 &1735569420791241970
 MonoBehaviour:
   m_ObjectHideFlags: 0
