@@ -307,16 +307,7 @@ namespace Player
                 }
             
                 //move if there is input
-                float finalSpeed = baseSpeed * speedModifiers[CurLevel];
-                if ((CurrentAttackState == AttackState.Windup &&
-                     _curAttack.anticipationRestriction == AttackMovementRestriction.HalfSpeed)
-                    || (CurrentAttackState == AttackState.Windup &&
-                        _curAttack.anticipationRestriction == AttackMovementRestriction.HalfSpeed)
-                    || (CurrentAttackState == AttackState.ActiveAttack &&
-                        _curAttack.strikeRestriction == AttackMovementRestriction.HalfSpeed))
-                {
-                    finalSpeed /= 2;
-                }
+                float finalSpeed = GetCurrentMaxSpeed();
             
                 Vector2 newFullForce = new Vector2(inputH, inputV) * (finalSpeed * Time.deltaTime);
                 _rigidbody.AddForce(newFullForce);
@@ -332,6 +323,33 @@ namespace Player
                 _rigidbody.velocity = Vector2.zero;
                 animator.SetBool("isMoving", false);
             }
+        }
+
+        public float GetCurrentMaxSpeed()
+        {
+            float result = baseSpeed * speedModifiers[CurLevel];
+
+            switch (CurrentAttackState)
+            {
+                case AttackState.NotAttacking:
+                    break;
+                case AttackState.Windup:
+                    if (_curAttack.anticipationRestriction == AttackMovementRestriction.HalfSpeed) result /= 2;
+                    break;
+                case AttackState.ActiveAttack:
+                    if (_curAttack.strikeRestriction == AttackMovementRestriction.HalfSpeed) result /= 2;
+                    break;
+                case AttackState.WinddownPre: //fall thru, handled the same
+                case AttackState.WinddownReady:
+                    if (_curAttack.recoveryRestriction == AttackMovementRestriction.HalfSpeed) result /= 2;
+                    break;
+                case AttackState.Cooldown:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            return result;
         }
 
         private void SetMecanimRotation(float inputH, float inputV)

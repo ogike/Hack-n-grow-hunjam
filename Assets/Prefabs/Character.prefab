@@ -474,15 +474,15 @@ MonoBehaviour:
     knockoutTime:
       frames: 20
     knockoutForce: 1000
-    skipAnticipationInCombos: 0
+    skipAnticipationInCombos: 1
     anticipationTime:
-      frames: 3
+      frames: 2
     strikeTime:
-      frames: 4
+      frames: 2
     recoveryTime:
-      frames: 4
+      frames: 2
     recoveryReadiedTime:
-      frames: 4
+      frames: 3
     cooldownTime:
       frames: 0
     anticipationRestriction: 2
@@ -501,13 +501,13 @@ MonoBehaviour:
     knockoutForce: 1000
     skipAnticipationInCombos: 1
     anticipationTime:
-      frames: 3
-    strikeTime:
       frames: 2
+    strikeTime:
+      frames: 3
     recoveryTime:
-      frames: 6
+      frames: 2
     recoveryReadiedTime:
-      frames: 6
+      frames: 3
     cooldownTime:
       frames: 0
     anticipationRestriction: 2
@@ -528,16 +528,16 @@ MonoBehaviour:
     anticipationTime:
       frames: 6
     strikeTime:
-      frames: 6
+      frames: 3
     recoveryTime:
-      frames: 6
+      frames: 4
     recoveryReadiedTime:
       frames: 3
     cooldownTime:
       frames: 0
     anticipationRestriction: 1
     strikeRestriction: 1
-    recoveryRestriction: 1
+    recoveryRestriction: 2
     anticipationReferenceAnim: {fileID: 7400000, guid: 634ad3047fa8a324aa955b0020d2510c, type: 2}
     strikeReferenceAnim: {fileID: 7400000, guid: 3698110ee56c4d24192122e9f8ae45d3, type: 2}
     recoveryReferenceAnim: {fileID: 7400000, guid: 80d7cecb50dec6e42b49adcf814006e4, type: 2}
