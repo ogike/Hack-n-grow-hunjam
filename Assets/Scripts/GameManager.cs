@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetButtonDown("Debug Spawn"))
+        if (UserInput.instance.DebugEnemySpawnPressedThisFrame)
         {
             SpawnEnemy();
         }

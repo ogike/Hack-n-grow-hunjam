@@ -19,7 +19,7 @@ public class UIScript : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Enable Debug"))
+        if (UserInput.instance.DebugMenuButtonPressedThisFrame)
         {
             ToggleDebugPanel();   
         }

@@ -180,7 +180,7 @@ namespace Player
         
             //we can try to attack whenever
             // cooldown will be checked inside the function
-            if (Input.GetButtonDown("Fire1"))
+            if (UserInput.instance.LightAttackPressedThisFrame)
             {
                 if (CurrentAttackState == AttackState.NotAttacking)
                 {
@@ -198,7 +198,7 @@ namespace Player
                 {
                     hasPressedAttackThisCombo = true;
                 }
-            } else if (Input.GetButtonDown("Dash"))
+            } else if (UserInput.instance.HeavyAttackPressedThisFrame)
             {
                 if (CurrentAttackState == AttackState.NotAttacking)
                 {
@@ -257,8 +257,8 @@ namespace Player
         private void Move()
         {
             //get basic input dir
-            float inputH = Input.GetAxisRaw("Horizontal");
-            float inputV = Input.GetAxisRaw("Vertical");
+            float inputH = UserInput.instance.MoveInput.x;
+            float inputV = UserInput.instance.MoveInput.y;
 
             if (inputH == 0 && inputV == 0)
                 plusRotValue = 0;
