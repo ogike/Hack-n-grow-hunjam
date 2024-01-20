@@ -70,6 +70,20 @@ namespace Player
 
         private Vector2 _last4WayDir;
 
+        [Header("Defend action")]
+        [Tooltip("How much of the damage will still be applied when defending")]
+        [Range(0.0f, 1.0f)]
+        public float defenseDamageReduction;
+        
+        [Range(0.0f, 1.0f)]
+        public float defenseKnockbackReduction;
+        
+        [Tooltip("How much of the normal speed will you walk with when defending")]
+        [Range(0.0f, 1.0f)] 
+        public float defenseMovementModifier;
+        public bool defenseCancelsAttack;
+        public bool Defending { get; private set; }
+
         [Header("Dashing")] //##############################################################################################
         [HideInInspector]public float dashSpeed;
         [HideInInspector]public float dashActiveTime; //TODO: convert these to frame time
@@ -96,6 +110,7 @@ namespace Player
 
         [Header("References")] //#####################################################################################################
         public Transform playerSprite;
+        public Transform spritePivot;
     
         private Transform _trans;
         private Rigidbody2D _rigidbody;
@@ -144,6 +159,7 @@ namespace Player
             lightAttackLeftSwing.strikeEffectSprite.SetActive(false);
             lightAttackRightSwing.strikeEffectSprite.SetActive(false);
             hasPressedAttackThisCombo = false;
+            Defending = false;
         }
 
         // Update is called once per frame
@@ -212,6 +228,27 @@ namespace Player
                     _activeAttackCoroutine = Attack(AttackComboState.HeavyThrust, true);
                     StartCoroutine(_activeAttackCoroutine);
                 }
+            } else //not attacking
+            {
+                if (Input.GetButtonDown("Fire3"))
+                {
+                    if (CanDefend())
+                    {
+                        Defending = true;
+                        if (CurrentAttackState != AttackState.NotAttacking)
+                        {
+                            Debug.Log("Cancelling attack by defending");
+                            StopCurrentAttack();
+                        }
+                        
+                        animator.SetBool("isDefending", true);
+                    }
+                }
+            }
+            if (Defending && Input.GetButtonUp("Fire3"))
+            {
+                Defending = false;
+                animator.SetBool("isDefending", false);
             }
         }
 
@@ -251,6 +288,15 @@ namespace Player
                 _curAttack.recoveryRestriction == AttackMovementRestriction.Stop)
                 return false;
         
+            return true;
+        }
+
+        public bool CanDefend()
+        {
+            if (Defending) return false;
+
+            if (!defenseCancelsAttack && CurrentAttackState != AttackState.NotAttacking) return false;
+
             return true;
         }
 
@@ -307,8 +353,19 @@ namespace Player
                 }
             
                 //move if there is input
-                float finalSpeed = GetCurrentMaxSpeed();
-            
+                float finalSpeed = baseSpeed * speedModifiers[CurLevel];
+                if ((CurrentAttackState == AttackState.Windup &&
+                     _curAttack.anticipationRestriction == AttackMovementRestriction.HalfSpeed)
+                    || (CurrentAttackState == AttackState.Windup &&
+                        _curAttack.anticipationRestriction == AttackMovementRestriction.HalfSpeed)
+                    || (CurrentAttackState == AttackState.ActiveAttack &&
+                        _curAttack.strikeRestriction == AttackMovementRestriction.HalfSpeed))
+                {
+                    finalSpeed /= 2;
+                }
+
+                if (Defending) finalSpeed *= defenseMovementModifier;
+
                 Vector2 newFullForce = new Vector2(inputH, inputV) * (finalSpeed * Time.deltaTime);
                 _rigidbody.AddForce(newFullForce);
             
@@ -350,6 +407,13 @@ namespace Player
             }
 
             return result;
+        }
+        
+        public void RecenterToSpritePivot()
+        {
+            Vector3 newPos = spritePivot.position;
+            _trans.position = newPos;
+            spritePivot.position = newPos;
         }
 
         private void SetMecanimRotation(float inputH, float inputV)
@@ -480,6 +544,7 @@ namespace Player
             {
                 animator.SetTrigger("AttackSkipWindup");
             }
+            RecenterToSpritePivot();
 
 
             //##############################################################################################################
@@ -491,6 +556,7 @@ namespace Player
             _attackTriggerGameObject.SetActive(true);
             _curAttack.strikeEffectSprite.SetActive(true);
             yield return new WaitForSeconds(_curAttack.strikeTime.Seconds * cooldownModifiers[CurLevel]);
+            RecenterToSpritePivot();
 
             //##############################################################################################################
             CurrentAttackState = AttackState.WinddownPre;
@@ -500,12 +566,14 @@ namespace Player
             _attackTriggerGameObject.SetActive(false);
             _curAttack.strikeEffectSprite.SetActive(false);
             yield return new WaitForSeconds(_curAttack.recoveryTime.Seconds * cooldownModifiers[CurLevel]);
+            RecenterToSpritePivot();
         
         
             //##############################################################################################################
             if (hasPressedAttackThisCombo)
             {
                 _activeAttackCoroutine = null;
+                RecenterToSpritePivot();
                 //TODO: may have to wait until mecanim steps into new state?
 
                 StopCurrentAttack();
@@ -517,11 +585,13 @@ namespace Player
             CurrentAttackState = AttackState.WinddownReady;
         
             yield return new WaitForSeconds(_curAttack.recoveryReadiedTime.Seconds * cooldownModifiers[CurLevel]);
+            RecenterToSpritePivot();
 
             //##############################################################################################################
             CurrentAttackState = AttackState.Cooldown;
         
             yield return new WaitForSeconds(_curAttack.cooldownTime.Seconds * cooldownModifiers[CurLevel]);
+            RecenterToSpritePivot();
 
             //##############################################################################################################
             CurrentAttackState = AttackState.NotAttacking;
@@ -545,11 +615,13 @@ namespace Player
         
             //make sure we disable everything, regardless of actual state
             _attackTriggerGameObject.SetActive(false);
-            _curAttack?.strikeEffectSprite.SetActive(false);
+            if(_curAttack != null && _curAttack.strikeEffectSprite != null)
+                _curAttack.strikeEffectSprite.SetActive(false);
         
             //reset mecanim triggers too
             animator.ResetTrigger("Attack");
             animator.ResetTrigger("AttackSkipWindup");
+            RecenterToSpritePivot();
         }
 
         private void RecalculateAttackAnimSpeeds()
@@ -583,8 +655,11 @@ namespace Player
         public void PlayerGetDamage(Vector2 knockBackVector)
         {
             StopCurrentAttack();
-        
-            _rigidbody.AddForce(knockBackVector * baseKnockBackedForce);
+
+            float knockbackModifier = baseKnockBackedForce;
+            if (Defending) knockbackModifier *= defenseKnockbackReduction;
+            
+            _rigidbody.AddForce(knockBackVector * knockbackModifier);
         }
 
         public bool IsDashing()

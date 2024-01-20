@@ -67,6 +67,13 @@ public class PlayerHealth : MonoBehaviour
     {
         if (IsVulnerable() == false) return;
 
+        Debug.Log("Got " + damage + " damage");
+        if (_playerController.Defending)
+        {
+            damage = Mathf.FloorToInt((damage * 1.0f) * _playerController.defenseDamageReduction);
+            Debug.Log("Defending, registering " + damage + " damage");
+        }
+
         curHp -= damage;
         UpdateHealthUI();
         

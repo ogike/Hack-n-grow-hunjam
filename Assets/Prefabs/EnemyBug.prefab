@@ -328,7 +328,7 @@ MonoBehaviour:
         frames: 12
       animatorEntryTrigger: AttackMain
       animatorEntryEventType: 2
-    attackDamage: 1
+    attackDamage: 2
     attackKnockBackAmount: 1
     rangeToStartAttack: 1.5
     stopOnSuccesfulHit: 1

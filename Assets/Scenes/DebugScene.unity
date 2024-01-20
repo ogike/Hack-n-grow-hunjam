@@ -1666,7 +1666,7 @@ PrefabInstance:
     - target: {fileID: 3069128968370130926, guid: 0883607cdc0c00347bcf7694c868bb6d, type: 3}
       propertyPath: enemyToDebugSpawn
       value: 
-      objectReference: {fileID: 8221827501506133857, guid: 7a8c35264188bbb4eb6d930ed7b2cfed, type: 3}
+      objectReference: {fileID: 8221827501506133857, guid: dae6cfc8653a98c45882aa8b7c09f115, type: 3}
     - target: {fileID: 3069128968370130926, guid: 0883607cdc0c00347bcf7694c868bb6d, type: 3}
       propertyPath: godModeTypeDefault
       value: 2
@@ -1789,6 +1789,22 @@ PrefabInstance:
       propertyPath: levelDisplayText
       value: 
       objectReference: {fileID: 1942233853}
+    - target: {fileID: 2793193698236965643, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
+      propertyPath: defenseDamageReduction
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793193698236965643, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
+      propertyPath: defenseMovementModifier
+      value: 0.223
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793193698236965643, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
+      propertyPath: defenseKnockbackReduction
+      value: 0.113
+      objectReference: {fileID: 0}
+    - target: {fileID: 2793193698236965643, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
+      propertyPath: lightAttackLeftSwing.skipAnticipationInCombos
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6358756388176844130, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
       propertyPath: m_Name
       value: Character
