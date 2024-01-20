@@ -173,21 +173,6 @@ namespace Player
                 DashContinue();
                 return;
             }
-        
-            // if (curDashCooldownLeft <= 0 && Input.GetButtonDown("Dash"))
-            // { //if we can dash and press dash
-            //     if (CurrentAttackState == AttackState.NotAttacking)
-            //     {
-            //         //just dash normally
-            //         DashStart();
-            //     }
-            //     else if (_curAttack != null && _curAttack.dashCancelable)
-            //     {
-            //         //cancel attack animation
-            //         DashStart();
-            //         StopCurrentAttack();
-            //     }
-            // }
 
             if (CanMove())
             {
@@ -198,57 +183,57 @@ namespace Player
             // cooldown will be checked inside the function
             if (UserInput.instance.LightAttackPressedThisFrame)
             {
-                if (CurrentAttackState == AttackState.NotAttacking)
-                {
-                    CurrentAttackComboState = AttackComboState.LeftSwing;
-                    _activeAttackCoroutine = Attack(AttackComboState.LeftSwing, false);
-                    StartCoroutine(_activeAttackCoroutine);
-                }
-                else if(CurrentAttackState == AttackState.WinddownReady && !hasPressedAttackThisCombo)
-                {
-                    StopCurrentAttack();
-                    CurrentAttackState = AttackState.ActiveAttack;
-                    ContinueAttackCombo();
-                }
-                else if(CurrentAttackState == AttackState.WinddownPre && !hasPressedAttackThisCombo)
-                {
-                    hasPressedAttackThisCombo = true;
-                }
+                LightAttackTry();
             } else if (UserInput.instance.HeavyAttackPressedThisFrame)
             {
-                if (CurrentAttackState == AttackState.NotAttacking)
-                {
-                    CurrentAttackComboState = AttackComboState.HeavyThrust;
-                    _activeAttackCoroutine = Attack(AttackComboState.HeavyThrust, false);
-                    StartCoroutine(_activeAttackCoroutine);
-                }
-                else if(CurrentAttackState is AttackState.WinddownReady or AttackState.WinddownPre)
-                {
-                    StopCurrentAttack();
-                    _activeAttackCoroutine = Attack(AttackComboState.HeavyThrust, true);
-                    StartCoroutine(_activeAttackCoroutine);
-                }
-            } else //not attacking
-            {
-                if (Input.GetButtonDown("Fire3"))
-                {
-                    if (CanDefend())
-                    {
-                        Defending = true;
-                        if (CurrentAttackState != AttackState.NotAttacking)
-                        {
-                            Debug.Log("Cancelling attack by defending");
-                            StopCurrentAttack();
-                        }
-                        
-                        animator.SetBool("isDefending", true);
-                    }
-                }
+                HeavyAttackTry();
             }
-            if (Defending && Input.GetButtonUp("Fire3"))
+
+            if (UserInput.instance.DefendPressedThisFrame && CanDefend())
             {
-                Defending = false;
-                animator.SetBool("isDefending", false);
+                StartDefending();
+            }
+            
+            
+            if (UserInput.instance.DefendReleased && Defending)
+            {
+                StopDefending();
+            }
+        }
+
+        private void HeavyAttackTry()
+        {
+            if (CurrentAttackState == AttackState.NotAttacking)
+            {
+                CurrentAttackComboState = AttackComboState.HeavyThrust;
+                _activeAttackCoroutine = Attack(AttackComboState.HeavyThrust, false);
+                StartCoroutine(_activeAttackCoroutine);
+            }
+            else if (CurrentAttackState is AttackState.WinddownReady or AttackState.WinddownPre)
+            {
+                StopCurrentAttack();
+                _activeAttackCoroutine = Attack(AttackComboState.HeavyThrust, true);
+                StartCoroutine(_activeAttackCoroutine);
+            }
+        }
+
+        private void LightAttackTry()
+        {
+            if (CurrentAttackState == AttackState.NotAttacking)
+            {
+                CurrentAttackComboState = AttackComboState.LeftSwing;
+                _activeAttackCoroutine = Attack(AttackComboState.LeftSwing, false);
+                StartCoroutine(_activeAttackCoroutine);
+            }
+            else if (CurrentAttackState == AttackState.WinddownReady && !hasPressedAttackThisCombo)
+            {
+                StopCurrentAttack();
+                CurrentAttackState = AttackState.ActiveAttack;
+                ContinueAttackCombo();
+            }
+            else if (CurrentAttackState == AttackState.WinddownPre && !hasPressedAttackThisCombo)
+            {
+                hasPressedAttackThisCombo = true;
             }
         }
 
@@ -295,7 +280,7 @@ namespace Player
         {
             if (Defending) return false;
 
-            if (!defenseCancelsAttack && CurrentAttackState != AttackState.NotAttacking) return false;
+            if (CurrentAttackState != AttackState.NotAttacking && defenseCancelsAttack == false) return false;
 
             return true;
         }
@@ -353,18 +338,7 @@ namespace Player
                 }
             
                 //move if there is input
-                float finalSpeed = baseSpeed * speedModifiers[CurLevel];
-                if ((CurrentAttackState == AttackState.Windup &&
-                     _curAttack.anticipationRestriction == AttackMovementRestriction.HalfSpeed)
-                    || (CurrentAttackState == AttackState.Windup &&
-                        _curAttack.anticipationRestriction == AttackMovementRestriction.HalfSpeed)
-                    || (CurrentAttackState == AttackState.ActiveAttack &&
-                        _curAttack.strikeRestriction == AttackMovementRestriction.HalfSpeed))
-                {
-                    finalSpeed /= 2;
-                }
-
-                if (Defending) finalSpeed *= defenseMovementModifier;
+                float finalSpeed = GetCurrentMaxSpeed();
 
                 Vector2 newFullForce = new Vector2(inputH, inputV) * (finalSpeed * Time.deltaTime);
                 _rigidbody.AddForce(newFullForce);
@@ -405,6 +379,8 @@ namespace Player
                 default:
                     throw new ArgumentOutOfRangeException();
             }
+            
+            if (Defending) result *= defenseMovementModifier;
 
             return result;
         }
@@ -499,8 +475,28 @@ namespace Player
             }
         }
 
+        private void StartDefending()
+        {
+            Defending = true;
+            if (CurrentAttackState != AttackState.NotAttacking)
+            {
+                Debug.Log("Cancelling attack by defending");
+                StopCurrentAttack();
+            }
+                        
+            animator.SetBool("isDefending", true);
+        }
+
+        private void StopDefending()
+        {
+            Defending = false;
+            animator.SetBool("isDefending", false);
+        }
+
         IEnumerator Attack(AttackComboState newComboState, bool chainedAttack = false)
         {
+            StopDefending();
+            
             switch (newComboState)
             {
                 case AttackComboState.LeftSwing:

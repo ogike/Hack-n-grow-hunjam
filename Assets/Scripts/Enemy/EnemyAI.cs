@@ -3,8 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Enemy.States;
 using UnityEngine;
-using UnityEngine.Serialization;
-using Enemy.States;
 using Player;
 
 
