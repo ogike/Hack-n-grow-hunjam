@@ -26,6 +26,9 @@ namespace Enemy
         protected GameManager _gameManager;
 
         //Update() cached variables
+        public Vector2 MyPosition { get; private set; }
+        public Vector2 PlayerPosition { get; private set; }
+        
         public Vector2 DirToPlayer { get; private set; }
         
         public Vector2 DirForward { get; private set; }
@@ -94,10 +97,10 @@ namespace Enemy
         /// </summary>
         public void UpdateCachedVariables()
         {
-            Vector2 myPos = transform.position;
-            Vector2 playerPos = _playerTrans.position;
+            MyPosition = transform.position;
+            PlayerPosition = _playerTrans.position;
 
-            DirToPlayer = playerPos - myPos;
+            DirToPlayer = PlayerPosition - MyPosition;
             DistanceToPlayer = DirToPlayer.magnitude;
             DirToPlayer = DirToPlayer.normalized;
             

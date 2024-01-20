@@ -1,14 +1,20 @@
 using System.Collections.Generic;
 using Enemy.States;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Enemy
 {
     public class EnemyAIBug : EnemyAI
     {
-        [Header("Moving")] 
-        public AIStateMove stateMove;
+        public float rangeToStartAttack = 1.5f;
+        public float rangeToStartChasing = 3.0f;
         
+        [Header("Moving")] 
+        [FormerlySerializedAs("stateMove")] 
+        public AIStateMove stateChase;
+        public AIStateWander stateWander;
+
         [Header("Attacking")]
         public AIStateAttackWindup stateAttackWindup;
         public AIStateAttackMainMoving stateAttackMain;
@@ -22,7 +28,8 @@ namespace Enemy
         {
             states = new List<AIState>
             {
-                stateMove,
+                stateChase,
+                stateWander,
                 stateAttackWindup,
                 stateAttackMain,
                 stateAttackWinddown,
@@ -34,14 +41,14 @@ namespace Enemy
         {
             AddDefaultTransition(stateAttackWindup, stateAttackMain);
             AddDefaultTransition(stateAttackMain, stateAttackWinddown);
-            AddDefaultTransition(stateAttackWinddown, stateMove);
+            AddDefaultTransition(stateAttackWinddown, stateChase);
 
-            AddDefaultTransition(stateKnockBack, stateMove);
+            AddDefaultTransition(stateKnockBack, stateChase);
         }
 
         protected override void SetToDefaultState()
         {
-            ChangeState(stateMove);
+            ChangeState(stateWander);
         }
 
         public override void KnockBack(float knockoutTime)
@@ -61,10 +68,14 @@ namespace Enemy
             switch (curState)
             {
                 case AIStateMove:
-                    if (DistanceToPlayer < stateAttackMain.rangeToStartAttack && CanAttack())
-                    {
+                    if (DistanceToPlayer < rangeToStartAttack && CanAttack())
                         ChangeState(stateAttackWindup);
-                    }
+                    else if(DistanceToPlayer > rangeToStartChasing)
+                        ChangeState(stateWander);
+                    break;
+                case AIStateWander:
+                    if(DistanceToPlayer < rangeToStartChasing)
+                        ChangeState(stateChase);
                     break;
                 default:
                     break;

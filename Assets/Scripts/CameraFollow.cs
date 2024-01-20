@@ -32,11 +32,11 @@ public class CameraFollow : MonoBehaviour
         targetPos = playerPos;
         targetPos.z = myPos.z; //set camera z pos separately
 
-        if (targetPos.x > maxPosX) targetPos.x = maxPosX;
-        else if (targetPos.x < -maxPosX) targetPos.x = -maxPosX;
+        if (targetPos.x > Map.Instance.MaxCameraPosition.x) targetPos.x = Map.Instance.MaxCameraPosition.x;
+        else if (targetPos.x < Map.Instance.MinCameraPosition.x) targetPos.x = Map.Instance.MinCameraPosition.x;
 
-        if (targetPos.y > maxPosY) targetPos.y = maxPosY;
-        else if (targetPos.y < -maxPosY) targetPos.y = -maxPosY;
+        if (targetPos.y > Map.Instance.MaxCameraPosition.y) targetPos.y = Map.Instance.MaxCameraPosition.y;
+        else if (targetPos.y < Map.Instance.MinCameraPosition.y) targetPos.y = Map.Instance.MinCameraPosition.y;
         
         _myTrans.position = Vector3.SmoothDamp(myPos, targetPos, ref _basePosVelocity, followSpeed);
     }
