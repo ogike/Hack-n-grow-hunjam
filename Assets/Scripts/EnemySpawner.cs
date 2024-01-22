@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Player;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 [Serializable]
@@ -22,6 +24,36 @@ public class LevelEnemySpawnStats
     public float maxSpawnWaitTime = 3;
 }
 
+[Serializable]
+public class EnemySpawnerCell
+{
+    public int xIndex { get; private set; }
+    public int yIndex { get; private set; }
+
+    public Vector2 btmLeftPos;
+
+    public float width;
+    public float height;
+
+    public EnemySpawnerCell(int x, int y, Vector2 btmLeft, float _width, float _height)
+    {
+        xIndex = x;
+        yIndex = y;
+        btmLeftPos = btmLeft;
+        width = _width;
+        height = _height;
+    }
+
+    public Vector2 RandomPositionInside()
+    {
+        return new Vector2(
+            Random.Range(btmLeftPos.x, btmLeftPos.x + width),
+            Random.Range(btmLeftPos.y, btmLeftPos.y + height)
+        );
+    }
+    
+}
+
 public class EnemySpawner : MonoBehaviour
 {
     
@@ -30,8 +62,15 @@ public class EnemySpawner : MonoBehaviour
     public List<LevelEnemySpawnStats> enemySpawnStats;
     private int _curLevel;
 
-    public List<Transform> spawnAreas;
+    private EnemySpawnerCell[,] _mapCells;
+    [FormerlySerializedAs("spawnAreas")] public List<Transform> outsideCameraSpawnAreas;
     public float enemyPosZ;
+
+    public float outsideCameraSpawnWeight;
+    public float mapCellSpawnWeight;
+
+    private float _cellHeight;
+    private float _cellWidth;
     
     private float curSpawnWaitTime;
 
@@ -60,6 +99,8 @@ public class EnemySpawner : MonoBehaviour
         _myTrans = transform;
         _playerController = PlayerController.Instance;
         _curLevel = _playerController.CurLevel;
+        InitMapCells();
+        
 
         curSpawnWaitTime = 0;
     }
@@ -82,19 +123,7 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnSingleEnemy()
     {
-        int spawnAreaIndex = Random.Range(0, spawnAreas.Count);
-        Transform spawnArea = spawnAreas[spawnAreaIndex];
-
-        float minPosX = spawnArea.position.x - (spawnArea.lossyScale.x / 2);
-        float maxPosX = spawnArea.position.x + (spawnArea.lossyScale.x / 2);
-        
-        float minPosY = spawnArea.position.y - (spawnArea.lossyScale.y / 2);
-        float maxPosY = spawnArea.position.y + (spawnArea.lossyScale.y / 2);
-
-        float posX = Random.Range(minPosX, maxPosX);
-        float posY = Random.Range(minPosY, maxPosY);
-
-        Vector3 spawnPos = new Vector3(posX, posY, enemyPosZ);
+        Vector3 spawnPos = GetRandomSpawnPosition();
 
         int maxWeight = 0;
         foreach (var weightStat in enemySpawnStats[_curLevel].spawnWeights)
@@ -133,6 +162,34 @@ public class EnemySpawner : MonoBehaviour
         GameObject spawnedEnemy = GameObject.Instantiate(enemyToSpawn, spawnPos, Quaternion.identity, _myTrans);
     }
 
+    private Vector3 GetRandomSpawnPosition()
+    {
+        
+    }
+
+    private Vector3 GetRandomOutsideCameraPosition()
+    {
+        int spawnAreaIndex = Random.Range(0, outsideCameraSpawnAreas.Count);
+        Transform spawnArea = outsideCameraSpawnAreas[spawnAreaIndex];
+
+        float minPosX = spawnArea.position.x - (spawnArea.lossyScale.x / 2);
+        float maxPosX = spawnArea.position.x + (spawnArea.lossyScale.x / 2);
+
+        float minPosY = spawnArea.position.y - (spawnArea.lossyScale.y / 2);
+        float maxPosY = spawnArea.position.y + (spawnArea.lossyScale.y / 2);
+
+        float posX = Random.Range(minPosX, maxPosX);
+        float posY = Random.Range(minPosY, maxPosY);
+
+        Vector3 spawnPos = new Vector3(posX, posY, enemyPosZ);
+        return spawnPos;
+    }
+
+    private Vector3 GetRandomMapCellPosition()
+    {
+        Vector2 cameraBtmLeftPos = 
+    }
+
     /// <summary>
     /// Used by debug menu
     /// </summary>
@@ -166,6 +223,30 @@ public class EnemySpawner : MonoBehaviour
         
         if (_curEnemyCount < enemySpawnStats[_curLevel].maxEnemyCount && _curEnemyCount > enemySpawnStats[_curLevel].minEnemyCount)
             _curWaitModifier = 1;
+    }
+
+    public void InitMapCells()
+    {
+        int rows = Map.Instance.numOfCellRows;
+        int columns = Map.Instance.numOfCellColumns;
+        _cellHeight = Map.Instance.CellWidth;
+        _cellWidth = Map.Instance.CellHeight;
+        Vector3 mapBtmLeft = Map.Instance.MinPosition;
+        
+        _mapCells = new EnemySpawnerCell[rows,columns];
+
+
+        for (int row = 0; row < rows; row++)
+        {
+            for (int col = 0; col < columns; col++)
+            {
+                Vector2 cellBtmLeft = new Vector2(
+                    mapBtmLeft.x + _cellWidth * row,
+                    mapBtmLeft.y + _cellHeight * col
+                );
+                _mapCells[row, col] = new EnemySpawnerCell(row, col, cellBtmLeft, _cellWidth, _cellHeight);
+            }
+        }
     }
 
     /// <summary>

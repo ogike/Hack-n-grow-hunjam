@@ -19,6 +19,12 @@ public class Map : MonoBehaviour
     public Vector2 MinCameraPosition { get; private set; }
     public Vector2 MaxCameraPosition { get; private set; }
 
+    public int numOfCellRows;
+    public int numOfCellColumns;
+
+    public float CellWidth { get; private set; }
+    public float CellHeight { get; private set; }
+
     private void Awake()
     {
         if (Instance != null)
@@ -33,5 +39,8 @@ public class Map : MonoBehaviour
         
         MinCameraPosition = minCameraPositionTransform.position;
         MaxCameraPosition = maxCameraPositionTransform.position;
+
+        CellWidth = Mathf.Abs(MaxPosition.x - MinPosition.x) / numOfCellColumns;
+        CellHeight = Mathf.Abs(MaxPosition.y - MinPosition.y) / numOfCellRows;
     }
 }
