@@ -24,36 +24,6 @@ public class LevelEnemySpawnStats
     public float maxSpawnWaitTime = 3;
 }
 
-[Serializable]
-public class EnemySpawnerCell
-{
-    public int xIndex { get; private set; }
-    public int yIndex { get; private set; }
-
-    public Vector2 btmLeftPos;
-
-    public float width;
-    public float height;
-
-    public EnemySpawnerCell(int x, int y, Vector2 btmLeft, float _width, float _height)
-    {
-        xIndex = x;
-        yIndex = y;
-        btmLeftPos = btmLeft;
-        width = _width;
-        height = _height;
-    }
-
-    public Vector2 RandomPositionInside()
-    {
-        return new Vector2(
-            Random.Range(btmLeftPos.x, btmLeftPos.x + width),
-            Random.Range(btmLeftPos.y, btmLeftPos.y + height)
-        );
-    }
-    
-}
-
 public class EnemySpawner : MonoBehaviour
 {
     
@@ -64,6 +34,9 @@ public class EnemySpawner : MonoBehaviour
 
     private EnemySpawnerCell[,] _mapCells;
     [FormerlySerializedAs("spawnAreas")] public List<Transform> outsideCameraSpawnAreas;
+
+    public bool debugShowCells;
+    
     public float enemyPosZ;
 
     public float outsideCameraSpawnWeight;
@@ -82,7 +55,10 @@ public class EnemySpawner : MonoBehaviour
 
     private int _curEnemyCount = 0;
     private float _curWaitModifier;
-    
+    private int _cellRows;
+    private int _cellColums;
+    private Vector3 _mapBtmLeft;
+
     private void Awake()
     {
         if (Instance != null)
@@ -164,7 +140,7 @@ public class EnemySpawner : MonoBehaviour
 
     private Vector3 GetRandomSpawnPosition()
     {
-        
+        return Vector3.zero; //TODO:
     }
 
     private Vector3 GetRandomOutsideCameraPosition()
@@ -187,7 +163,7 @@ public class EnemySpawner : MonoBehaviour
 
     private Vector3 GetRandomMapCellPosition()
     {
-        Vector2 cameraBtmLeftPos = 
+        return Vector2.zero; //TODO: 
     }
 
     /// <summary>
@@ -227,24 +203,25 @@ public class EnemySpawner : MonoBehaviour
 
     public void InitMapCells()
     {
-        int rows = Map.Instance.numOfCellRows;
-        int columns = Map.Instance.numOfCellColumns;
-        _cellHeight = Map.Instance.CellWidth;
-        _cellWidth = Map.Instance.CellHeight;
-        Vector3 mapBtmLeft = Map.Instance.MinPosition;
+        _cellRows = Map.Instance.numOfCellRows;
+        _cellColums = Map.Instance.numOfCellColumns;
+        _cellHeight = Map.Instance.CellHeight;
+        _cellWidth = Map.Instance.CellWidth;
+        _mapBtmLeft = Map.Instance.MinPosition;
         
-        _mapCells = new EnemySpawnerCell[rows,columns];
+        _mapCells = new EnemySpawnerCell[_cellColums,_cellRows];
 
 
-        for (int row = 0; row < rows; row++)
+        for (int row = 0; row < _cellRows; row++)
         {
-            for (int col = 0; col < columns; col++)
+            for (int col = 0; col < _cellColums; col++)
             {
                 Vector2 cellBtmLeft = new Vector2(
-                    mapBtmLeft.x + _cellWidth * row,
-                    mapBtmLeft.y + _cellHeight * col
+                    _mapBtmLeft.x + _cellWidth * col,
+                    _mapBtmLeft.y + _cellHeight * row
                 );
-                _mapCells[row, col] = new EnemySpawnerCell(row, col, cellBtmLeft, _cellWidth, _cellHeight);
+                
+                _mapCells[col, row] = new EnemySpawnerCell(col, row, cellBtmLeft, _cellWidth, _cellHeight);
             }
         }
     }
@@ -256,4 +233,39 @@ public class EnemySpawner : MonoBehaviour
     {
         _curLevel = _playerController.CurLevel;
     }
+    
+#if UNITY_EDITOR
+    void OnDrawGizmos()
+    {
+        Debug.Log("Drawing gizmos");
+        if (_mapCells != null && debugShowCells)
+        {
+            Vector2 cameraBtmLeft = CameraFollow.Instance.BottomLeftPos;
+            Vector2 cameraTopRight = CameraFollow.Instance.TopRightPos;
+            Vector3 cellCubeSize = new Vector3(_cellWidth * 0.9f, _cellHeight * 0.9f, 1);
+            
+            for (int x = 0; x < _cellColums; x++)
+            {
+                for (int y = 0; y < _cellRows; y++)
+                {
+                    Vector3 pos = _mapCells[x, y].CenterPos;
+
+
+                    if (_mapCells[x, y].IsInCameraView(ref cameraBtmLeft, ref cameraTopRight))
+                    {
+                        Gizmos.color = Color.red;
+                    }
+                    else
+                    {
+                        Gizmos.color = Color.grey;
+                    }
+
+                    Gizmos.color = new Color(Gizmos.color.r, Gizmos.color.g, Gizmos.color.b, 0.2f);
+
+                    Gizmos.DrawCube(pos, cellCubeSize);
+                }
+            }
+        }
+    }
+#endif //UNITY_EDITOR
 }

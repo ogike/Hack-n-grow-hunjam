@@ -23,6 +23,9 @@ public class CameraFollow : MonoBehaviour
     float Height => Camera.orthographicSize;
     float Width => Camera.aspect * Height;
 
+    public Vector3 BottomLeftPos { get; private set; }
+    public Vector3 TopRightPos { get; private set; }
+
     private void Awake()
     {
         if (Instance != null)
@@ -56,6 +59,9 @@ public class CameraFollow : MonoBehaviour
         else if (targetPos.y < Map.Instance.MinCameraPosition.y) targetPos.y = Map.Instance.MinCameraPosition.y;
         
         _myTrans.position = Vector3.SmoothDamp(myPos, targetPos, ref _basePosVelocity, followSpeed);
+
+        BottomLeftPos = _myTrans.position - new Vector3(Width / 2, Height / 2, 0);
+        TopRightPos = _myTrans.position + new Vector3(Width / 2, Height / 2, 0);
     }
 
     public Vector2 GetCameraBtmLeftWorldPos()

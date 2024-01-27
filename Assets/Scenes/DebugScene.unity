@@ -217,7 +217,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &88029371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,12 +295,15 @@ MonoBehaviour:
     maxEnemyCount: 30
     minSpawnWaitTime: 0.5
     maxSpawnWaitTime: 1
-  spawnAreas:
+  outsideCameraSpawnAreas:
   - {fileID: 1886301139}
   - {fileID: 1886301138}
   - {fileID: 1886301137}
   - {fileID: 1886301135}
+  debugShowCells: 1
   enemyPosZ: 0
+  outsideCameraSpawnWeight: 0
+  mapCellSpawnWeight: 0
   underMinEnemyCountWaitModifier: 0.5
   overMaxEnemyCountWaitModifier: 2
 --- !u!4 &88029372
@@ -807,7 +810,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1321661557}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -987,6 +990,8 @@ MonoBehaviour:
   maxPositionTransform: {fileID: 375868164}
   minCameraPositionTransform: {fileID: 355182422}
   maxCameraPositionTransform: {fileID: 1083026495}
+  numOfCellRows: 10
+  numOfCellColumns: 10
 --- !u!1 &1370030140
 GameObject:
   m_ObjectHideFlags: 0
