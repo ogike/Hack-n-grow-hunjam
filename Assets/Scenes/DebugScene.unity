@@ -169,7 +169,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &47001672
 MonoBehaviour:
@@ -300,10 +300,11 @@ MonoBehaviour:
   - {fileID: 1886301138}
   - {fileID: 1886301137}
   - {fileID: 1886301135}
-  debugShowCells: 1
+  debugShowCells: 0
   enemyPosZ: 0
-  outsideCameraSpawnWeight: 0
-  mapCellSpawnWeight: 43
+  outsideCameraSpawnWeight: 60
+  mapCellSpawnWeight: 40
+  wanderTimeForCellSpawnedEnemies: 10
   underMinEnemyCountWaitModifier: 0.5
   overMaxEnemyCountWaitModifier: 2
 --- !u!4 &88029372
@@ -319,7 +320,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &355182421
 GameObject:
@@ -1561,7 +1562,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2813175488065795404, guid: 0a3056edb47dc264b865f511a24135fb, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2813175488065795404, guid: 0a3056edb47dc264b865f511a24135fb, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1771,7 +1772,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2129556761597500634, guid: 0883607cdc0c00347bcf7694c868bb6d, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2129556761597500634, guid: 0883607cdc0c00347bcf7694c868bb6d, type: 3}
       propertyPath: m_LocalPosition.x

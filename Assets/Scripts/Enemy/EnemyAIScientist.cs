@@ -64,17 +64,16 @@ namespace Enemy
 
         public override void CheckTransitions()
         {
-
             switch (curState)
             {
                 case AIStateMove:
                     if (DistanceToPlayer < rangeToStartAttack && CanAttack())
                         ChangeState(stateAttackWindup);
-                    else if(DistanceToPlayer > rangeToStartChasing)
+                    else if(DistanceToPlayer > rangeToStartChasing && _canWander)
                         ChangeState(stateWander);
                     break;
                 case AIStateWander:
-                    if(DistanceToPlayer < rangeToStartChasing)
+                    if(DistanceToPlayer < rangeToStartChasing || !_canWander)
                         ChangeState(stateChase);
                     break;
                 default:
@@ -99,6 +98,21 @@ namespace Enemy
             
             return true;
         }
+        
+#if UNITY_EDITOR
+        void OnDrawGizmos()
+        {
+            if (_myTrans == null) _myTrans = transform;
+            
+            Vector3 myPos = _myTrans.position;
+            
+            UnityEditor.Handles.color = Color.yellow;
+            UnityEditor.Handles.DrawWireDisc(myPos ,Vector3.back, rangeToStartChasing);
+            
+            UnityEditor.Handles.color = Color.red;
+            UnityEditor.Handles.DrawWireDisc(myPos,Vector3.back, rangeToStartAttack);
+        }
+#endif //UNITY_EDITOR
         
     }
 }

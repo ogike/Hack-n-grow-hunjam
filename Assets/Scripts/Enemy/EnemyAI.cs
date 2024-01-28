@@ -16,12 +16,13 @@ namespace Enemy
         
         //transitions that will happen automatically on finish of state
         protected Dictionary<AIState, AIState> defaultTransitions;
-
+        
         [Header("References")]
         public Animator animator;
 
         //private refs, state vars
         protected Transform _playerTrans;
+        protected Transform _myTrans;
         protected Rigidbody2D _myRigid;
         protected GameManager _gameManager;
 
@@ -34,8 +35,11 @@ namespace Enemy
         public Vector2 DirForward { get; private set; }
         
         public float DistanceToPlayer { get; private set; }
-        
+
+        //have to store these in abstract class, since every enemy should have interface for these
+        protected float _curSpawnInducedWanderTime;
         protected float _curAttackCooldown;
+        protected bool _canWander;
 
         private void Awake()
         {
@@ -48,6 +52,7 @@ namespace Enemy
 
             defaultTransitions = new Dictionary<AIState, AIState>();
             SetDefaultTransitions();
+            _canWander = true;
         }
 
         protected abstract void CreateStates();
@@ -59,6 +64,7 @@ namespace Enemy
         void Start()
         {
             _playerTrans = PlayerController.Instance.transform;
+            _myTrans = transform;
             _gameManager = GameManager.Instance;
             _myRigid = GetComponent<Rigidbody2D>();
             if (_myRigid == null)
@@ -108,11 +114,30 @@ namespace Enemy
             {
                 _curAttackCooldown -= Time.deltaTime;
             }
+
+            if (_curSpawnInducedWanderTime > 0)
+            {
+                _curSpawnInducedWanderTime -= Time.deltaTime;
+                
+                if(_curSpawnInducedWanderTime <= 0) ForceNoWander();
+            }
         }
         
         public void SetAttackCooldownTime(float newCooldown)
         {
             _curAttackCooldown = newCooldown;
+        }
+
+        public void SetSpawnWanderTime(float newTime)
+        {
+            _curSpawnInducedWanderTime = newTime;
+            _canWander = true;
+        }
+
+        public void ForceNoWander()
+        {
+            _canWander = false;
+            _curSpawnInducedWanderTime = 0;
         }
 
         public void RotateTowardsDir(Vector2 newDir, float speed)

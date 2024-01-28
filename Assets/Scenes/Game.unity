@@ -552,8 +552,9 @@ MonoBehaviour:
   - {fileID: 1886301135}
   debugShowCells: 0
   enemyPosZ: 0
-  outsideCameraSpawnWeight: 60
-  mapCellSpawnWeight: 40
+  outsideCameraSpawnWeight: 29
+  mapCellSpawnWeight: 71
+  wanderTimeForCellSpawnedEnemies: 10
   underMinEnemyCountWaitModifier: 0.5
   overMaxEnemyCountWaitModifier: 2
 --- !u!4 &88029372

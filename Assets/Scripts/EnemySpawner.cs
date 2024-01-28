@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Enemy;
 using Player;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -43,6 +44,8 @@ public class EnemySpawner : MonoBehaviour
     public int outsideCameraSpawnWeight;
     [Range(0, 100)]
     public int mapCellSpawnWeight;
+
+    public float wanderTimeForCellSpawnedEnemies = 10.0f;
 
     private float _cellHeight;
     private float _cellWidth;
@@ -103,13 +106,16 @@ public class EnemySpawner : MonoBehaviour
     {
         Vector3 spawnPos;
         float randomNum = Random.Range(0, outsideCameraSpawnWeight + mapCellSpawnWeight);
+        bool forceChase;
         if (randomNum < outsideCameraSpawnWeight)
         {
             spawnPos = GetRandomOutsideCameraPosition();
+            forceChase = true;
         }
         else
         {
             spawnPos = GetRandomMapCellPosition();
+            forceChase = false;
         }
 
         int maxWeight = 0;
@@ -147,6 +153,9 @@ public class EnemySpawner : MonoBehaviour
         }
 
         GameObject spawnedEnemy = GameObject.Instantiate(enemyToSpawn, spawnPos, Quaternion.identity, _myTrans);
+        EnemyAI enemyAI = spawnedEnemy.GetComponent<EnemyAI>();
+        if(forceChase)  enemyAI.ForceNoWander();
+        else            enemyAI.SetSpawnWanderTime(wanderTimeForCellSpawnedEnemies);
     }
 
     private Vector3 GetRandomOutsideCameraPosition()
@@ -267,7 +276,6 @@ public class EnemySpawner : MonoBehaviour
 #if UNITY_EDITOR
     void OnDrawGizmos()
     {
-        Debug.Log("Drawing gizmos");
         if (_mapCells != null && debugShowCells)
         {
             Vector2 cameraBtmLeft = CameraFollow.Instance.BottomLeftPos;
