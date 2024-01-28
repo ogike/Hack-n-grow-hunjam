@@ -26,7 +26,8 @@ public class ParticleManager : MonoBehaviour
 
     public void SpawnParticleWithLookDirection(GameObject prefab, Vector3 position, Vector3 lookDirection)
     {
-        Quaternion lookRotation = Quaternion.LookRotation(lookDirection, Vector3.forward);
+        Vector3 rotatedDirectionFor2D = Quaternion.Euler(0, 0, 90) * lookDirection;
+        Quaternion lookRotation = Quaternion.LookRotation(Vector3.forward, rotatedDirectionFor2D);
         GameObject particle = GameObject.Instantiate(prefab, position, lookRotation, _trans);
     }
 }
