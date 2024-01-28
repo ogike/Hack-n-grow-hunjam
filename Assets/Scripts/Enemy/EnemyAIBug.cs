@@ -69,7 +69,10 @@ namespace Enemy
             {
                 case AIStateMove:
                     if (DistanceToPlayer < rangeToStartAttack && CanAttack())
+                    {
                         ChangeState(stateAttackWindup);
+                        ForceNoWander();    
+                    }
                     else if(DistanceToPlayer > rangeToStartChasing && _canWander)
                         ChangeState(stateWander);
                     break;

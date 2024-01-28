@@ -663,7 +663,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 7510140366897405254}
   rangeToStartAttack: 1.5
-  rangeToStartChasing: 2.5
+  rangeToStartChasing: 1.8
   stateChase:
     animationInfo:
       exitsByDefault: 0
