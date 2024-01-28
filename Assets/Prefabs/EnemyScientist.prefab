@@ -662,7 +662,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 7510140366897405254}
-  stateMove:
+  rangeToStartAttack: 1.5
+  rangeToStartChasing: 1.8
+  stateChase:
     animationInfo:
       exitsByDefault: 0
       stateTime:
@@ -671,6 +673,17 @@ MonoBehaviour:
       animatorEntryEventType: 0
     speed: 750
     rotationSpeed: 5
+  stateWander:
+    animationInfo:
+      exitsByDefault: 0
+      stateTime:
+        frames: 0
+      animatorEntryTrigger: 
+      animatorEntryEventType: 0
+    speed: 5
+    rotationSpeed: 5
+    changeDirectionTimeMin: 0
+    changeDirectionTimeMax: 0
   stateAttackWindup:
     animationInfo:
       exitsByDefault: 1
@@ -689,7 +702,6 @@ MonoBehaviour:
       animatorEntryEventType: 2
     attackDamage: 1
     attackKnockBackAmount: 1
-    rangeToStartAttack: 2.5
     stopOnSuccesfulHit: 0
     attackAudio: {fileID: 8300000, guid: 5d2585ddc5fc3684f8cebd2435f8a286, type: 3}
     attackMainReferenceAnim: {fileID: -5735446460916955084, guid: 11c833b2c9503594bb9291a30dd234a7, type: 3}

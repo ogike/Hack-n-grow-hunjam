@@ -115,6 +115,7 @@ namespace Player
         private Transform _trans;
         private Rigidbody2D _rigidbody;
         private PlayerHealth _playerHealth;
+        private CircleCollider2D _collider;
     
         private void Awake()
         {
@@ -152,6 +153,7 @@ namespace Player
         void Start()
         {
             _trans = transform;
+            _collider = GetComponent<CircleCollider2D>();
             _rigidbody = GetComponent<Rigidbody2D>();
             _playerHealth = GetComponent<PlayerHealth>();
 
@@ -694,6 +696,7 @@ namespace Player
 
             float newTransformScale = transformSizeModifiers[CurLevel];
             transform.localScale = new Vector3(newTransformScale, newTransformScale, newTransformScale);
+            //todo update collider size
 
             //TODO: this should be removed, right...?
             // float newHitboxScale = attackRanges * rangeModifiers[CurLevel];
@@ -724,6 +727,19 @@ namespace Player
             int levelToDisplay = CurLevel + 1;
             levelDisplayText.text = "Size " + levelToDisplay;
         }
+        
+#if UNITY_EDITOR
+        void OnDrawGizmos()
+        {
+            if (_trans == null) _trans = transform;
+            if (_collider == null) _collider = GetComponent<CircleCollider2D>();
+            
+            Vector3 myPos = _trans.position;
+            
+            UnityEditor.Handles.color = Color.green;
+            UnityEditor.Handles.DrawWireDisc(myPos ,Vector3.back, _collider.radius);
+        }
+#endif //UNITY_EDITOR
     
     }
 }

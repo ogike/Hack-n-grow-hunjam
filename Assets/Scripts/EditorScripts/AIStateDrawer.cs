@@ -37,42 +37,42 @@ namespace EditorScripts
         {
             so.Update();
 
-            using (new GUILayout.VerticalScope(EditorStyles.helpBox))
-            {
-                EditorGUI.indentLevel++;
-                EditorGUILayout.PropertyField(stateMoveProp);
-                EditorGUI.indentLevel--;
-            }
-            
-            Utility.DrawHorizontalGUILine();
-
-            using (new GUILayout.VerticalScope(EditorStyles.helpBox))
-            {
-                EditorGUI.indentLevel++;
-                
-                EditorGUILayout.PropertyField( stateAttackWindupProp );
-                Utility.DrawHorizontalGUILine();
-
-                EditorGUILayout.PropertyField( stateAttackMainProp );
-                Utility.DrawHorizontalGUILine();
-
-                EditorGUILayout.PropertyField( stateAttackWinddownProp );
-
-                EditorGUI.indentLevel--;
-            }
-            
-            Utility.DrawHorizontalGUILine();
-
-            using (new GUILayout.VerticalScope(EditorStyles.helpBox))
-            {
-                EditorGUI.indentLevel++;
-                EditorGUILayout.PropertyField(stateKnockBackProp);
-                EditorGUI.indentLevel--;
-            }
-
-            Utility.DrawHorizontalGUILine();
-            
-            EditorGUILayout.PropertyField( animatorProp );
+            // using (new GUILayout.VerticalScope(EditorStyles.helpBox))
+            // {
+            //     EditorGUI.indentLevel++;
+            //     EditorGUILayout.PropertyField(stateMoveProp);
+            //     EditorGUI.indentLevel--;
+            // }
+            //
+            // Utility.DrawHorizontalGUILine();
+            //
+            // using (new GUILayout.VerticalScope(EditorStyles.helpBox))
+            // {
+            //     EditorGUI.indentLevel++;
+            //     
+            //     EditorGUILayout.PropertyField( stateAttackWindupProp );
+            //     Utility.DrawHorizontalGUILine();
+            //
+            //     EditorGUILayout.PropertyField( stateAttackMainProp );
+            //     Utility.DrawHorizontalGUILine();
+            //
+            //     EditorGUILayout.PropertyField( stateAttackWinddownProp );
+            //
+            //     EditorGUI.indentLevel--;
+            // }
+            //
+            // Utility.DrawHorizontalGUILine();
+            //
+            // using (new GUILayout.VerticalScope(EditorStyles.helpBox))
+            // {
+            //     EditorGUI.indentLevel++;
+            //     EditorGUILayout.PropertyField(stateKnockBackProp);
+            //     EditorGUI.indentLevel--;
+            // }
+            //
+            // Utility.DrawHorizontalGUILine();
+            //
+            // EditorGUILayout.PropertyField( animatorProp );
 
             so.ApplyModifiedProperties();
         }
