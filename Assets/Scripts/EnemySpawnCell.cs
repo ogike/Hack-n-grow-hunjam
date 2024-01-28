@@ -54,7 +54,7 @@ public class EnemySpawnerCell
         //left side
         // if (BottomLeftPos < TopRightPos.x && BottomLeftPos.x < cameraTopRightPos.x) return true;
 
-        return false;
+        return true;
     }
     
 }

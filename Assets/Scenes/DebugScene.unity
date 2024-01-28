@@ -237,7 +237,7 @@ MonoBehaviour:
     - enemy: {fileID: 8221827501506133857, guid: 5c40113e74d4dfb4298288e528609559, type: 3}
       spawnWeight: 1
     minEnemyCount: 2
-    maxEnemyCount: 4
+    maxEnemyCount: 15
     minSpawnWaitTime: 2
     maxSpawnWaitTime: 5
   - spawnWeights:
@@ -303,7 +303,7 @@ MonoBehaviour:
   debugShowCells: 1
   enemyPosZ: 0
   outsideCameraSpawnWeight: 0
-  mapCellSpawnWeight: 0
+  mapCellSpawnWeight: 43
   underMinEnemyCountWaitModifier: 0.5
   overMaxEnemyCountWaitModifier: 2
 --- !u!4 &88029372
@@ -810,7 +810,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1321661557}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1

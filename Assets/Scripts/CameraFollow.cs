@@ -20,8 +20,8 @@ public class CameraFollow : MonoBehaviour
     public float maxPosX;
     public float maxPosY;
     
-    float Height => Camera.orthographicSize;
-    float Width => Camera.aspect * Height;
+    public float Height => Camera.orthographicSize * 2;
+    public float Width => Camera.aspect * Height;
 
     public Vector3 BottomLeftPos { get; private set; }
     public Vector3 TopRightPos { get; private set; }
