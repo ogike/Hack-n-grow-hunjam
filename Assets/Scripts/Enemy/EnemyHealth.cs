@@ -16,8 +16,11 @@ namespace Enemy
         public AudioClip enemyDamageAudio;
         public AudioClip enemyDieAudio;
 
+        public GameObject hitParticle;
+
         private EnemyAI _enemyAI;
         private Rigidbody2D _rigidbody;
+        private Transform _transform;
         private Animator _animator;
 
 
@@ -26,6 +29,7 @@ namespace Enemy
             curHealth = health;
             _enemyAI = GetComponent<EnemyAI>();
             _rigidbody = GetComponent<Rigidbody2D>();
+            _transform = transform;
             _animator = _enemyAI.animator;
         }
 
@@ -33,6 +37,9 @@ namespace Enemy
         {
             AudioManager.Instance.PlayAudio(enemyDamageAudio);
             _animator.SetTrigger("Damaged");
+            Vector3 directionFrom = _enemyAI.DirToPlayer;
+            
+            ParticleManager.Instance.SpawnParticleWithLookDirection(hitParticle, _transform.position, directionFrom);
 
             curHealth -= damage;
 

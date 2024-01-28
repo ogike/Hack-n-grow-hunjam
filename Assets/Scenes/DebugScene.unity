@@ -217,7 +217,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &88029371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1552,6 +1552,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1387720903392664278, guid: 0a3056edb47dc264b865f511a24135fb, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1777096562}
+    - target: {fileID: 1387720903392664278, guid: 0a3056edb47dc264b865f511a24135fb, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GoToMainMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387720903392664278, guid: 0a3056edb47dc264b865f511a24135fb, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 2813175488065795404, guid: 0a3056edb47dc264b865f511a24135fb, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1644,6 +1656,18 @@ PrefabInstance:
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1777096562}
+    - target: {fileID: 3626552146948240194, guid: 0a3056edb47dc264b865f511a24135fb, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1777096562}
+    - target: {fileID: 3626552146948240194, guid: 0a3056edb47dc264b865f511a24135fb, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RestartScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 3626552146948240194, guid: 0a3056edb47dc264b865f511a24135fb, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 4695306557498158796, guid: 0a3056edb47dc264b865f511a24135fb, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1675,7 +1699,15 @@ PrefabInstance:
     - target: {fileID: 6565230778738942030, guid: 0a3056edb47dc264b865f511a24135fb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 3384717472243090283}
+      objectReference: {fileID: 1777096562}
+    - target: {fileID: 6565230778738942030, guid: 0a3056edb47dc264b865f511a24135fb, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RestartScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 6565230778738942030, guid: 0a3056edb47dc264b865f511a24135fb, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 7605568488857647110, guid: 0a3056edb47dc264b865f511a24135fb, type: 3}
       propertyPath: m_Name
       value: UICanvas
@@ -1920,17 +1952,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
---- !u!114 &3384717472243090283 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1735569420791241970, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
-  m_PrefabInstance: {fileID: 3384717472243090282}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5873e4294bf01664ca3b0b9cb6457e72, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3384717472243090284 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2793193698236965643, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
