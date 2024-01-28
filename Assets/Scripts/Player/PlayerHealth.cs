@@ -12,8 +12,6 @@ public class PlayerHealth : MonoBehaviour
     private int curMaxHp;
     private int curHp;
 
-    public GameObject gameOverScreen;
-
     public TimeValue invisibilityFrameTime;
     private float curIFrameTime;
 
@@ -30,8 +28,7 @@ public class PlayerHealth : MonoBehaviour
     public void Awake()
     {
         Time.timeScale = 1; //why is the playerhealth doing this lmao
-        gameOverScreen.SetActive(false);
-        
+
         _playerController = GetComponent<PlayerController>();
         if (_playerController == null)
         {
@@ -67,11 +64,9 @@ public class PlayerHealth : MonoBehaviour
     {
         if (IsVulnerable() == false) return;
 
-        Debug.Log("Got " + damage + " damage");
         if (_playerController.Defending)
         {
             damage = Mathf.FloorToInt((damage * 1.0f) * _playerController.defenseDamageReduction);
-            Debug.Log("Defending, registering " + damage + " damage");
         }
 
         curHp -= damage;
@@ -114,7 +109,8 @@ public class PlayerHealth : MonoBehaviour
     {
         AudioManager.Instance.PlayAudio(playerDieAudio);
         Time.timeScale = 0;
-        gameOverScreen.SetActive(true);
+        UIScript.Instance.ShowGameOverPanel();
+        GameManager.Instance.PlayerDeath();
     }
 
     //return false if dashing or recently damaged
@@ -139,10 +135,5 @@ public class PlayerHealth : MonoBehaviour
         curHp = curMaxHp;
         
         UpdateHealthUI();
-    }
-
-    public void Restart()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

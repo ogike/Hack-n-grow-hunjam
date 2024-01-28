@@ -167,6 +167,8 @@ namespace Player
         // Update is called once per frame
         void Update()
         {
+            if(UIScript.Instance.Paused || !GameManager.Instance.Alive) return;
+            
             //Do things that are always done first
             UpdateCooldowns();
 

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Player;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public delegate void OnEnableChange(bool newValue);
 
@@ -21,6 +22,8 @@ public class GameManager : MonoBehaviour
     public bool EnemyMovementEnabled { get; private set; }
     
     public bool ShowAttackTriggers { get; private set; }
+    
+    public bool Alive { get; private set; }
 
     public bool showAttackTriggerDefault;
     public GodModeType godModeTypeDefault;
@@ -45,6 +48,7 @@ public class GameManager : MonoBehaviour
         ShowAttackTriggers = showAttackTriggerDefault;
         EnemyAttackEnabled = true;
         EnemyMovementEnabled = true;
+        Alive = true;
     }
 
     private void Start()
@@ -78,12 +82,8 @@ public class GameManager : MonoBehaviour
 
     public bool ChangeTime(float newValue)
     {
-        if (newValue < 0.05f)
-        {
-            Debug.LogWarning("Tried to set the Timescale lower than 0.05, invalid number!");
-            return false;
-        }
-
+        if (!Alive) return false;
+        
         Time.timeScale = newValue;
         return true;
     }
@@ -94,5 +94,21 @@ public class GameManager : MonoBehaviour
         spawnPos += _playerTransform.up * enemyToDebugSpawnDistance;
         
         EnemySpawner.SpawnSingleDefaultEnemy(spawnPos, enemyToDebugSpawn);
+    }
+
+    public void PlayerDeath()
+    {
+        Alive = false;
+    }
+    
+    public void RestartScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void GoToMainMenu()
+    {
+        //TODO: should not be hardcoded and rely on being first scene
+        SceneManager.LoadScene(0);
     }
 }

@@ -62,11 +62,11 @@ namespace Enemy
             //dont hit an enemy twice
             if (hasHitPlayer)
             {
-                Debug.Log("already hit: " + col.tag);
+                // Debug.Log("already hit: " + col.tag);
                 return;
             }
 
-            Debug.Log("Tag of GO that attackTrigger hit: " + col.tag);
+            // Debug.Log("Tag of GO that attackTrigger hit: " + col.tag);
             if (!col.CompareTag(playerTag)) return;
 
 
