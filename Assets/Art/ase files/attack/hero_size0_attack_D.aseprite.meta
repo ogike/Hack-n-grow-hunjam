@@ -1,0 +1,360 @@
+fileFormatVersion: 2
+guid: 1764a61ec55579d4b826e107bbb48ea5
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
+  textureImporterSettings:
+    alphaSource: 1
+    mipMapMode: 0
+    enableMipMap: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+    convertToNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
+    isReadable: 0
+    streamingMipmaps: 0
+    streamingMipmapsPriority: 0
+    vTOnly: 0
+    ignoreMipmapLimit: 0
+    nPOTScale: 1
+    sRGBTexture: 1
+    spriteMode: 2
+    spriteExtrude: 1
+    spriteMeshType: 1
+    alignment: 0
+    spritePivot: {x: 0.5, y: 0.5}
+    spritePixelsToUnits: 100
+    spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+    spriteGenerateFallbackPhysicsShape: 0
+    generateCubemap: 6
+    cubemapConvolution: 0
+    seamlessCubemap: 0
+    alphaIsTransparency: 1
+    spriteTessellationDetail: -1
+    textureType: 8
+    textureShape: 1
+    singleChannelComponent: 0
+    flipbookRows: 0
+    flipbookColumns: 0
+    ignorePngGamma: 0
+    cookieMode: 0
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+    normalMap: 0
+    textureFormat: 0
+    maxTextureSize: 0
+    lightmap: 0
+    compressionQuality: 0
+    linearTexture: 0
+    grayScaleToAlpha: 0
+    rGBM: 0
+    cubemapConvolutionSteps: 0
+    cubemapConvolutionExponent: 0
+    maxTextureSizeSet: 0
+    compressionQualitySet: 0
+    textureFormatSet: 0
+    applyGammaDecoding: 0
+  previousAsepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 7
+    customPivotPosition: {x: 0.5, y: 0.5}
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  asepriteImporterSettings:
+    fileImportMode: 1
+    importHiddenLayers: 0
+    layerImportMode: 1
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 7
+    customPivotPosition: {x: 0.5, y: 0.5}
+    spritePadding: 0
+    generateModelPrefab: 1
+    generateAnimationClips: 1
+    addSortingGroup: 1
+    addShadowCasters: 0
+  importFileNodeState: 1
+  platformSettingsDirtyTick: 0
+  textureAssetName: 
+  singleSpriteImportData:
+  - name: 
+    originalName: 
+    pivot: {x: 0, y: 0}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 0
+      height: 0
+    spriteID: 
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
+  animatedSpriteImportData:
+  - name: hero_size0_attack_D_Frame_0
+    originalName: 
+    pivot: {x: 0.49999997, y: -0.13157895}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 48
+      height: 38
+    spriteID: 184f3f261236d6d489f62a6051a67fce
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 4}
+  - name: hero_size0_attack_D_Frame_1
+    originalName: 
+    pivot: {x: 0.5625, y: -0.12195122}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 60
+      y: 94
+      width: 32
+      height: 41
+    spriteID: 8b630645fae89f74889704a5bc9a88ca
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 60, y: 94}
+  - name: hero_size0_attack_D_Frame_2
+    originalName: 
+    pivot: {x: 0.5675676, y: -0.13513514}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 188
+      width: 37
+      height: 37
+    spriteID: b705fc9dc9b3a4442b9ee2abfb39c758
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 188}
+  - name: hero_size0_attack_D_Frame_3
+    originalName: 
+    pivot: {x: 0.5675676, y: -0.13513514}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 60
+      y: 49
+      width: 37
+      height: 37
+    spriteID: 93a4067645313e54eb50d2087e5016c6
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 60, y: 49}
+  - name: hero_size0_attack_D_Frame_4
+    originalName: 
+    pivot: {x: 0.575, y: -0.13157895}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 142
+      width: 40
+      height: 38
+    spriteID: fcc2038bcb4248045b9cfc9a2ee52bd9
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 142}
+  - name: hero_size0_attack_D_Frame_5
+    originalName: 
+    pivot: {x: 0.4897959, y: -0.13513514}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 60
+      y: 4
+      width: 49
+      height: 37
+    spriteID: 25207af37457c894693e2081014a7c4e
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 60, y: 4}
+  - name: hero_size0_attack_D_Frame_6
+    originalName: 
+    pivot: {x: 0.39024392, y: -0.13157895}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 50
+      width: 41
+      height: 38
+    spriteID: 530ed5cdb0d5c9e49802ffda890d08fd
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 50}
+  - name: hero_size0_attack_D_Frame_7
+    originalName: 
+    pivot: {x: 0.39024392, y: -0.13157895}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 96
+      width: 41
+      height: 38
+    spriteID: 2cf8d27707c40cb4791d0604dcf21811
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 96}
+  spriteSheetImportData: []
+  asepriteLayers:
+  - layerIndex: 0
+    guid: 97553716
+    name: hero_size0_attack_D
+    layerFlags: 0
+    layerType: 0
+    blendMode: 0
+    cells:
+    - name: hero_size0_attack_D_Frame_0
+      frameIndex: 0
+      cellRect:
+        x: 1
+        y: 5
+        width: 48
+        height: 38
+      spriteId: 184f3f261236d6d489f62a6051a67fce
+    - name: hero_size0_attack_D_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 7
+        y: 5
+        width: 32
+        height: 41
+      spriteId: 8b630645fae89f74889704a5bc9a88ca
+    - name: hero_size0_attack_D_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 4
+        y: 5
+        width: 37
+        height: 37
+      spriteId: b705fc9dc9b3a4442b9ee2abfb39c758
+    - name: hero_size0_attack_D_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 4
+        y: 5
+        width: 37
+        height: 37
+      spriteId: 93a4067645313e54eb50d2087e5016c6
+    - name: hero_size0_attack_D_Frame_4
+      frameIndex: 4
+      cellRect:
+        x: 2
+        y: 5
+        width: 40
+        height: 38
+      spriteId: fcc2038bcb4248045b9cfc9a2ee52bd9
+    - name: hero_size0_attack_D_Frame_5
+      frameIndex: 5
+      cellRect:
+        x: 1
+        y: 5
+        width: 49
+        height: 37
+      spriteId: 25207af37457c894693e2081014a7c4e
+    - name: hero_size0_attack_D_Frame_6
+      frameIndex: 6
+      cellRect:
+        x: 9
+        y: 5
+        width: 41
+        height: 38
+      spriteId: 530ed5cdb0d5c9e49802ffda890d08fd
+    - name: hero_size0_attack_D_Frame_7
+      frameIndex: 7
+      cellRect:
+        x: 9
+        y: 5
+        width: 41
+        height: 38
+      spriteId: 2cf8d27707c40cb4791d0604dcf21811
+    linkedCells: []
+    parentIndex: -1
+  platformSettings: []
+  secondarySpriteTextures: []
+  spritePackingTag: 
+  canvasSize: {x: 50, y: 50}
