@@ -204,8 +204,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4314160570145983878}
   - component: {fileID: 3902259068839039999}
-  - component: {fileID: 1066274787122297353}
   - component: {fileID: 5874156988860361159}
+  - component: {fileID: 4413550774695540293}
   m_Layer: 8
   m_Name: AttackLightTrigger
   m_TagString: Untagged
@@ -280,8 +280,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &1066274787122297353
-BoxCollider2D:
+--- !u!114 &5874156988860361159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4267810570245420615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db63a61e612d47c46a8151e402974229, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyTag: Enemy
+--- !u!60 &4413550774695540293
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -322,22 +335,15 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
---- !u!114 &5874156988860361159
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4267810570245420615}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db63a61e612d47c46a8151e402974229, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyTag: Enemy
+  m_Points:
+    m_Paths:
+    - - {x: -0.107999474, y: 0.25569156}
+      - {x: -0.24707118, y: 0.1303236}
+      - {x: -0.24719742, y: -0.10830772}
+      - {x: -0.13751775, y: -0.25544626}
+      - {x: 0.07, y: -0.25}
+      - {x: 0.07, y: 0.25}
+  m_UseDelaunayMesh: 0
 --- !u!1 &5531578531543948810
 GameObject:
   m_ObjectHideFlags: 0
@@ -545,6 +551,10 @@ MonoBehaviour:
     strikeAudio: {fileID: 8300000, guid: 71ff7bc82b9119f42abe9fd1f1ba5aa3, type: 3}
     strikeEffectSprite: {fileID: 6881052492403597158}
   attackTrigger: {fileID: 5874156988860361159}
+  defenseDamageReduction: 0
+  defenseKnockbackReduction: 0
+  defenseMovementModifier: 0
+  defenseCancelsAttack: 0
   dashSpeed: 30000
   dashActiveTime: 0.05
   dashCooldownTime: 1
