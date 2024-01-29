@@ -413,7 +413,7 @@ Transform:
   - {fileID: 2290537870328620308}
   - {fileID: 578832250694927079}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2793193698236965643
 MonoBehaviour:
@@ -479,7 +479,7 @@ MonoBehaviour:
     damage: 10
     knockoutTime:
       frames: 20
-    knockoutForce: 1000
+    knockoutForce: 600
     skipAnticipationInCombos: 1
     anticipationTime:
       frames: 2
@@ -551,9 +551,9 @@ MonoBehaviour:
     strikeAudio: {fileID: 8300000, guid: 71ff7bc82b9119f42abe9fd1f1ba5aa3, type: 3}
     strikeEffectSprite: {fileID: 6881052492403597158}
   attackTrigger: {fileID: 5874156988860361159}
-  defenseDamageReduction: 0
-  defenseKnockbackReduction: 0
-  defenseMovementModifier: 0
+  defenseDamageReduction: 0.6
+  defenseKnockbackReduction: 0.113
+  defenseMovementModifier: 0.223
   defenseCancelsAttack: 0
   dashSpeed: 30000
   dashActiveTime: 0.05
@@ -580,7 +580,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHps: 0a0000000f00000019000000280000003c00000055000000
-  gameOverScreen: {fileID: 0}
   invisibilityFrameTime:
     frames: 4
   healthText: {fileID: 0}
