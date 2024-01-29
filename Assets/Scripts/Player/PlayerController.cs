@@ -643,7 +643,7 @@ namespace Player
 
         public void AttackHit(EnemyHealth enemy)
         {
-            Vector2 dirToTarg = enemy.transform.position - _trans.position;
+            Vector2 dirToTarg = (enemy.transform.position - _trans.position).normalized;
             enemy.Damage(Mathf.FloorToInt(_curAttack.damage * damageModifiers[CurLevel]));
             enemy.Knockback(_curAttack.knockoutTime.Seconds * knockbackModifiers[CurLevel],
                 dirToTarg * (_curAttack.knockoutForce * knockbackModifiers[CurLevel]));
