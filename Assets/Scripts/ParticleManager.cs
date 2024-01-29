@@ -6,6 +6,8 @@ public class ParticleManager : MonoBehaviour
 {
     public static ParticleManager Instance { get; private set; }
 
+    public float particlePosZ = 1.0f;
+
     private Transform _trans;
     
     private void Awake()
@@ -28,6 +30,7 @@ public class ParticleManager : MonoBehaviour
     {
         Vector3 rotatedDirectionFor2D = Quaternion.Euler(0, 0, 90) * lookDirection;
         Quaternion lookRotation = Quaternion.LookRotation(Vector3.forward, rotatedDirectionFor2D);
+        position.z = particlePosZ;
         GameObject particle = GameObject.Instantiate(prefab, position, lookRotation, _trans);
     }
 }

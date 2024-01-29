@@ -17,6 +17,7 @@ namespace Enemy
         public AudioClip enemyDieAudio;
 
         public GameObject hitParticle;
+        public GameObject deathParticle;
 
         private EnemyAI _enemyAI;
         private Rigidbody2D _rigidbody;
@@ -39,7 +40,7 @@ namespace Enemy
             _animator.SetTrigger("Damaged");
             Vector3 directionFrom = _enemyAI.DirToPlayer;
             
-            ParticleManager.Instance.SpawnParticleWithLookDirection(hitParticle, _transform.position, directionFrom);
+            ParticleManager.Instance.SpawnParticleWithLookDirection(hitParticle, _transform.position, -directionFrom);
 
             curHealth -= damage;
 
@@ -61,6 +62,8 @@ namespace Enemy
             if (EnemySpawner.Instance != null)
                 EnemySpawner.Instance.DecreaseEnemyCount();
             PlayerController.Instance.AddXp(xpDrop);
+            
+            ParticleManager.Instance.SpawnParticleWithLookDirection(deathParticle, _transform.position, Vector3.zero);
 
             GameObject.Destroy(gameObject);
         }

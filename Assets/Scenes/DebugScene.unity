@@ -169,7 +169,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &47001672
 MonoBehaviour:
@@ -877,7 +877,7 @@ Transform:
   - {fileID: 355182422}
   - {fileID: 1083026495}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1321661560
 AudioSource:
@@ -1574,7 +1574,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2813175488065795404, guid: 0a3056edb47dc264b865f511a24135fb, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2813175488065795404, guid: 0a3056edb47dc264b865f511a24135fb, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1789,11 +1789,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1942233857 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1156783609307465658, guid: 0a3056edb47dc264b865f511a24135fb, type: 3}
-  m_PrefabInstance: {fileID: 1942233852}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2108820408354688880
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1804,7 +1799,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2129556761597500634, guid: 0883607cdc0c00347bcf7694c868bb6d, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2129556761597500634, guid: 0883607cdc0c00347bcf7694c868bb6d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1871,10 +1866,6 @@ PrefabInstance:
       propertyPath: healthMeter
       value: 
       objectReference: {fileID: 1942233856}
-    - target: {fileID: 1735569420791241970, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
-      propertyPath: gameOverScreen
-      value: 
-      objectReference: {fileID: 1942233857}
     - target: {fileID: 2793193698236965643, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
       propertyPath: xpMeter
       value: 
@@ -1884,20 +1875,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1942233853}
     - target: {fileID: 2793193698236965643, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
-      propertyPath: defenseDamageReduction
-      value: 0.6
+      propertyPath: heavyAttackThrust.knockoutForce
+      value: 450
       objectReference: {fileID: 0}
     - target: {fileID: 2793193698236965643, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
-      propertyPath: defenseMovementModifier
-      value: 0.223
+      propertyPath: lightAttackLeftSwing.knockoutForce
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 2793193698236965643, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
-      propertyPath: defenseKnockbackReduction
-      value: 0.113
-      objectReference: {fileID: 0}
-    - target: {fileID: 2793193698236965643, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
-      propertyPath: lightAttackLeftSwing.skipAnticipationInCombos
-      value: 1
+      propertyPath: lightAttackRightSwing.knockoutForce
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 6358756388176844130, guid: 6d624fd22bd2a854398f096c1fabcf9e, type: 3}
       propertyPath: m_Name
