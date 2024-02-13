@@ -53,7 +53,8 @@ namespace Enemy
 
         public void SetRendererVisibility(bool visible)
         {
-            _renderer.enabled = visible;
+            if(_renderer)
+                _renderer.enabled = visible;
         }
 
 

@@ -31,6 +31,10 @@ namespace Enemy.States
 
         public LineRenderer lineRenderer;
 
+        public ParticleSystem lineParticleSystem;
+        public ParticleSystem lineParticleSystemChild;
+        private Transform _lineParticleTransform;
+
         private Vector3 _trackingPos;
 
         private Rigidbody2D _rigidbody2D;
@@ -47,6 +51,7 @@ namespace Enemy.States
             }
 
             _playerTrans = PlayerController.Instance.transform;
+            _lineParticleTransform = lineParticleSystem.transform;
             _laserEndEffectTransform = laserEndEffect.transform;
             laserEndEffect.SetActive(false);
             lineRenderer.enabled = false;
@@ -71,6 +76,10 @@ namespace Enemy.States
             lineRenderer.SetPosition(1, _trackingPos);
             lineRenderer.enabled = true;
 
+            SetLineParticleTransform();
+            lineParticleSystem.Play();
+            lineParticleSystemChild.Play();
+
             _curRaycastTickTime = 0;
             _curTrackingSpeed = fastTrackingSpeed;
         }
@@ -94,6 +103,8 @@ namespace Enemy.States
             
             lineRenderer.SetPosition(0, trackingStartPos.position);
             lineRenderer.SetPosition(1, _trackingPos);
+
+            SetLineParticleTransform();
 
             if (_curRaycastTickTime <= 0)
             {
@@ -130,10 +141,29 @@ namespace Enemy.States
             }
         }
 
+        public void SetLineParticleTransform()
+        {
+            var startpos = trackingStartPos.position;
+            _lineParticleTransform.position = (_trackingPos + startpos) / 2;
+            
+            ParticleSystem.ShapeModule shapeModule1 = lineParticleSystem.shape;
+            ParticleSystem.ShapeModule shapeModule2 = lineParticleSystemChild.shape;
+            Vector3 newShape = new Vector3(1, Vector3.Distance(_trackingPos, startpos), 1);
+            shapeModule1.scale = newShape;
+            shapeModule2.scale = newShape;
+
+            Vector3 lookDirection = (_trackingPos - startpos).normalized;
+            Vector3 rotatedDirectionFor2D = Quaternion.Euler(0, 0, 90) * lookDirection;
+            Quaternion lookRotation = Quaternion.LookRotation(Vector3.forward, rotatedDirectionFor2D);
+            _lineParticleTransform.rotation = lookRotation;
+        }
+
         public override void Exit()
         {
             laserEndEffect.SetActive(false);
             lineRenderer.enabled = false;
+            lineParticleSystem.Stop();
+            lineParticleSystemChild.Stop();
         }
     }
 }
