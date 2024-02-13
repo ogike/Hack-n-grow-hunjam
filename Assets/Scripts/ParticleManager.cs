@@ -34,6 +34,12 @@ public class ParticleManager : MonoBehaviour
         GameObject particle = GameObject.Instantiate(prefab, position, lookRotation, _trans);
     }
 
+    public void SpawnParticleAt(GameObject prefab, Vector3 position)
+    {
+        position.z = particlePosZ;
+        GameObject particle = GameObject.Instantiate(prefab, position, Quaternion.identity, _trans);
+    }
+
     public void SpawnParticleWithParentAndDuration(GameObject prefab, Transform parent, float duration)
     {
         GameObject particle = GameObject.Instantiate(prefab, parent);

@@ -15,7 +15,7 @@ namespace Enemy.States
         
         public bool stopOnSuccesfulHit;
         
-        [Header("Sounds")] 
+        [Header("Effects")] 
         public AudioClip attackAudio;
         
         [Header("References")] 

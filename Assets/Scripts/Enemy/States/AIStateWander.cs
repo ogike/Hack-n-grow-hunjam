@@ -8,6 +8,8 @@ namespace Enemy.States
     public class AIStateWander : AIState
     {
         protected override string stateDebugName => "Wandering";
+
+        public GameObject noticeParticle;
         
         public float speed = 5;
         public float rotationSpeed = 5;
@@ -17,12 +19,20 @@ namespace Enemy.States
         private float _timeUntilNextDirectionChange;
 
         private Vector2 _curDir;
+        
 
         public override void Entry()
         {
             base.Entry();
             
             ChooseNewDir();
+        }
+
+        public override void Exit()
+        {
+            base.Exit();
+            
+            ParticleManager.Instance.SpawnParticleAt(noticeParticle, _controller.MyPosition);
         }
 
         /// <summary>

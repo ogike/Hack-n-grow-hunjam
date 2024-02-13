@@ -683,6 +683,7 @@ MonoBehaviour:
         frames: 0
       animatorEntryTrigger: 
       animatorEntryEventType: 0
+    noticeParticle: {fileID: 6890042349391293792, guid: 37ae4ab715bf47a40add85c2341837a9, type: 3}
     speed: 5
     rotationSpeed: 5
     changeDirectionTimeMin: 0
@@ -695,6 +696,7 @@ MonoBehaviour:
       animatorEntryTrigger: AttackState
       animatorEntryEventType: 2
     attackWindUpReferenceAnim: {fileID: 7400000, guid: 84ba0b0e4703e964da246358fad1a056, type: 2}
+    attackFlash: {fileID: 6288973411394204013, guid: fe23ec8a633c99147b97e746e2415bd8, type: 3}
     rotateSpeed: 10
   stateAttackMain:
     animationInfo:

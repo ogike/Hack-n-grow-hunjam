@@ -9,6 +9,8 @@ namespace Enemy.States
         protected override string stateDebugName => "Attack Windup";
 
         public AnimationClip attackWindUpReferenceAnim;
+        public GameObject attackFlash;
+
 
         public float rotateSpeed;
         
@@ -17,6 +19,7 @@ namespace Enemy.States
         {
             base.Entry();
             
+            ParticleManager.Instance.SpawnParticleAt(attackFlash, _controller.MyPosition);
             _controller.AnimatorSetFloat("AttackWindupTime",
                 attackWindUpReferenceAnim.length / animationInfo.stateTime.Seconds);
         }
