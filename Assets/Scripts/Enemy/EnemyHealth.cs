@@ -18,6 +18,7 @@ namespace Enemy
 
         public GameObject hitParticle;
         public GameObject deathParticle;
+        public GameObject knockbackTrailParticle;
 
         private EnemyAI _enemyAI;
         private Rigidbody2D _rigidbody;
@@ -54,6 +55,8 @@ namespace Enemy
         {
             _rigidbody.AddForce(knockbackForce);
             _enemyAI.KnockBack(knockoutTime);
+            
+            ParticleManager.Instance.SpawnParticleWithParentAndDuration(knockbackTrailParticle, _transform, knockoutTime);
         }
 
         public void Die()

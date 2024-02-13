@@ -292,6 +292,7 @@ MonoBehaviour:
   enemyDieAudio: {fileID: 8300000, guid: c7075349e01ef964a86f45134bab23cd, type: 3}
   hitParticle: {fileID: 6664827519524277622, guid: 042f1731634d16d409f70acf584b3678, type: 3}
   deathParticle: {fileID: 2742127536422404577, guid: fc95830661cf5bd4fae10f26aca60992, type: 3}
+  knockbackTrailParticle: {fileID: 6707022045245354517, guid: b629b146d96c27b49a82fa7ea63a38e4, type: 3}
 --- !u!114 &5768822318625705290
 MonoBehaviour:
   m_ObjectHideFlags: 0

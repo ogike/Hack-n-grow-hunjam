@@ -33,4 +33,19 @@ public class ParticleManager : MonoBehaviour
         position.z = particlePosZ;
         GameObject particle = GameObject.Instantiate(prefab, position, lookRotation, _trans);
     }
+
+    public void SpawnParticleWithParentAndDuration(GameObject prefab, Transform parent, float duration)
+    {
+        GameObject particle = GameObject.Instantiate(prefab, parent);
+
+        //nullchechking is expensive so be caredul to use ParticleSystem here lol
+        ParticleSystem particleSystem = particle.GetComponent<ParticleSystem>();
+        particleSystem.Stop();
+        
+        ParticleSystem.MainModule main = particleSystem.main; 
+        main.duration = duration;
+        
+        particleSystem.Play();
+        
+    }
 }
