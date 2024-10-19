@@ -35,6 +35,8 @@ namespace Enemy.States
         public ParticleSystem lineParticleSystemChild;
         private Transform _lineParticleTransform;
 
+        public ParticleSystem beamEndParticleSystem;
+
         private Vector3 _trackingPos;
 
         private Rigidbody2D _rigidbody2D;
@@ -79,6 +81,7 @@ namespace Enemy.States
             SetLineParticleTransform();
             lineParticleSystem.Play();
             lineParticleSystemChild.Play();
+            beamEndParticleSystem.Play();
 
             _curRaycastTickTime = 0;
             _curTrackingSpeed = fastTrackingSpeed;
@@ -164,6 +167,7 @@ namespace Enemy.States
             lineRenderer.enabled = false;
             lineParticleSystem.Stop();
             lineParticleSystemChild.Stop();
+            beamEndParticleSystem.Play();
         }
     }
 }

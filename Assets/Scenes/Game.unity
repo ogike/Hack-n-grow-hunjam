@@ -1013,8 +1013,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AssetsPPU: 100
-  m_RefResolutionX: 500
-  m_RefResolutionY: 300
+  m_RefResolutionX: 480
+  m_RefResolutionY: 360
   m_UpscaleRT: 0
   m_PixelSnapping: 1
   m_CropFrameX: 0
@@ -1775,6 +1775,22 @@ PrefabInstance:
     - target: {fileID: 178169559780894934, guid: 0a3056edb47dc264b865f511a24135fb, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -422
+      objectReference: {fileID: 0}
+    - target: {fileID: 714654033600127113, guid: 0a3056edb47dc264b865f511a24135fb, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 714654033600127113, guid: 0a3056edb47dc264b865f511a24135fb, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 714654033600127113, guid: 0a3056edb47dc264b865f511a24135fb, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1600
+      objectReference: {fileID: 0}
+    - target: {fileID: 714654033600127113, guid: 0a3056edb47dc264b865f511a24135fb, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1200
       objectReference: {fileID: 0}
     - target: {fileID: 1387720903392664278, guid: 0a3056edb47dc264b865f511a24135fb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
