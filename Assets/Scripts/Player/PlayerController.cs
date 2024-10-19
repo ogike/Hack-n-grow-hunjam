@@ -24,6 +24,10 @@ namespace Player
         private float lastInputV;
         private bool rotatedThisUpdate = false;
 
+        private float _timeSinceLastStop;
+        private float _timeSinceLastMove;
+        private bool _isMoving;
+
         private float _floatingTolerance = 0.001f;
     
         //starting level = 0
@@ -144,7 +148,7 @@ namespace Player
             _attackTriggerGameObject = attackTrigger.gameObject;
             _attackTriggerGameObject.SetActive(false);
             CurrentAttackState = AttackState.NotAttacking;
-        
+
             CurLevel = 0;
             curXp = 0;
             UpdateXpMeter();
@@ -162,9 +166,12 @@ namespace Player
             lightAttackRightSwing.strikeEffectSprite.SetActive(false);
             hasPressedAttackThisCombo = false;
             Defending = false;
+            
+            _isMoving = false;
+            _timeSinceLastMove = 0;
+            _timeSinceLastStop = 0;
         }
-
-        // Update is called once per frame
+        
         void Update()
         {
             if(UIScript.Instance.Paused || !GameManager.Instance.Alive) return;
@@ -260,6 +267,15 @@ namespace Player
                 _rigidbody.velocity = Vector2.zero;
                 animator.SetBool("isMoving", false);
             }
+
+            if (_isMoving)
+            {
+                _timeSinceLastStop += Time.deltaTime;
+            }
+            else
+            {
+                _timeSinceLastStop += Time.deltaTime;
+            }
         }
 
         public bool CanMove()
@@ -300,64 +316,77 @@ namespace Player
             else
                 plusRotValue = 90;
         
-        
-            //rotation
-            // make it so look rot stays
-            if (inputH != 0 || inputV != 0)
-            {
-                if (Math.Abs(inputH - lastInputH) > _floatingTolerance ||
-                    Math.Abs(inputV - lastInputV) > _floatingTolerance)
-                {
-                    if (inputH == 0 && inputV == 0)
-                        plusRotValue = 0;
-                    else
-                        plusRotValue = 90;
-
-                    float lookH = inputH;
-                    float lookV = inputV;
-                
-                    //restrict diagonal
-                    if (Mathf.Abs(inputH) > 0 && Mathf.Abs(inputV) > 0)
-                    {
-                        //dont rotate
-                        lookH = _last4WayDir.x;
-                        lookV = _last4WayDir.y;
-                    }
-                    else
-                    {
-                        _last4WayDir.x = lookH;
-                        _last4WayDir.y = lookV;
-                    }
-                
-                    float rotZ = Mathf.Atan2(lookV, lookH) * Mathf.Rad2Deg;
-                
-                    float finalRot = rotZ - plusRotValue;
-                    _trans.rotation = Quaternion.Euler(0, 0, finalRot);
-                    rotatedThisUpdate = true;
-
-                    lastInputH = inputH;
-                    lastInputV = inputV;
-                
-                    SetMecanimRotation(lookH, lookV);
-                }
             
-                //move if there is input
-                float finalSpeed = GetCurrentMaxSpeed();
-
-                Vector2 newFullForce = new Vector2(inputH, inputV) * (finalSpeed * Time.deltaTime);
-                _rigidbody.AddForce(newFullForce);
-            
-                //this is bogus calculation, doesnt change much
-                _rigidbody.velocity = Vector2.ClampMagnitude(_rigidbody.velocity, finalSpeed);
-            
-                animator.SetBool("isMoving", true);
-            }
-            else
+            if (inputH == 0 && inputV == 0 && _isMoving)
             {
                 //reset movement if no input
                 _rigidbody.velocity = Vector2.zero;
                 animator.SetBool("isMoving", false);
+
+                _isMoving = false;
+                _timeSinceLastMove = 0;
+                _timeSinceLastStop = 0;
+                
+                return;
             }
+
+            if (!_isMoving)
+            {
+                _isMoving = true;
+                _timeSinceLastStop = 0;
+                _timeSinceLastMove = 0;
+            }
+            
+            //TODO: Use TimeSinceLastStop for AnimationCurve controlled accelaration
+
+            //rotation
+            // make it so look rot stays
+            if (Math.Abs(inputH - lastInputH) > _floatingTolerance ||
+                Math.Abs(inputV - lastInputV) > _floatingTolerance)
+            {
+                if (inputH == 0 && inputV == 0)
+                    plusRotValue = 0;
+                else
+                    plusRotValue = 90;
+
+                float lookH = inputH;
+                float lookV = inputV;
+            
+                //restrict diagonal
+                if (Mathf.Abs(inputH) > 0 && Mathf.Abs(inputV) > 0)
+                {
+                    //dont rotate
+                    lookH = _last4WayDir.x;
+                    lookV = _last4WayDir.y;
+                }
+                else
+                {
+                    _last4WayDir.x = lookH;
+                    _last4WayDir.y = lookV;
+                }
+            
+                float rotZ = Mathf.Atan2(lookV, lookH) * Mathf.Rad2Deg;
+            
+                float finalRot = rotZ - plusRotValue;
+                _trans.rotation = Quaternion.Euler(0, 0, finalRot);
+                rotatedThisUpdate = true;
+
+                lastInputH = inputH;
+                lastInputV = inputV;
+            
+                SetMecanimRotation(lookH, lookV);
+            }
+        
+            //move if there is input
+            float finalSpeed = GetCurrentMaxSpeed();
+
+            Vector2 newFullForce = new Vector2(inputH, inputV) * (finalSpeed * Time.deltaTime);
+            _rigidbody.AddForce(newFullForce);
+        
+            //this is bogus calculation, doesnt change much
+            _rigidbody.velocity = Vector2.ClampMagnitude(_rigidbody.velocity, finalSpeed);
+        
+            animator.SetBool("isMoving", true);
         }
 
         public float GetCurrentMaxSpeed()
