@@ -15,6 +15,11 @@ namespace Player
         [Header("Moving")] //###############################################################################################
         public float baseSpeed = 15;
 
+        public TimeValue accelerationTime;
+        public AnimationCurve accelerationCurve;
+        public TimeValue deaccelerationTime;
+        public AnimationCurve deaccelerationCurve;
+
         [Tooltip("The force by which the player will be knocked back")]
         public float baseKnockBackedForce = 1;
 
@@ -189,7 +194,12 @@ namespace Player
             {
                 Move();
             }
-        
+
+            if (!_isMoving && _timeSinceLastMove < deaccelerationTime.Seconds)
+            {
+                UpdateDeacceleration();
+            }
+
             //we can try to attack whenever
             // cooldown will be checked inside the function
             if (UserInput.instance.LightAttackPressedThisFrame)
@@ -274,7 +284,7 @@ namespace Player
             }
             else
             {
-                _timeSinceLastStop += Time.deltaTime;
+                _timeSinceLastMove += Time.deltaTime;
             }
         }
 
@@ -311,35 +321,79 @@ namespace Player
             float inputH = UserInput.instance.MoveInput.x;
             float inputV = UserInput.instance.MoveInput.y;
 
+            //reset movement if no input
             if (inputH == 0 && inputV == 0)
-                plusRotValue = 0;
-            else
-                plusRotValue = 90;
-        
-            
-            if (inputH == 0 && inputV == 0 && _isMoving)
             {
-                //reset movement if no input
-                _rigidbody.velocity = Vector2.zero;
-                animator.SetBool("isMoving", false);
+                if (_isMoving)
+                {
+                    _isMoving = false;
+                    _timeSinceLastMove = 0;
+                    _timeSinceLastStop = 0;
+                    
+                    animator.SetBool("isMoving", false);
+                }
 
-                _isMoving = false;
-                _timeSinceLastMove = 0;
-                _timeSinceLastStop = 0;
-                
-                return;
+                return; // We dont move
             }
 
+            // Start moving if we havent
             if (!_isMoving)
             {
                 _isMoving = true;
                 _timeSinceLastStop = 0;
                 _timeSinceLastMove = 0;
+                animator.SetBool("isMoving", true);
             }
             
-            //TODO: Use TimeSinceLastStop for AnimationCurve controlled accelaration
+            UpdateMoveRotation(inputH, inputV);
+        
+            //move if there is input
+            float finalSpeed = GetCurrentMaxSpeed();
+            
+            if (_timeSinceLastStop < accelerationTime.Seconds)
+            {
+                float percent = _timeSinceLastStop / accelerationTime.Seconds;
+                finalSpeed *= accelerationCurve.Evaluate(percent);
+            }
 
-            //rotation
+            Vector2 newFullForce = new Vector2(inputH, inputV) * finalSpeed;
+            // _rigidbody.AddForce(newFullForce);
+        
+            // This is overwriting the full velocity of the Rigidbody system. This is not the best, but gives us the most control.
+            _rigidbody.velocity = newFullForce;
+        }
+
+        public float GetCurrentMaxSpeed()
+        {
+            float result = baseSpeed * speedModifiers[CurLevel];
+
+            switch (CurrentAttackState)
+            {
+                case AttackState.NotAttacking:
+                    break;
+                case AttackState.Windup:
+                    if (_curAttack.anticipationRestriction == AttackMovementRestriction.HalfSpeed) result /= 2;
+                    break;
+                case AttackState.ActiveAttack:
+                    if (_curAttack.strikeRestriction == AttackMovementRestriction.HalfSpeed) result /= 2;
+                    break;
+                case AttackState.WinddownPre: //fall thru, handled the same
+                case AttackState.WinddownReady:
+                    if (_curAttack.recoveryRestriction == AttackMovementRestriction.HalfSpeed) result /= 2;
+                    break;
+                case AttackState.Cooldown:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+            
+            if (Defending) result *= defenseMovementModifier;
+
+            return result;
+        }
+
+        private void UpdateMoveRotation(float inputH, float inputV)
+        {
             // make it so look rot stays
             if (Math.Abs(inputH - lastInputH) > _floatingTolerance ||
                 Math.Abs(inputV - lastInputV) > _floatingTolerance)
@@ -376,46 +430,23 @@ namespace Player
             
                 SetMecanimRotation(lookH, lookV);
             }
-        
-            //move if there is input
-            float finalSpeed = GetCurrentMaxSpeed();
-
-            Vector2 newFullForce = new Vector2(inputH, inputV) * (finalSpeed * Time.deltaTime);
-            _rigidbody.AddForce(newFullForce);
-        
-            //this is bogus calculation, doesnt change much
-            _rigidbody.velocity = Vector2.ClampMagnitude(_rigidbody.velocity, finalSpeed);
-        
-            animator.SetBool("isMoving", true);
         }
 
-        public float GetCurrentMaxSpeed()
+        private void UpdateDeacceleration()
         {
-            float result = baseSpeed * speedModifiers[CurLevel];
+            float finalSpeed = GetCurrentMaxSpeed();
 
-            switch (CurrentAttackState)
+            if (_timeSinceLastMove < deaccelerationTime.Seconds)
             {
-                case AttackState.NotAttacking:
-                    break;
-                case AttackState.Windup:
-                    if (_curAttack.anticipationRestriction == AttackMovementRestriction.HalfSpeed) result /= 2;
-                    break;
-                case AttackState.ActiveAttack:
-                    if (_curAttack.strikeRestriction == AttackMovementRestriction.HalfSpeed) result /= 2;
-                    break;
-                case AttackState.WinddownPre: //fall thru, handled the same
-                case AttackState.WinddownReady:
-                    if (_curAttack.recoveryRestriction == AttackMovementRestriction.HalfSpeed) result /= 2;
-                    break;
-                case AttackState.Cooldown:
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
+                float percent = _timeSinceLastMove / deaccelerationTime.Seconds;
+                finalSpeed *= deaccelerationCurve.Evaluate(percent);
             }
             
-            if (Defending) result *= defenseMovementModifier;
-
-            return result;
+            Vector2 newFullForce = new Vector2(lastInputH, lastInputV) * finalSpeed;
+            // _rigidbody.AddForce(newFullForce);
+        
+            // This is overwriting the full velocity of the Rigidbody system. This is not the best, but gives us the most control.
+            _rigidbody.velocity = newFullForce;
         }
         
         public void RecenterToSpritePivot()

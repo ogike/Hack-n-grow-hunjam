@@ -427,7 +427,59 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02eb1e4ff2daa34498e68e04e32eb2bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseSpeed: 1200
+  baseSpeed: 2
+  accelerationTime:
+    frames: 2
+  accelerationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  deaccelerationTime:
+    frames: 4
+  deaccelerationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.0012475048
+      value: 0.9990574
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.9924927
+      value: -0.006126404
+      inSlope: -0.176904
+      outSlope: -0.176904
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.08598799
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   baseKnockBackedForce: 250
   maxLevel: 5
   size2Level: 3
